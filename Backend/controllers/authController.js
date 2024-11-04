@@ -5,7 +5,7 @@ const { User } = require("../models/userModel");
 const JWT_SECRET = process.env.JWT_SECRET;
 
 // Register User
-const registerUser = async (req, res) => {
+const userRegister = async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
@@ -34,7 +34,7 @@ const registerUser = async (req, res) => {
 };
 
 // Login User
-const loginUser = async (req, res) => {
+const userLogin = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -59,4 +59,7 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser };
+module.exports = { 
+  userRegister, 
+  userLogin, 
+};
