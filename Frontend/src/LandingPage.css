@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+/* Reset dan Layout Utama */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+
+.landing-page {
+    width: 100%;
+    max-width: 1440px; /* Fit layar laptop */
+    margin: 0 auto;
+    border: 1px solid #A9B388; /* Border sesuai permintaan */
+    background-color: #D3BFA4; /* Warna background seperti kopi susu */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    position: relative;
+}
+
+/* Header dengan Background Penuh dari Atas */
+.header {
+    width: 100vw;
+    background-color: #E3D5B4; /* Warna background header sama seperti footer */
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Jarak antara logo dan teks */
+    padding: 20px; /* Spasi dalam header */
+    position: absolute; /* Mengatur header di posisi absolut */
+    top: 0; /* Memastikan header mulai dari bagian paling atas */
+    left: 0; /* Memastikan header menempel di sisi kiri */
+    z-index: 1000; /* Menjaga agar header tetap berada di atas konten lain */
+}
+
+.logo {
+    width: 100px; /* Memperbesar ukuran logo agar lebih proporsional */
+    height: auto;
+}
+
+.header-text {
+    color: #5C2C10;
+    font-family: 'Poppins', sans-serif; /* Menggunakan Poppins */
+    font-size: 50px;
+    font-weight: 700; /* Menggunakan berat bold */
+    line-height: normal;
+}
+
+/* Konten Utama */
+.main-content {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    padding-top: 20px; /* Mengatur jarak dengan header */
+}
+
+/* Teks utama */
+.text-section {
+    flex: 1;
+    max-width: 50%;
+    padding: 20px;
+    text-align: left;
+}
+
+.welcome-text {
+    font-size: 40px; /* Ukuran lebih kecil agar lebih pas */
+    color: #351B0C;
+    font-family: "Pixelify Sans", sans-serif;
+    font-weight: 700; /* Mengubah font-weight menjadi bold */
+    text-align: left; /* Sesuaikan dengan header */
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 1.2rem;
+    color: #5C2C10;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.call-to-action {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #552509;
+    margin: 20px 0;
+    text-transform: uppercase;
+}
+
+/* Hero Image dengan Ellipse Background */
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    max-width: 50%;
+    margin-top: 40px; /* Menambahkan margin untuk menurunkan elemen */
+}
+
+.ellipse-background {
+    width: 500px; /* Tetap menggunakan ukuran aslinya */
+    height: 450px;
+    background-color: #FEFAE0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px; /* Menambahkan padding di bagian atas */
+    transform: scale(0.8); /* Mengecilkan elemen ini saja */
+    transform-origin: center; /* Tetap di tengah saat di-scaling */
+}
+
+.ellipse-background img {
+    width: 300px; /* Mengecilkan ukuran gambar anak-anak */
+    height: auto; /* Menjaga proporsi gambar */
+}
+
+
+/* Tombol */
+.buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.register-button,
+.login-button {
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.register-button {
+    background-color: #C4661F;
+    color: #FEFAE0;
+}
+
+.login-button {
+    background-color: #FEFAE0;
+    color: #643214;
+    border: 2px solid #643214;
+}
+
+/* Footer */
+.footer {
+    width: 100vw; 
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    background-color: #E3D5B4;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+
+.contact-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px; /* Jarak antar kelompok kontak */
+    width: 80%; /* Mengatur lebar untuk posisi seimbang */
+    max-width: 1200px; /* Batas lebar untuk tampilan lebih besar */
+    color: #643214;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Jarak antara ikon dan teks */
+    font-size: 1rem;
+    color: #643214;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+/* Media Queries untuk Responsif */
+@media (max-width: 768px) {
+    .landing-page {
+        padding: 20px;
+    }
+
+    .header-text {
+        font-size: 48px;
+    }
+
+    .main-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .text-section,
+    .hero-image {
+        max-width: 100%;
+    }
+
+    .ellipse-background {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+
+    .ellipse-background img {
+        max-width: 200px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+}

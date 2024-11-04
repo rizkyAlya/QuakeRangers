@@ -1,12 +1,12 @@
-import "./App.css";
+import React from "react";
+import LandingPage from "./LandingPage";
+import HomePage from "./HomePage";
 
 function App() {
   return (
-    <>
-      <div className="">
-        <h1 className="text-4xl">QuakeRangers</h1>
-      </div>
-    </>
+    <div>
+      <HomePage />
+    </div>
   );
 }
 
