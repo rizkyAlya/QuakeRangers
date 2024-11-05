@@ -1,0 +1,167 @@
+/* Reset and Basic Layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+
+.home-page {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh; /* Full height */
+    background-color: #A9B388; /* Set background color */
+}
+
+/* Background elements */
+.grass {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+}
+
+.tree {
+    position: absolute;
+    z-index: 2;
+}
+
+.tree1 {
+    left: 10%;
+    bottom: 20%; /* Positioning for the first tree */
+    width: 15%; /* Adjust size as needed */
+}
+
+.tree2 {
+    right: 10%;
+    bottom: 20%; /* Positioning for the second tree */
+    width: 15%; /* Adjust size as needed */
+}
+
+/* Title styling */
+.title {
+    font-size: 60px;
+    font-family: 'Poppins', sans-serif; /* Using Poppins */
+    font-weight: bold;
+    color: #5C2C10; /* Adjust color as necessary */
+    position: absolute;
+    top: 10%; /* Position title */
+    z-index: 3; /* On top of other elements */
+}
+
+/* Character positioning */
+.character {
+    position: absolute;
+    display: flex;
+    justify-content: center; /* Center the characters */
+    align-items: flex-end; /* Align to the bottom of the container */
+    width: 150px; /* Set a fixed width to position correctly */
+    top: 45%; /* Adjust position to be just above "LET'S PLAY!" */
+    z-index: 3; /* Above grass and trees */
+}
+
+.boy, .girl {
+    width: 80px; /* Set size for characters */
+    height: auto;
+    margin: 0 5px; /* Add margin to bring them closer together */
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    gap: 20px; /* Space between buttons */
+    margin-top: 10px; /* Adjust space from title */
+    position: absolute;
+    top: 30%; /* Position directly below the title */
+}
+
+/* Button styling */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #E3D5B4; /* Light background for buttons */
+    color: #351B0C; /* Text color */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.btn:hover {
+    background-color: #C4661F; /* Darker shade on hover */
+}
+
+/* Active state styling for buttons */
+.active {
+    background-color: #C4661F; /* Change color to orange */
+    color: white; /* Change text color */
+}
+
+/* Play text styling */
+.play-text {
+    font-size: 30px;
+    font-weight: bold;
+    color: #643214; /* Change color */
+    position: absolute;
+    bottom: 10%; /* Position near the bottom */
+    z-index: 3; /* On top of other elements */
+}
+
+/* Icon styling */
+.icons {
+    position: absolute;
+    top: 10px; /* Position icons at the top */
+    right: 10px; /* Align to the right */
+    display: flex;
+    gap: 10px; /* Space between icons */
+}
+
+.icon-button {
+    background-color: #E3D5B4; /* Light color for Profile button */
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+.home-button {
+    background-color: #E3D5B4; 
+}
+
+/* Active state styling for icon buttons */
+.icon-button:hover {
+    background-color: #C4661F; /* Change color to orange on hover */
+}
+
+/* Icon size */
+.icon {
+    width: 24px; /* Set icon size */
+    height: auto;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .title {
+        font-size: 48px; /* Adjust title size for mobile */
+    }
+
+    .boy, .girl {
+        width: 60px; /* Smaller character size for mobile */
+    }
+}
