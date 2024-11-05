@@ -33,11 +33,7 @@ const editProfile = async (req, res) => {
       return res.status(404).json({ success: false, message: "User tidak ditemukan" });
     }
 
-    res.status(200).json({
-      success: true,
-      message: "Profil berhasil diperbarui",
-      data: updatedUser
-    });
+    res.status(200).json({ success: true, message: "Profil berhasil diperbarui", data: updatedUser });
   } catch (err) {
     console.log(err);
     res.status(500).json({ success: false, message: `Gagal memperbarui profil: ${err.message}` });
