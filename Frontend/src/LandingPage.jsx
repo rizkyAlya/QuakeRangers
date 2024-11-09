@@ -1,54 +1,84 @@
 import React from 'react';
-import './RegisterPage.css';
-import registerCharacter from './assets/images/registercharacter.png';
-import userIcon from './assets/icons/user.svg';
-import mailIcon from './assets/icons/mail.svg';
-import passwordIcon from './assets/icons/password.svg';
-import calendarIcon from './assets/icons/calendar.svg';
-import mataIcon from './assets/icons/mata.svg';
+import './LandingPage.css';
+import contactIcon from './assets/icons/contact-multiple.svg';
+import mailIcon from './assets/icons/mail-multiple.svg';
+import mapIcon from './assets/icons/map.svg';
+import logoImage from './assets/images/logo.png';
+import heroImage from './assets/images/image.png';
+import bookIcon from './assets/icons/book.svg'; // Add icons
+import practiceIcon from './assets/icons/practice.svg'; // Add icons
+import leaderboardIcon from './assets/icons/leaderboard.svg'; // Add icons
 
-function RegisterPage() {
+function LandingPage() {
   return (
-    <div className="register-page">
-      {/* Left Section */}
-      <div className="left-section">
-        <div className="welcome-text">
-          Welcome to Quakerangers
-        </div>
-        <div className="already-have-account">
-          Already have an account? <span className="sign-in">SIGN IN</span>
-        </div>
+    <div className="landing-page">
+      {/* Header dengan Logo dan Background */}
+      <div className="header">
+        <img src={logoImage} alt="Logo" className="logo" />
+        <div className="header-text">QUAKERANGERS!</div>
       </div>
 
-      {/* Right Section */}
-      <div className="right-section">
-        <div className="create-account">
-          Create Account
+      {/* Main Content */}
+      <main className="main-content">
+        <div className="text-section">
+          <h1 className="welcome-text">Hello, Welcome!</h1>
+          <p className="description">
+            Quakerangers is an interactive educational platform that teaches kids about earthquake preparedness through quizzes, games, and engaging content.
+          </p>
+          <p className="call-to-action">
+            JOIN US AND BECOME A HERO READY TO FACE ANY DISASTER!
+          </p>
+          <div className="buttons">
+            <button className="register-button">Register</button>
+            <button className="login-button">Login</button>
+          </div>
         </div>
+        <div className="hero-image">
+          <div className="ellipse-background">
+            <img src={heroImage} alt="Hero" />
+          </div>
+        </div>
+      </main>
 
-        <div className="form">
-          <div className="input-group">
-            <img src={userIcon} alt="Username Icon" className="input-icon" />
-            <input type="text" placeholder="Username" className="input-field" />
+      {/* New Goal Section Below */}
+      <section className="goal-section">
+        <h2>Our Goals</h2>
+        <p>Our goal is to empower children with the knowledge and skills they need to confidently face earthquakes and stay safe.</p>
+        <div className="goal-icons">
+          <div className="goal-item">
+            <img src={bookIcon} alt="Learn Icon" className="goal-icon" />
+            <span>Learn</span>
           </div>
-          <div className="input-group">
-            <img src={mailIcon} alt="Email Icon" className="input-icon" />
-            <input type="email" placeholder="Email" className="input-field" />
+          <div className="goal-item">
+            <img src={practiceIcon} alt="Practice Icon" className="goal-icon" />
+            <span>Practice</span>
           </div>
-          <div className="input-group">
-            <img src={passwordIcon} alt="Password Icon" className="input-icon" />
-            <input type="password" placeholder="Password" className="input-field" />
-            <img src={mataIcon} alt="Show Password" className="mata-icon" />
+          <div className="goal-item">
+            <img src={leaderboardIcon} alt="Leaderboard Icon" className="goal-icon" />
+            <span>Leaderboard</span>
           </div>
-          <div className="input-group">
-            <img src={calendarIcon} alt="Birthday Icon" className="input-icon" />
-            <input type="date" placeholder="Birthday" className="input-field" />
-          </div>
-          <button className="sign-up-btn">SIGN UP</button>
         </div>
-      </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="contact-section">
+          <div className="contact-item">
+            <img src={contactIcon} className="icon" alt="Contact Icon" />
+            <span>(+62) 85260897437</span>
+          </div>
+          <div className="contact-item">
+            <img src={mailIcon} className="icon" alt="Mail Icon" />
+            <span>aliyah.rizky@ui.ac.id</span>
+          </div>
+          <div className="contact-item">
+            <img src={mapIcon} className="icon" alt="Map Icon" />
+            <span>University of Indonesia, Depok</span>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
 
-export default RegisterPage;
+export default LandingPage;

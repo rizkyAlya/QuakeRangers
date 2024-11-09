@@ -105,7 +105,6 @@ body, html {
     color: #5C2C10;
 }
 
-
 /* Konten Utama */
 .main-content {
     display: flex;
@@ -177,7 +176,6 @@ body, html {
     width: 300px; /* Mengecilkan ukuran gambar anak-anak */
     height: auto; /* Menjaga proporsi gambar */
 }
-
 
 /* Tombol */
 .buttons {
