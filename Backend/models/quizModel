@@ -1,0 +1,14 @@
+const mongoose = require("mongoose");
+
+const chapterSchema = new mongoose.Schema({
+    chapterTitle: String,
+    chapterDesc: String,
+    correctAnswer: String,
+    point: Number,
+});
+
+const Chapter = mongoose.model("Chapter", chapterSchema);
+
+module.exports = {
+    Chapter
+};

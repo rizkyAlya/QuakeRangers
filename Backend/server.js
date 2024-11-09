@@ -9,6 +9,7 @@ const PORT = process.env.PORT;
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 const { getLeaderboard } = require("./controllers/leadController");
+const quizRoutes = require("./routes/quiz");
 
 // Menghubungkan dengan database
 db.connectDB();
@@ -27,7 +28,7 @@ app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
 app.get("/leaderboard", getLeaderboard);
 //app.use("/material", materialRoutes);
-//app.use("/quiz", quizRoutes);
+app.use("/quiz", quizRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT} `);
