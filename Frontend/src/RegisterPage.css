@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiko&display=swap');
+
+/* Reset dan Layout Utama */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+
+.register-page {
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.left-section {
+    background-color: #5F6F52 !important;  /* Green background */
+    width: 30%;  /* Left section width */
+    height: 100vh;  /* Full height of the viewport */
+    display: flex;
+    flex-direction: column;  /* Ensure elements are arranged vertically */
+    justify-content: center;  /* Center all the content vertically */
+    align-items: center;
+    position: relative;
+    background: url('./assets/images/registercharacter.png') no-repeat center bottom;
+    background-size: contain;
+    padding-top: 80px;  /* Adjust this value if needed */
+}
+
+.welcome-text {
+    font-family: "Poppins", sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    color: #FEFAE0;
+    text-align: center;
+    width: 489px;
+    margin-bottom: 20px;
+}
+
+.already-have-account {
+    color: rgba(254, 250, 224, 0.7);
+    font-family: Amiko, sans-serif;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;  /* Jarak antara teks dan tombol */
+}
+
+/* Wadah untuk teks dan tombol Sign In */
+.sign-in-container {
+    display: flex;
+    flex-direction: column;  /* Menyusun tombol di bawah teks */
+    align-items: center;  /* Menjaga tombol tetap di tengah */
+    margin-top: -20px; /* Memberikan jarak antara teks dengan tombol */
+}
+
+/* Tombol Sign In */
+.sign-in {
+    background-color: #E8E2B9;
+    color: #5F6F52;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-family: 'Pixelify Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: auto;  /* Lebar otomatis sesuai dengan teks */
+    text-align: center;
+    border: 2px solid #5F6F52;
+    margin-top: 10px;  /* Memberikan jarak antar elemen */
+}
+
+/* Menambahkan efek hover pada tombol */
+.sign-in:hover {
+    background-color: #E5D7A9;
+    border-color: #5F6F52;
+}
+
+
+
+
+/* Right Section */
+.right-section {
+    background-color: #A9B388;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.create-account {
+    font-family: "Poppins", sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    color: #5F6F52;
+    text-align: center;
+    width: 602px;
+    margin-bottom: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.input-field {
+    width: 100%;
+    height: 40px;
+    border: 2px solid #783D19;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 16px;
+    padding-right: 40px; /* Ensure space for the calendar icon */
+  }
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+  }
+
+  .input-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+.mata-icon {
+    position: absolute;
+    right: 10px; /* Menempatkan ikon di kanan */
+    top: 50%;  /* Menjaga ikon tetap di tengah */
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+
+.sign-up-btn {
+    background-color: #5F6F52;
+    color: #FEFAE0;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.sign-up-btn:hover {
+    background-color: #552509;
+}
+
+/* Modify the Left Section of the page */
+.left-section {
+    background-color: #5F6F52 !important;  /* Green background */
+    width: 30%;  /* Left section width */
+    height: 100vh;  /* Full height of the viewport */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;  /* Align content towards the top */
+    align-items: center;
+    position: relative;
+    background: url('./assets/images/registercharacter.png') no-repeat center;  /* Move the image down */
+    background-size: contain;  /* Scale the image correctly */
+    padding-top: 100px;  /* Adjust this value to move content and image further down */
+    background-position: center bottom;  /* Adjust the background position to stick to the bottom */
+}
+
+.left-section {
+    background-color: #5F6F52 !important;  /* Green background */
+    width: 60%;  /* Left section width */
+    height: 100vh;  /* Full height of the viewport */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;  /* Align content towards the top */
+    align-items: center;
+    position: relative;
+    background: url('./assets/images/registercharacter.png') no-repeat center bottom;  /* Position the image at the bottom */
+    background-size:80%;  /* Ensure the image covers the area without stretching */
+    padding-top: 80px;  /* Adjust this value to move content and image further down */
+}
+
+
+/* Ensure responsiveness */
+@media (max-width: 768px) {
+    .register-page {
+        flex-direction: column;
+    }
+
+    .left-section, .right-section {
+        width: 100%;
+    }
+
+    .left-section {
+        height: auto;
+        background-size: cover;
+        background-position: center bottom;  /* Keep the background aligned at the bottom */
+    }
+}

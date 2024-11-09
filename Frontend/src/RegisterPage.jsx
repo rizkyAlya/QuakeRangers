@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './RegisterPage.css';
 import registerCharacter from './assets/images/registercharacter.png';
 import userIcon from './assets/icons/user.svg';
@@ -8,15 +8,22 @@ import calendarIcon from './assets/icons/calendar.svg';
 import mataIcon from './assets/icons/mata.svg';
 
 function RegisterPage() {
+  // State untuk toggle password visibility
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Fungsi untuk toggle visibility password
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className="register-page">
       {/* Left Section */}
       <div className="left-section">
-        <div className="welcome-text">
-          Welcome to Quakerangers
-        </div>
-        <div className="already-have-account">
-          Already have an account? <span className="sign-in">SIGN IN</span>
+        <p className="welcome-text">Welcome to QuakeRangers</p>
+        <p className="already-have-account">Already have an account?</p>
+        <div className="sign-in-container">
+          <button className="sign-in">SIGN IN</button>
         </div>
       </div>
 
@@ -37,13 +44,28 @@ function RegisterPage() {
           </div>
           <div className="input-group">
             <img src={passwordIcon} alt="Password Icon" className="input-icon" />
-            <input type="password" placeholder="Password" className="input-field" />
-            <img src={mataIcon} alt="Show Password" className="mata-icon" />
+            <input
+              type={showPassword ? "text" : "password"}  // Toggle type based on showPassword state
+              placeholder="Password"
+              className="input-field"
+            />
+            <img
+              src={mataIcon}
+              alt="Show Password"
+              className="mata-icon"
+              onClick={togglePassword}  // Handle click to toggle password visibility
+            />
           </div>
           <div className="input-group">
-            <img src={calendarIcon} alt="Birthday Icon" className="input-icon" />
-            <input type="date" placeholder="Birthday" className="input-field" />
-          </div>
+  <img src={calendarIcon} alt="Birthday Icon" className="input-icon" />
+  <input
+    type="text"
+    placeholder="Birthday"
+    className="input-field"
+    onFocus={(e) => e.target.type = 'date'} // Change to date type when clicked
+    onBlur={(e) => e.target.type = 'text'} // Change back to text when focus is lost
+  />
+</div>
           <button className="sign-up-btn">SIGN UP</button>
         </div>
       </div>
