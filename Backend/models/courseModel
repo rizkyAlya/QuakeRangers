@@ -1,0 +1,16 @@
+const mongoose = require("mongoose");
+
+const courseSchema = new mongoose.Schema({
+    title: String,
+    description: String,
+    image: { type: String, default: '' },
+    video: { type: String, default: '' },
+    content: String,
+    createdAt: { type: Date, default: Date.now }
+});
+
+const Course = mongoose.model("Course", courseSchema);
+
+module.exports = {
+    Course
+};

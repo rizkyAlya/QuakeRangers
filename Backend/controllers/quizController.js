@@ -2,35 +2,72 @@ const { Chapter } = require("../models/quizModel");
 const { User } = require("../models/userModel");
 
 const addChapters = async (req, res) => {
-    const { chapterTitle, chapterDesc, correctAnswer, point } = req.body; 
+    const { title, description, correctAnswer, point } = req.body; 
   
     try {
         const newChapter = new Chapter({
-            chapterTitle,
-            chapterDesc,
+            title,
+            description,
             correctAnswer,
             point
         });
     
         await newChapter.save();
         res.status(200).json({ success: true, message: "Chapter berhasil ditambahkan", data: newChapter });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json({ success: false, message: `Gagal menambahkan chapter: ${err.message}` });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ success: false, message: "Gagal menambahkan chapter", error: error.message });
+    }
+};
+
+const editChapter = async (req, res) => {
+    const { chapterId } = req.params;
+    const { title, description, correctAnswer, point } = req.body; 
+  
+    try {
+        const updatedChapter = await Chapter.findByIdAndUpdate(
+            chapterId,
+            { title, description, correctAnswer, point },
+            { new: true, runValidators: true } 
+        ).select("title description correctAnswer point");
+    
+        if (!updatedChapter) {
+            return res.status(404).json({ success: false, message: "Course tidak ditemukan" });
+        }
+    
+        res.status(200).json({ success: true, message: "Course berhasil diperbarui", data: updatedChapter });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Gagal memperbarui chapter", error });
     }
 };
 
 const getAllChapters = async (req, res) => {
     try {
-        // Mengambil semua chapter dan memilih field yang diperlukan
-        const chapters = await Chapter.find({}, 'chapterTitle chapterDesc point');
+        const chapters = await Chapter.find({}, 'title description point');
 
-        res.status(200).json({ success: true, message: "Chapters retrieved successfully", data: chapters });
+        res.status(200).json({ success: true, message: "Berhasil mendapatkan semua chapter", data: chapters });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ success: false, message: "Failed to retrieve chapters", error: error.message });
+        res.status(500).json({ success: false, message: "Gagal mendapatkan chapter", error: error.message });
     }
 }
+
+const getChapterById = async (req, res) => {
+    try {
+        const { chapterId } = req.params;
+        const chapter = await Chapter.findById(chapterId).select("title description point");
+    
+        if(!chapter) {
+            return res.status(404).json({success: false, message: "Quiz tidak ditemukan"});
+        }
+    
+        res.status(200).json({ success: true, message: "Success", data: chapter });    
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error pada server", error });
+    }
+};
 
 const checkAnswer = async (req, res) => {
     const { chapterId } = req.params;
@@ -63,6 +100,8 @@ const checkAnswer = async (req, res) => {
 
 module.exports = {
     addChapters,
+    editChapter,
     getAllChapters,
+    getChapterById,
     checkAnswer
 }
