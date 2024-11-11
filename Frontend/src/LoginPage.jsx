@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './LoginPage.css';
 import registerCharacter from './assets/images/registercharacter.png';
 import userIcon from './assets/icons/user.svg';
@@ -21,7 +22,9 @@ function LoginPage() {
         <p className="welcome-text">Welcome Back To QuakeRangers</p>
         <p className="now-here">Now here?</p>
         <div className="sign-up-container">
-          <button className="sign-up">SIGN UP</button>
+          <Link to="/signup">
+            <button className="sign-up">SIGN UP</button>
+          </Link>
         </div>
       </div>
 
@@ -50,7 +53,9 @@ function LoginPage() {
               onClick={togglePassword}  // Handle click to toggle password visibility
             />
           </div>
+          <Link to="/home">
           <button className="sign-in-btn">SIGN IN</button>
+          </Link>
         </div>
       </div>
     </div>

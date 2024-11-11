@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './RegisterPage.css';
 import registerCharacter from './assets/images/registercharacter.png';
 import userIcon from './assets/icons/user.svg';
@@ -23,7 +24,9 @@ function RegisterPage() {
         <p className="welcome-text">Welcome to QuakeRangers</p>
         <p className="already-have-account">Already have an account?</p>
         <div className="sign-in-container">
-          <button className="sign-in">SIGN IN</button>
+        <Link to="/login">
+            <button className="sign-in">SIGN IN</button>
+        </Link>
         </div>
       </div>
 
@@ -57,16 +60,18 @@ function RegisterPage() {
             />
           </div>
           <div className="input-group">
-  <img src={calendarIcon} alt="Birthday Icon" className="input-icon" />
-  <input
-    type="text"
-    placeholder="Birthday"
-    className="input-field"
-    onFocus={(e) => e.target.type = 'date'} // Change to date type when clicked
-    onBlur={(e) => e.target.type = 'text'} // Change back to text when focus is lost
-  />
-</div>
+            <img src={calendarIcon} alt="Birthday Icon" className="input-icon" />
+            <input
+              type="text"
+              placeholder="Birthday"
+              className="input-field"
+              onFocus={(e) => e.target.type = 'date'} // Change to date type when clicked
+              onBlur={(e) => e.target.type = 'text'} // Change back to text when focus is lost
+            />
+          </div>
+          <Link to="/home">
           <button className="sign-up-btn">SIGN UP</button>
+          </Link>
         </div>
       </div>
     </div>
