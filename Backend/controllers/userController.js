@@ -28,14 +28,14 @@ const getProfile = async (req, res) => {
 
 const editProfile = async (req, res) => {
     const { id } = req.params;
-    const { name, profile, birthday } = req.body; 
+    const { name, profile, birthday, gender, age } = req.body; 
 
     try {
         const updatedUser = await User.findByIdAndUpdate(
             id,
-            { name, profile, birthday },
+            { name, profile, birthday, gender, age },
             { new: true, runValidators: true } 
-        ).select("name profile birthday");
+        ).select("name profile birthday gender age");
 
         if (!updatedUser) {
             return res.status(404).json({ success: false, message: "User tidak ditemukan" });
