@@ -57,7 +57,7 @@ const userLogin = async (req, res) => {
     // Membuat token JWT
     const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "1h" });
 
-    res.status(200).json({ message: "Login berhasil", token });
+    res.status(200).json({ message: "Login berhasil", token, id:user._id  });
   } catch (error) {
     res.status(500).json({ message: "Error pada server", error });
   }

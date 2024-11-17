@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { UserProvider } from "./UserContext";
 import LandingPage from "./LandingPage";
 import RegisterPage from "./RegisterPage";
 import LoginPage from "./LoginPage";
@@ -9,9 +10,11 @@ import QuizPage from "./QuizPage";
 
 const App = () => {
   return (
+    <UserProvider>
       <Router>
         <Main />
       </Router>
+    </UserProvider>  
   );
 };
 
