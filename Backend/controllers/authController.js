@@ -35,19 +35,23 @@ const userRegister = async (req, res) => {
 
 // Login User
 const userLogin = async (req, res) => {
-  const { email, password } = req.body;
+  const { emailOrUsername, password } = req.body;
 
   try {
-    // Memeriksa apakah akun user terdaftar
-    const user = await User.findOne({ email });
+    // Memeriksa apakah akun user terdaftar dengan email atau username
+    const user = await User.findOne({
+      $or: [{ email: emailOrUsername }, { username: emailOrUsername }],
+    });
+
+    // Jika user tidak ditemukan
     if (!user) {
-      return res.status(400).json({ message: "Email atau password salah" });
+      return res.status(400).json({ message: "Username atau password salah" });
     }
 
     // Verifikasi password user
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      return res.status(400).json({ message: "Email atau password salah" });
+      return res.status(400).json({ message: "Username atau password salah" });
     }
 
     // Membuat token JWT

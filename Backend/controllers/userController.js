@@ -4,7 +4,7 @@ const getProfile = async (req, res) => {
     try {
         const { id } = req.params;
   
-        const user = await User.findById(id).select("username name profile score updatedAt");
+        const user = await User.findById(id).select("username profile score updatedAt");
   
         if(!user) {
             return res.status(404).json({success: false, message: "User tidak ditemukan"});
