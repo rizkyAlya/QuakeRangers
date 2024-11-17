@@ -114,17 +114,25 @@ h1 {
 /* Profile Dropdown */
 .profile-dropdown {
     background-color: #F9EBC7;
-    padding: 10px;
     position: absolute;
     right: 10px;
     border-radius: 12px; /* Rounded corners for dropdown */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
 }
+body .courses-page .profile-dropdown{
+    padding:30px;
+    width: 200px
+}
 
 .profile-item {
     display: flex;
     align-items: center;
-    padding: 10px;
+}
+
+body .courses-page .profile-item{
+    padding: 0px;
+    display: flex;
+    align-items: center;
 }
 
 .profile-item img {

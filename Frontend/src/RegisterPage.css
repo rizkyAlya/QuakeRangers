@@ -45,6 +45,10 @@ body, html {
     margin-bottom: 20px;
 }
 
+body .register-page .welcome-text{
+    margin-bottom: 10px;
+}
+
 .already-have-account {
     color: rgba(254, 250, 224, 0.7);
     font-family: Amiko, sans-serif;
@@ -78,6 +82,14 @@ body, html {
     text-align: center;
     border: 2px solid #5F6F52;
     margin-top: 10px;  /* Memberikan jarak antar elemen */
+}
+
+body .register-page .sign-in{
+    color: #5F6F52;
+    background-color: #E8E2B9;
+    padding: 12px 24px;
+    font-size: 24px;
+    margin-top: 10px;
 }
 
 /* Menambahkan efek hover pada tombol */
@@ -164,22 +176,6 @@ body, html {
     background-color: #552509;
 }
 
-/* Modify the Left Section of the page */
-.left-section {
-    background-color: #5F6F52;  /* Green background */
-    width: 30%;  /* Left section width */
-    height: 100vh;  /* Full height of the viewport */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;  /* Align content towards the top */
-    align-items: center;
-    position: relative;
-    background: url('./assets/images/registercharacter.png') no-repeat center;  /* Move the image down */
-    background-size: contain;  /* Scale the image correctly */
-    padding-top: 100px;  /* Adjust this value to move content and image further down */
-    background-position: center bottom;  /* Adjust the background position to stick to the bottom */
-}
-
 .left-section {
     background-color: #5F6F52;  /* Green background */
     width: 60%;  /* Left section width */
@@ -192,6 +188,10 @@ body, html {
     background: url('./assets/images/registercharacter.png') no-repeat center bottom;  /* Position the image at the bottom */
     background-size:80%;  /* Ensure the image covers the area without stretching */
     padding-top: 80px;  /* Adjust this value to move content and image further down */
+}
+
+body .register-page .left-section{
+    background-color: #5F6F52; 
 }
 
 

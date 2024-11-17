@@ -100,6 +100,7 @@ body, html {
     padding: 40px 20px;
 }
 
+
 .sign-in {
     font-family: "Poppins", sans-serif;
     font-size: 40px; 
@@ -159,7 +160,9 @@ body, html {
     width: auto; /* Auto-width button */
     display: inline-block;
     text-align: center;
+    margin-left: 250px;
 }
+
 
 .sign-in-btn:hover {
     background-color: #552509;
@@ -178,6 +181,9 @@ body, html {
     background: url('./assets/images/registercharacter.png') no-repeat center bottom; /* Image at the bottom */
     background-size: 80%;
     padding-top: 80px;
+}
+body .login-page .left-section{
+    background-color: #5F6F52;
 }
 
 /* Ensure responsiveness */

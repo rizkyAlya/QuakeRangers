@@ -52,11 +52,11 @@ function QuizPage() {
             <img src={homeIcon} alt="Home" />
             <span>Home</span>
           </div>
-          <div className="menu-item active">
-            <img src={coursesIcon} alt="Quiz" />
-            <span>Quiz</span>
-          </div>
           <div className="menu-item">
+            <img src={coursesIcon} alt="Quiz" />
+            <span>Couses</span>
+          </div>
+          <div className="menu-item active">
             <img src={quizIcon} alt="Quiz" />
             <span>Quiz</span>
           </div>

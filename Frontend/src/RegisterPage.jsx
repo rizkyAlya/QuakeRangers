@@ -59,16 +59,6 @@ function RegisterPage() {
               onClick={togglePassword}  // Handle click to toggle password visibility
             />
           </div>
-          <div className="input-group">
-            <img src={calendarIcon} alt="Birthday Icon" className="input-icon" />
-            <input
-              type="text"
-              placeholder="Birthday"
-              className="input-field"
-              onFocus={(e) => e.target.type = 'date'} // Change to date type when clicked
-              onBlur={(e) => e.target.type = 'text'} // Change back to text when focus is lost
-            />
-          </div>
           <Link to="/home">
           <button className="sign-up-btn">SIGN UP</button>
           </Link>

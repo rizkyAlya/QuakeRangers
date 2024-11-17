@@ -1,4 +1,5 @@
 import React, { useState } from 'react'; // Import useState
+import { Link } from 'react-router-dom'; // Import Link
 import './HomePage.css';
 import grassImage from './assets/images/rumput.png';
 import treeImage1 from './assets/images/pohon1.png';
@@ -22,20 +23,39 @@ function HomePage() {
         <img src={boyImage} alt="Boy" className="boy" />
       </div>
       <div className="buttons">
-        <button className={`btn ${activeButton === 'learn' ? 'active' : ''}`} onClick={() => setActiveButton('learn')}>Learn</button>
-        <button className={`btn ${activeButton === 'quiz' ? 'active' : ''}`} onClick={() => setActiveButton('quiz')}>Quiz</button>
-        <button className={`btn ${activeButton === 'leaderboard' ? 'active' : ''}`} onClick={() => setActiveButton('leaderboard')}>Leaderboard</button>
+        <Link to="/courses" className="btn-link">
+          <button
+            className={`btn ${activeButton === 'learn' ? 'active' : ''}`}
+            onClick={() => setActiveButton('learn')}
+          >
+            Learn
+          </button>
+        </Link>
+        <Link to="/quiz" className="btn-link">
+        <button
+          className={`btn ${activeButton === 'quiz' ? 'active' : ''}`}
+          onClick={() => setActiveButton('quiz')}
+        >
+          Quiz
+        </button>
+        </Link>
+        <button
+          className={`btn ${activeButton === 'leaderboard' ? 'active' : ''}`}
+          onClick={() => setActiveButton('leaderboard')}
+        >
+          Leaderboard
+        </button>
       </div>
       <p className="play-text">LET'S PLAY!</p>
       <div className="icons">
-        <button 
-          className={`icon-button home-button ${activeButton === 'home' ? 'active' : ''}`} 
+        <button
+          className={`icon-button home-button ${activeButton === 'home' ? 'active' : ''}`}
           onClick={() => setActiveButton('home')}
         >
           <img src={homeIcon} alt="Home" className="icon" />
         </button>
-        <button 
-          className={`icon-button profile-button ${activeButton === 'profile' ? 'active' : ''}`} 
+        <button
+          className={`icon-button profile-button ${activeButton === 'profile' ? 'active' : ''}`}
           onClick={() => setActiveButton('profile')}
         >
           <img src={profileIcon} alt="Profile" className="icon" />
