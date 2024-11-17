@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './LandingPage.css';
 import contactIcon from './assets/icons/contact-multiple.svg';
 import mailIcon from './assets/icons/mail-multiple.svg';
@@ -29,8 +30,12 @@ function LandingPage() {
             JOIN US AND BECOME A HERO READY TO FACE ANY DISASTER!
           </p>
           <div className="buttons">
-            <button className="register-button">Register</button>
-            <button className="login-button">Login</button>
+            <Link to="/signup">
+              <button className="register-button">Register</button>
+            </Link>
+            <Link to="/login">
+              <button className="login-button">Login</button>
+            </Link>
           </div>
         </div>
         <div className="hero-image">

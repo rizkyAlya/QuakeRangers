@@ -8,7 +8,8 @@ const PORT = process.env.PORT;
 
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
-const { getLeaderboard } = require("./controllers/leadController");
+const leaderboarRoutes = require("./routes/leaderboard");
+const courseRoutes = require("./routes/course");
 const quizRoutes = require("./routes/quiz");
 
 // Menghubungkan dengan database
@@ -26,8 +27,8 @@ app.use(
 
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
-app.get("/leaderboard", getLeaderboard);
-//app.use("/material", materialRoutes);
+app.use("/leaderboard", leaderboarRoutes);
+app.use("/course", courseRoutes);
 app.use("/quiz", quizRoutes);
 
 app.listen(PORT, () => {

@@ -5,7 +5,6 @@ const progressSchema = new mongoose.Schema(
     currentLevel: Number,
     currentScenario: Number,
     lives: { type: Number, default: 5 },
-    score: { type: Number, default: 0 }
   }
 );
 
@@ -17,6 +16,7 @@ const userSchema = new mongoose.Schema(
     birthday: { type: Date, default: Date.now},
     name: { type: String, default: '' },
     profile: { type: String, default: '' },
+    score: { type: Number, default: 0 },
     progress: progressSchema
   },
   { timestamps: true } 
