@@ -4,7 +4,7 @@ const getProfile = async (req, res) => {
     try {
         const { id } = req.params;
   
-        const user = await User.findById(id).select("username profile score updatedAt");
+        const user = await User.findById(id).select("gender age score username email name profile");
   
         if(!user) {
             return res.status(404).json({success: false, message: "User tidak ditemukan"});
@@ -28,7 +28,7 @@ const getProfile = async (req, res) => {
 
 const editProfile = async (req, res) => {
     const { id } = req.params;
-    const { name, profile, birthday, gender, age } = req.body; 
+    const { name, profile, gender, age } = req.body; 
 
     try {
         const updatedUser = await User.findByIdAndUpdate(

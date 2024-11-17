@@ -1,30 +1,22 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './UserProfile.css';
-import closeIcon from './assets/icons/close.svg'; // Import ikon close
+import closeIcon from './assets/icons/close.svg';
 import { useParams } from 'react-router-dom';
 const url = import.meta.env.VITE_BACKEND_URL;
 
 function ProfilePage() {
-  // State untuk menyimpan data pengguna
-  const [userData, setUserData] = useState({
-    username: "",
-    photo: "", 
-    email:"",
-    points: "",
-    ranking: "",
-    gender:"",
-    age:"",
-  });
   const { userID } = useParams();
   const [profile, setProfile] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState('');
+  const [editedProfile, setEditedProfile] = useState('');
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem('token');
 
-        if (!token || !userID) {
+        if (!token) {
           throw new Error('Token or UserID not found');
         }
 
@@ -35,6 +27,7 @@ function ProfilePage() {
         });
 
         setProfile(response.data.data);
+        setEditedProfile(response.data.data.user);
       } catch (error) {
         console.error('Error fetching profile:', error);
       }
@@ -43,7 +36,24 @@ function ProfilePage() {
     fetchProfile();
   }, []);
 
-  // Mendapatkan inisial dari nama
+  const handleUpdate = async () => {
+    try {
+      const response = await axios.put(`${url}/user/updateProfile/${userID}`, editedProfile);
+      console.log('Profile updated successfully: ', response.data);
+      setProfile(response.data);
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setEditedProfile((prevProfile) => ({
+      ...prevProfile,
+      [name]: value,
+    }));
+  };
+
   const getInitials = (name) => {
     return name
       .split(' ')
@@ -52,28 +62,19 @@ function ProfilePage() {
       .toUpperCase();
   };
 
-  // Fungsi untuk close action (misalnya, redirect atau popup close)
-  const handleClose = () => {
-    console.log("Close button clicked"); // Anda bisa mengganti log ini dengan fungsi lain
+  const handleCloseModal = () => {
+    setIsModalOpen(false); 
   };
 
   if (!profile) return <div>Loading...</div>;
 
   return (
     <div className="profile-page">
-      {/* Close Icon */}
-      <button className="close-icon" onClick={handleClose}>
-        <img src={closeIcon} alt="Close Icon" />
-      </button>
-
-      {/* Left Section */}
       <div className="profile-left">
         <div className="avatar">
           {profile.user.profile ? (
-            // Jika ada foto profil, tampilkan gambar
             <img src={profile.user.profile} alt="User Avatar" />
           ) : (
-            // Jika tidak ada foto, tampilkan inisial
             <div className="avatar-placeholder">
               {getInitials(profile.user.username)}
             </div>
@@ -81,37 +82,69 @@ function ProfilePage() {
         </div>
         <h2>{profile.user.username || "No Username"}</h2>
         <div className="info">
-          <p>Points: <span>{profile.user.score || "N/A"}</span></p>
+          <p>Points: <span>{profile.user.score}</span></p>
           <p>Ranking: <span>{profile.rank || "N/A"}</span></p>
         </div>
       </div>
 
-      {/* Right Section */}
       <div className="profile-right">
         <div className="form-group">
           <label>Name:</label>
-          <input type="text" value={profile.user.username} readOnly />
+          <input type="text" value={profile.user.name} readOnly />
         </div>
         <div className="form-group">
           <label>Email:</label>
-          <input type="text" value={userData.email} readOnly />
+          <input type="text" value={profile.user.email} readOnly />
         </div>
         <div className="form-group">
           <label>Gender:</label>
-          <input type="text" value={userData.gender} readOnly />
-          <label>Points:</label>
-          <input type="text" value={profile.user.score} readOnly />
-        </div>
-        <div className="form-group">
-          <label>Ranking:</label>
-          <input type="text" value={profile.rank} readOnly />
+          <input type="text" value={profile.user.gender} readOnly />
         </div>
         <div className="form-group">
           <label>Age:</label>
-          <input type="text" value={userData.age} readOnly />
+          <input type="text" value={profile.user.age} readOnly />
         </div>
-        <button className="edit-profile-btn">Edit Profile</button>
+        <button onClick={() => setIsModalOpen(true)} className="edit-profile-btn">Edit Profile</button>
       </div>
+
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <button className="close-btn" onClick={handleCloseModal}>
+              <img src={closeIcon} alt="Close Icon" />
+            </button>
+            <h2 className="edit-text">Edit Profile</h2>
+            <div className="form-group-edit">
+              <label>Name:</label>
+              <input
+                type="text"
+                name="name"
+                value={editedProfile.name || ''}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group-edit">
+              <label>Gender:</label>
+              <input
+                type="text"
+                name="gender"
+                value={editedProfile.gender || ''}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group-edit">
+              <label>Age:</label>
+              <input
+                type="text"
+                name="age"
+                value={editedProfile.age || ''}
+                onChange={handleInputChange}
+              />
+            </div>
+            <button onClick={handleUpdate} className="edit-profile-btn">Save Changes</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
