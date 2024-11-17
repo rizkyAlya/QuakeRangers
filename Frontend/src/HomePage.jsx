@@ -1,5 +1,6 @@
-import React, { useState } from 'react'; // Import useState
+import React, { useState, useContext, useTransition, useEffect } from 'react'; // Import useState
 import { Link } from 'react-router-dom'; // Import Link
+import { UserContext } from './UserContext';
 import './HomePage.css';
 import grassImage from './assets/images/rumput.png';
 import treeImage1 from './assets/images/pohon1.png';
@@ -10,8 +11,14 @@ import homeIcon from './assets/icons/home.svg';
 import profileIcon from './assets/icons/profile.svg';
 
 function HomePage() {
+  const { user } = useContext(UserContext);
   const [activeButton, setActiveButton] = useState(null); // State to manage active button
 
+  useEffect(() => {
+    if (user && user.id) {
+
+    }
+  })
   return (
     <div className="home-page">
       <img src={grassImage} alt="Grass" className="grass" />
@@ -54,12 +61,14 @@ function HomePage() {
         >
           <img src={homeIcon} alt="Home" className="icon" />
         </button>
+        <Link to={`/profile/${user}`}>
         <button
           className={`icon-button profile-button ${activeButton === 'profile' ? 'active' : ''}`}
           onClick={() => setActiveButton('profile')}
         >
           <img src={profileIcon} alt="Profile" className="icon" />
         </button>
+        </Link>
       </div>
     </div>
   );

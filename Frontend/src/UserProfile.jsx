@@ -1,15 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import axios from 'axios';
 import './UserProfile.css';
 import closeIcon from './assets/icons/close.svg'; // Import ikon close
+import { useParams } from 'react-router-dom';
+const url = import.meta.env.VITE_BACKEND_URL;
 
 function ProfilePage() {
-  // State untuk menyimpan data pengguna
-  const [userData, setUserData] = useState({
-    username: "",
-    photo: "", 
-    points: "",
-    ranking: "",
-  });
+  const { userID } = useParams();
+  const [profile, setProfile] = useState('');
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const token = localStorage.getItem('token');
+
+        if (!token || !userID) {
+          throw new Error('Token or UserID not found');
+        }
+
+        const response = await axios.get(`${url}/user/${userID}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        setProfile(response.data.data);
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
 
   // Mendapatkan inisial dari nama
   const getInitials = (name) => {
@@ -25,6 +47,8 @@ function ProfilePage() {
     console.log("Close button clicked"); // Anda bisa mengganti log ini dengan fungsi lain
   };
 
+  if (!profile) return <div>Loading...</div>;
+
   return (
     <div className="profile-page">
       {/* Close Icon */}
@@ -35,20 +59,20 @@ function ProfilePage() {
       {/* Left Section */}
       <div className="profile-left">
         <div className="avatar">
-          {userData.photo ? (
+          {profile.user.profile ? (
             // Jika ada foto profil, tampilkan gambar
-            <img src={userData.photo} alt="User Avatar" />
+            <img src={profile.user.profile} alt="User Avatar" />
           ) : (
             // Jika tidak ada foto, tampilkan inisial
             <div className="avatar-placeholder">
-              {getInitials(userData.username)}
+              {getInitials(profile.user.username)}
             </div>
           )}
         </div>
-        <h2>{userData.username || "No Username"}</h2>
+        <h2>{profile.user.username || "No Username"}</h2>
         <div className="info">
-          <p>Points: <span>{userData.points || "N/A"}</span></p>
-          <p>Ranking: <span>{userData.ranking || "N/A"}</span></p>
+          <p>Points: <span>{profile.user.score || "N/A"}</span></p>
+          <p>Ranking: <span>{profile.rank || "N/A"}</span></p>
         </div>
       </div>
 
@@ -57,15 +81,15 @@ function ProfilePage() {
         <h3>Edit Profile</h3>
         <div className="form-group">
           <label>Name:</label>
-          <input type="text" value={userData.username} readOnly />
+          <input type="text" value={profile.user.username} readOnly />
         </div>
         <div className="form-group">
           <label>Points:</label>
-          <input type="text" value={userData.points} readOnly />
+          <input type="text" value={profile.user.score} readOnly />
         </div>
         <div className="form-group">
           <label>Ranking:</label>
-          <input type="text" value={userData.ranking} readOnly />
+          <input type="text" value={profile.rank} readOnly />
         </div>
       </div>
     </div>

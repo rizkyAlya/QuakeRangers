@@ -7,6 +7,7 @@ import LoginPage from "./LoginPage";
 import HomePage from "./HomePage";
 import CoursesPage from "./CoursesPage";
 import QuizPage from "./QuizPage";
+import ProfilePage from "./UserProfile";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const Main = () => {
       <Route path="/home" element={<HomePage />} />
       <Route path="/courses" element={<CoursesPage />} />
       <Route path="/quiz" element={<QuizPage />} />
+      <Route path="/profile/:userID" element={<ProfilePage />} />
     </Routes>
   );
 };
