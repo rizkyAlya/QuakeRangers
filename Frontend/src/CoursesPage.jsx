@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './CoursesPage.css';
 import logo from './assets/images/logo.png';
 import groupIcon from './assets/icons/group.svg';
@@ -33,8 +34,10 @@ function CoursesPage() {
           {menuOpen && (
             <div className="profile-dropdown">
               <div className="profile-item">
+              <Link to="/userprofile" className="profile-item">
                 <img src={profileIcon} alt="Profile" />
                 <span>Profile</span>
+                </Link>
               </div>
               <div className="profile-item">
                 <img src={logoutIcon} alt="Logout" />

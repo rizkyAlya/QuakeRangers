@@ -157,10 +157,14 @@ body, html {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: auto; /* Auto-width button */
-    display: inline-block;
+    width: auto; 
+    display: block;
     text-align: center;
-    margin-left: 250px;
+    margin: 20px auto;
+}
+
+body .login-page .sign-in-btn{
+    
 }
 
 

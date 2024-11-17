@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link dari React Router
 import './QuizPage.css';
 import logo from './assets/images/logo.png';
 import groupIcon from './assets/icons/group.svg';
@@ -32,10 +33,10 @@ function QuizPage() {
           <img src={groupIcon} alt="Group" />
           {menuOpen && (
             <div className="profile-dropdown">
-              <div className="profile-item">
+              <Link to="/userprofile" className="profile-item">
                 <img src={profileIcon} alt="Profile" />
                 <span>Profile</span>
-              </div>
+              </Link>
               <div className="profile-item">
                 <img src={logoutIcon} alt="Logout" />
                 <span>Logout</span>
@@ -54,7 +55,7 @@ function QuizPage() {
           </div>
           <div className="menu-item">
             <img src={coursesIcon} alt="Quiz" />
-            <span>Couses</span>
+            <span>Courses</span>
           </div>
           <div className="menu-item active">
             <img src={quizIcon} alt="Quiz" />

@@ -7,8 +7,11 @@ function ProfilePage() {
   const [userData, setUserData] = useState({
     username: "",
     photo: "", 
+    email:"",
     points: "",
     ranking: "",
+    gender:"",
+    age:"",
   });
 
   // Mendapatkan inisial dari nama
@@ -54,19 +57,23 @@ function ProfilePage() {
 
       {/* Right Section */}
       <div className="profile-right">
-        <h3>Edit Profile</h3>
         <div className="form-group">
           <label>Name:</label>
           <input type="text" value={userData.username} readOnly />
         </div>
         <div className="form-group">
-          <label>Points:</label>
-          <input type="text" value={userData.points} readOnly />
+          <label>Email:</label>
+          <input type="text" value={userData.email} readOnly />
         </div>
         <div className="form-group">
-          <label>Ranking:</label>
-          <input type="text" value={userData.ranking} readOnly />
+          <label>Gender:</label>
+          <input type="text" value={userData.gender} readOnly />
         </div>
+        <div className="form-group">
+          <label>Age:</label>
+          <input type="text" value={userData.age} readOnly />
+        </div>
+        <button className="edit-profile-btn">Edit Profile</button>
       </div>
     </div>
   );

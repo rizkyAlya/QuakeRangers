@@ -54,12 +54,14 @@ function HomePage() {
         >
           <img src={homeIcon} alt="Home" className="icon" />
         </button>
+        <Link to="/userprofile" className="icon-button-link">
         <button
           className={`icon-button profile-button ${activeButton === 'profile' ? 'active' : ''}`}
           onClick={() => setActiveButton('profile')}
         >
           <img src={profileIcon} alt="Profile" className="icon" />
         </button>
+        </Link>
       </div>
     </div>
   );

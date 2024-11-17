@@ -9,19 +9,31 @@ import CoursesPage from "./CoursesPage";
 import QuizPage from "./QuizPage";
 import UserProfile from "./UserProfile";
 
-function App() {
+const App = () => {
   return (
-    <div>
-      <UserProfile />
-    </div>
     <UserProvider>
       <Router>
         <Main />
       </Router>
     </UserProvider>  
->>>>>>> 6b1a3f7d420b49df360df3a7
   );
-}
+};
+
+const Main = () => {
+  return(
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/signup" element={<RegisterPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/home" element={<HomePage />} />
+      <Route path="/courses" element={<CoursesPage />} />
+      <Route path="/quiz" element={<QuizPage />} />
+      <Route path="/userprofile" element={<UserProfile />} />
+    </Routes>
+  );
+};
 
 export default App;
+
+
 

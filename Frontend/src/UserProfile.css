@@ -92,12 +92,6 @@
     padding: 20px;
   }
   
-  .profile-right h3 {
-    font-size: 20px;
-    margin-bottom: 20px;
-    color: #FEFAE0;
-  }
-  
   .form-group {
     margin-bottom: 20px;
   }
@@ -117,4 +111,24 @@
     background-color: #FEFAE0;
     color: #5C2C10;
   }
+
+  .edit-profile-btn {
+    background-color: #5F6F52; /* Warna latar belakang tombol */
+    color: #FEFAE0; /* Warna teks tombol */
+    padding: 10px 20px; /* Spasi dalam tombol */
+    font-size: 16px; /* Ukuran font */
+    font-weight: bold; /* Teks bold */
+    border: none; /* Hilangkan border */
+    border-radius: 5px; /* Ujung tombol melengkung */
+    cursor: pointer; /* Pointer saat hover */
+    margin-top: 20px; /* Jarak dari kolom Age */
+    display: block; /* Buat tombol tampil sebagai block */
+    width: auto; /* Sesuaikan tombol dengan lebar kolom */
+    text-align: center; /* Pusatkan teks dalam tombol */
+  }
+  
+  .edit-profile-btn:hover {
+    background-color: #4E5E46; /* Warna saat tombol di-hover */
+  }
+  
   
