@@ -16,6 +16,8 @@ const userSchema = new mongoose.Schema(
     birthday: { type: Date, default: Date.now},
     name: { type: String, default: '' },
     profile: { type: String, default: '' },
+    gender: { type: String, default: '' },
+    age: { type: Number, default: 0 },
     score: { type: Number, default: 0 },
     progress: progressSchema
   },
