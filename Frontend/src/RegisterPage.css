@@ -22,7 +22,7 @@ body, html {
 }
 
 .left-section {
-    background-color: #5F6F52 !important;  /* Green background */
+    background-color: #5F6F52;  /* Green background */
     width: 30%;  /* Left section width */
     height: 100vh;  /* Full height of the viewport */
     display: flex;
@@ -74,7 +74,7 @@ body, html {
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    width: auto;  /* Lebar otomatis sesuai dengan teks */
+    width: auto; 
     text-align: center;
     border: 2px solid #5F6F52;
     margin-top: 10px;  /* Memberikan jarak antar elemen */
@@ -166,7 +166,7 @@ body, html {
 
 /* Modify the Left Section of the page */
 .left-section {
-    background-color: #5F6F52 !important;  /* Green background */
+    background-color: #5F6F52;  /* Green background */
     width: 30%;  /* Left section width */
     height: 100vh;  /* Full height of the viewport */
     display: flex;
@@ -181,7 +181,7 @@ body, html {
 }
 
 .left-section {
-    background-color: #5F6F52 !important;  /* Green background */
+    background-color: #5F6F52;  /* Green background */
     width: 60%;  /* Left section width */
     height: 100vh;  /* Full height of the viewport */
     display: flex;

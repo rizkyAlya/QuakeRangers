@@ -24,7 +24,7 @@ body, html {
 
 /* Left Section */
 .left-section {
-    background-color: #5F6F52 !important;
+    background-color: #5F6F52;
     width: 60%;
     height: 100vh;
     display: flex;
@@ -102,12 +102,16 @@ body, html {
 
 .sign-in {
     font-family: "Poppins", sans-serif;
-    font-size: 50px;
+    font-size: 40px; 
     font-weight: 700;
     color: #5F6F52;
     text-align: center;
-    width: 602px;
-    margin-bottom: 20px;
+    margin-top: 20px;  
+    text-transform: none;  
+    background: none;  
+    padding: 0;  
+    border: none;  
+    cursor: default;  
 }
 
 .form {
@@ -163,7 +167,7 @@ body, html {
 
 /* Modify Left Section */
 .left-section {
-    background-color: #5F6F52 !important;  /* Green background */
+    background-color: #5F6F52;  /* Green background */
     width: 60%;  /* Left section width */
     height: 100vh;  /* Full height of the viewport */
     display: flex;

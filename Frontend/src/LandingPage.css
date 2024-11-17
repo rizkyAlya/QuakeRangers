@@ -42,6 +42,12 @@ body, html {
     z-index: 1000; /* Menjaga agar header tetap berada di atas konten lain */
 }
 
+body .landing-page .header {
+    background-color: #E3D5B4;
+    position: absolute;
+    padding: 20px;
+}
+
 .logo {
     width: 100px; /* Memperbesar ukuran logo agar lebih proporsional */
     height: auto;
@@ -81,7 +87,7 @@ body, html {
 .goal-icons {
     display: flex;
     justify-content: center;
-    gap: 40px; /* Jarak antar ikon */
+    gap: 80px; /* Jarak antar ikon */
     flex-wrap: wrap; /* Agar responsif jika di layar kecil */
     margin-top: 40px; /* Menambahkan jarak di atas */
 }
@@ -128,9 +134,13 @@ body, html {
     font-size: 40px; /* Ukuran lebih kecil agar lebih pas */
     color: #351B0C;
     font-family: "Pixelify Sans", sans-serif;
-    font-weight: 700; /* Mengubah font-weight menjadi bold */
+    font-weight: 500; /* Mengubah font-weight menjadi bold */
     text-align: left; /* Sesuaikan dengan header */
     margin-bottom: 10px;
+}
+body .landing-page .welcome-text{
+    font-weight: 600; 
+    color: #351B0C;
 }
 
 .description {
@@ -138,6 +148,7 @@ body, html {
     color: #5C2C10;
     line-height: 1.6;
     margin-bottom: 20px;
+    margin-left: 40px;
 }
 
 .call-to-action {
@@ -146,6 +157,7 @@ body, html {
     color: #552509;
     margin: 20px 0;
     text-transform: uppercase;
+    margin-left: 40px;
 }
 
 /* Hero Image dengan Ellipse Background */
@@ -170,6 +182,7 @@ body, html {
     padding-top: 20px; /* Menambahkan padding di bagian atas */
     transform: scale(0.8); /* Mengecilkan elemen ini saja */
     transform-origin: center; /* Tetap di tengah saat di-scaling */
+    margin-top: 20px;
 }
 
 .ellipse-background img {
@@ -181,7 +194,13 @@ body, html {
 .buttons {
     display: flex;
     gap: 20px;
-    margin-top: 20px;
+    margin-top: 100px;
+    margin-left: 3px; 
+}
+
+body .landing-page .buttons{
+    margin-top: 100px;
+    margin-left: 40px; 
 }
 
 .register-button,
@@ -232,7 +251,7 @@ body, html {
     display: flex;
     align-items: center;
     gap: 8px; /* Jarak antara ikon dan teks */
-    font-size: 1rem;
+    font-size: rem;
     color: #643214;
 }
 
