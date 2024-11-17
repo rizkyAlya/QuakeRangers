@@ -7,7 +7,7 @@ import LoginPage from "./LoginPage";
 import HomePage from "./HomePage";
 import CoursesPage from "./CoursesPage";
 import QuizPage from "./QuizPage";
-import UserProfile from "./UserProfile";
+import ProfilePage from "./UserProfile";
 
 const App = () => {
   return (
@@ -29,11 +29,9 @@ const Main = () => {
       <Route path="/courses" element={<CoursesPage />} />
       <Route path="/quiz" element={<QuizPage />} />
       <Route path="/userprofile" element={<UserProfile />} />
+      <Route path="/profile/:userID" element={<ProfilePage />} />
     </Routes>
   );
 };
 
 export default App;
-
-
-
