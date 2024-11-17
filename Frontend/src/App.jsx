@@ -21,8 +21,7 @@ const App = () => {
 const Main = () => {
   return(
     <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/signup" element={<RegisterPage />} />
+      <Route path="/" element={<RegisterPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/home" element={<HomePage />} />
       <Route path="/courses" element={<CoursesPage />} />
