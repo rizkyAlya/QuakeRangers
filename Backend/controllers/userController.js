@@ -33,9 +33,9 @@ const editProfile = async (req, res) => {
     try {
         const updatedUser = await User.findByIdAndUpdate(
             id,
-            { name, profile, birthday, gender, age },
+            { name, profile, gender, age },
             { new: true, runValidators: true } 
-        ).select("name profile birthday gender age");
+        ).select("name profile gender age");
 
         if (!updatedUser) {
             return res.status(404).json({ success: false, message: "User tidak ditemukan" });
