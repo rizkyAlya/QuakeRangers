@@ -28,7 +28,6 @@ const Main = () => {
       <Route path="/home" element={<HomePage />} />
       <Route path="/courses" element={<CoursesPage />} />
       <Route path="/quiz" element={<QuizPage />} />
-      <Route path="/userprofile" element={<UserProfile />} />
       <Route path="/profile/:userID" element={<ProfilePage />} />
     </Routes>
   );
