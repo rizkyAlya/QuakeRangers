@@ -99,9 +99,9 @@ h1 {
 
 /* Profile Menu */
 .profile-menu {
-    position: absolute;
+    position: relative;
     top: 10px;
-    left: 1120px;
+    left: 1250px;
     cursor: pointer;
     z-index: 0;
     border-radius: 12px; /* Rounded corners for profile menu */
@@ -109,8 +109,11 @@ h1 {
 }
 
 .profile-menu img {
-    width: 80px; /* Sesuaikan dengan ukuran yang lebih kecil */
-    height: 80px; /* Sesuaikan dengan ukuran yang lebih kecil */
+    width: 70px; 
+    height: 70px;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-right: 20px;
 }
 
 /* Profile Dropdown */
@@ -148,7 +151,8 @@ body .courses-page .profile-item{
 .my-courses-container {
     text-align: center;
     padding: 40px 20px;
-    margin-top: -450px; /* Adjust the space between sections */
+    margin-top: -450px; 
+    margin-left: 150px;
 }
 
 .my-courses-container h2 {
@@ -157,7 +161,7 @@ body .courses-page .profile-item{
     font-size: 50px;
     font-weight: 600;
     margin-bottom: 20px;
-    margin-right: 420px;
+    margin-right: 940px;
 }
 
 /* Courses Grid */
@@ -172,8 +176,8 @@ body .courses-page .profile-item{
 /* Course Cards */
 .course-card {
     background-color: #F9EBC7;
-    width: 308px;
-    height: 480px;
+    width: 370px;
+    height: 550px;
     padding: 20px;
     text-align: center;
     border-radius: 8px;
