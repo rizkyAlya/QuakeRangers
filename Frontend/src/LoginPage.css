@@ -24,7 +24,7 @@ body, html {
 
 /* Left Section */
 .left-section {
-    background-color: #5F6F52 !important;
+    background-color: #5F6F52;
     width: 60%;
     height: 100vh;
     display: flex;
@@ -100,14 +100,19 @@ body, html {
     padding: 40px 20px;
 }
 
+
 .sign-in {
     font-family: "Poppins", sans-serif;
-    font-size: 50px;
+    font-size: 40px; 
     font-weight: 700;
     color: #5F6F52;
     text-align: center;
-    width: 602px;
-    margin-bottom: 20px;
+    margin-top: 20px;  
+    text-transform: none;  
+    background: none;  
+    padding: 0;  
+    border: none;  
+    cursor: default;  
 }
 
 .form {
@@ -152,10 +157,16 @@ body, html {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: auto; /* Auto-width button */
-    display: inline-block;
+    width: auto; 
+    display: block;
     text-align: center;
+    margin: 20px auto;
 }
+
+body .login-page .sign-in-btn{
+    
+}
+
 
 .sign-in-btn:hover {
     background-color: #552509;
@@ -163,7 +174,7 @@ body, html {
 
 /* Modify Left Section */
 .left-section {
-    background-color: #5F6F52 !important;  /* Green background */
+    background-color: #5F6F52;  /* Green background */
     width: 60%;  /* Left section width */
     height: 100vh;  /* Full height of the viewport */
     display: flex;
@@ -174,6 +185,9 @@ body, html {
     background: url('./assets/images/registercharacter.png') no-repeat center bottom; /* Image at the bottom */
     background-size: 80%;
     padding-top: 80px;
+}
+body .login-page .left-section{
+    background-color: #5F6F52;
 }
 
 /* Ensure responsiveness */

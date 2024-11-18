@@ -1,6 +1,6 @@
-/* CoursesPage.css */
+/* QuizPage.css */
 
-.courses-page {
+.quiz-page {
     display: flex;
     flex-direction: column;  /* Ensure the layout is stacked */
     padding-left: 0;
@@ -12,13 +12,11 @@
 /* Header */
 .header {
     width: 100%;
-    background-color: #A9B388 !important; /* Maintain background color for header */
     background-color: #A9B388; /* Maintain background color for header */
     display: flex;
     align-items: center;
     gap: 20px;
     padding: 10px 20px;
-    position: relative !important;  /* Changed from fixed to relative */
     position: relative;  /* Changed from fixed to relative */
     z-index: 1000; /* Ensure it stays above other content */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
@@ -46,7 +44,6 @@ h1 {
     font-family: 'Poppins', sans-serif;
     font-size: 50px;
     font-weight: 700;
-    margin: 0;
 }
 
 /* Sidebar */
@@ -123,7 +120,7 @@ h1 {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
 }
 
-body .courses-page .profile-dropdown{
+body .quiz-page .profile-dropdown{
     padding:30px;
     width: 200px
 }
@@ -134,7 +131,7 @@ body .courses-page .profile-dropdown{
     padding: 10px;
 }
 
-body .courses-page .profile-item{
+body .quiz-page .profile-item{
     padding: 0px;
     display: flex;
     align-items: center;
@@ -145,23 +142,23 @@ body .courses-page .profile-item{
 }
 
 /* Main Content */
-.my-courses-container {
+.my-quiz-container {
     text-align: center;
     padding: 40px 20px;
     margin-top: -450px; /* Adjust the space between sections */
 }
 
-.my-courses-container h2 {
+.my-quiz-container h2 {
     color: #F9EBC7;
     font-family: Poppins, sans-serif;
     font-size: 50px;
     font-weight: 600;
     margin-bottom: 20px;
-    margin-right: 420px;
+    margin-right: 610px;
 }
 
-/* Courses Grid */
-.courses-grid {
+/* Quiz Grid */
+.quiz-grid {
     display: flex;
     justify-content: flex-start;
     gap: 20px;
@@ -169,8 +166,8 @@ body .courses-page .profile-item{
     padding-left: 250px;
 }
 
-/* Course Cards */
-.course-card {
+/* Quiz Cards */
+.quiz-card {
     background-color: #F9EBC7;
     width: 308px;
     height: 480px;
@@ -181,11 +178,11 @@ body .courses-page .profile-item{
     transition: transform 0.3s ease;
 }
 
-.course-card:hover {
+.quiz-card:hover {
     transform: translateY(-10px);
 }
 
-.course-image {
+.quiz-image {
     width: 100%;
     height: auto;
     object-fit: cover;
@@ -193,14 +190,14 @@ body .courses-page .profile-item{
     margin-bottom: 20px;
 }
 
-.course-card h3 {
+.quiz-card h3 {
     color: #5C2C10;
     font-family: Poppins, sans-serif;
     font-size: 25px;
     font-weight: 700;
 }
 
-.course-card p {
+.quiz-card p {
     color: #000;
     font-family: Inter, sans-serif;
     font-size: 24.2px;
@@ -209,7 +206,7 @@ body .courses-page .profile-item{
 
 /* Ensuring responsiveness */
 @media (max-width: 768px) {
-    .courses-page {
+    .quiz-page {
         flex-direction: column;
     }
 
@@ -224,7 +221,7 @@ body .courses-page .profile-item{
         width: 75%;
     }
 
-    .course-cards {
+    .quiz-cards {
         flex-direction: column;
         align-items: center;
     }

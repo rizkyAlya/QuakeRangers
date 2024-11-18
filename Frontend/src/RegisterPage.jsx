@@ -1,20 +1,50 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 import './RegisterPage.css';
-import registerCharacter from './assets/images/registercharacter.png';
 import userIcon from './assets/icons/user.svg';
 import mailIcon from './assets/icons/mail.svg';
 import passwordIcon from './assets/icons/password.svg';
-import calendarIcon from './assets/icons/calendar.svg';
 import mataIcon from './assets/icons/mata.svg';
+const url = import.meta.env.VITE_BACKEND_URL;
 
 function RegisterPage() {
-  // State untuk toggle password visibility
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   // Fungsi untuk toggle visibility password
   const togglePassword = () => {
     setShowPassword(!showPassword);
+  };
+
+  const handleRegister = async () => {
+    if (!username || !email || !password) {
+      setErrorMessage('All fields are required.');
+      console.log(errorMessage);
+      return; // Stop function jika ada field yang kosong
+    }
+    
+    try {
+      const response = await axios.post(`${url}/auth/register`, {
+        username,
+        email,
+        password
+      });
+      
+      if (response.status === 201) {
+        console.log("Registration successful:", response.data);
+        localStorage.setItem('token', response.data.token);
+        navigate('/login'); // Navigasi ke halaman home setelah berhasil
+      } else {
+        console.error("Registration failed:", response.data);
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+    }
   };
 
   return (
@@ -39,39 +69,41 @@ function RegisterPage() {
         <div className="form">
           <div className="input-group">
             <img src={userIcon} alt="Username Icon" className="input-icon" />
-            <input type="text" placeholder="Username" className="input-field" />
+            <input 
+              type="text" 
+              placeholder="Username" 
+              className="input-field" 
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
           </div>
           <div className="input-group">
             <img src={mailIcon} alt="Email Icon" className="input-icon" />
-            <input type="email" placeholder="Email" className="input-field" />
+            <input 
+              type="email" 
+              placeholder="Email" 
+              className="input-field" 
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div className="input-group">
             <img src={passwordIcon} alt="Password Icon" className="input-icon" />
             <input
-              type={showPassword ? "text" : "password"}  // Toggle type based on showPassword state
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               className="input-field"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
             <img
               src={mataIcon}
               alt="Show Password"
               className="mata-icon"
-              onClick={togglePassword}  // Handle click to toggle password visibility
+              onClick={togglePassword}
             />
           </div>
-          <div className="input-group">
-            <img src={calendarIcon} alt="Birthday Icon" className="input-icon" />
-            <input
-              type="text"
-              placeholder="Birthday"
-              className="input-field"
-              onFocus={(e) => e.target.type = 'date'} // Change to date type when clicked
-              onBlur={(e) => e.target.type = 'text'} // Change back to text when focus is lost
-            />
-          </div>
-          <Link to="/home">
-          <button className="sign-up-btn">SIGN UP</button>
-          </Link>
+          <button className="sign-up-btn" onClick={handleRegister}>SIGN UP</button>
         </div>
       </div>
     </div>

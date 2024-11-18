@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './CoursesPage.css';
+import { Link } from 'react-router-dom'; // Import Link dari React Router
+import './QuizPage.css';
 import logo from './assets/images/logo.png';
 import groupIcon from './assets/icons/group.svg';
 import homeIcon from './assets/icons/home2.svg';
@@ -13,7 +13,7 @@ import forestImage from './assets/images/forest.png';
 import profileIcon from './assets/icons/profile2.svg';
 import logoutIcon from './assets/icons/logout.svg';
 
-function CoursesPage() {
+function QuizPage() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -21,7 +21,7 @@ function CoursesPage() {
   };
 
   return (
-    <div className="courses-page">
+    <div className="quiz-page">
       {/* Header Section */}
       <header className="header">
         <div className="logo-container">
@@ -33,14 +33,10 @@ function CoursesPage() {
           <img src={groupIcon} alt="Group" />
           {menuOpen && (
             <div className="profile-dropdown">
-              <div className="profile-item">
-                <img src={profileIcon} alt="Profile" />
-                <span>Profile</span>
               <Link to="/userprofile" className="profile-item">
                 <img src={profileIcon} alt="Profile" />
                 <span>Profile</span>
-                </Link>
-              </div>
+              </Link>
               <div className="profile-item">
                 <img src={logoutIcon} alt="Logout" />
                 <span>Logout</span>
@@ -57,11 +53,11 @@ function CoursesPage() {
             <img src={homeIcon} alt="Home" />
             <span>Home</span>
           </div>
-          <div className="menu-item active">
-            <img src={coursesIcon} alt="Courses" />
+          <div className="menu-item">
+            <img src={coursesIcon} alt="Quiz" />
             <span>Courses</span>
           </div>
-          <div className="menu-item">
+          <div className="menu-item active">
             <img src={quizIcon} alt="Quiz" />
             <span>Quiz</span>
           </div>
@@ -73,21 +69,21 @@ function CoursesPage() {
       </div>
 
       {/* Main Content */}
-      <div className="my-courses-container">
-        <h2>My Courses</h2>
-        <div className="courses-grid">
-          <div className="course-card">
-            <img src={schoolImage} alt="At School" className="course-image" />
+      <div className="my-quiz-container">
+        <h2>Quiz</h2>
+        <div className="quiz-grid">
+          <div className="quiz-card">
+            <img src={schoolImage} alt="At School" className="quiz-image" />
             <h3>AT SCHOOL</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.</p>
           </div>
-          <div className="course-card">
-            <img src={homeImage} alt="At Home" className="course-image" />
+          <div className="quiz-card">
+            <img src={homeImage} alt="At Home" className="quiz-image" />
             <h3>AT HOME</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.</p>
           </div>
-          <div className="course-card">
-            <img src={forestImage} alt="At Forest" className="course-image" />
+          <div className="quiz-card">
+            <img src={forestImage} alt="At Forest" className="quiz-image" />
             <h3>AT FOREST</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.</p>
           </div>
@@ -97,4 +93,4 @@ function CoursesPage() {
   );
 }
 
-export default CoursesPage;
+export default QuizPage;

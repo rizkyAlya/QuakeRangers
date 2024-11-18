@@ -1,4 +1,6 @@
-import React, { useState } from 'react'; // Import useState
+import React, { useState, useContext, useTransition, useEffect } from 'react'; // Import useState
+import { Link } from 'react-router-dom'; // Import Link
+import { UserContext } from './UserContext';
 import './HomePage.css';
 import grassImage from './assets/images/rumput.png';
 import treeImage1 from './assets/images/pohon1.png';
@@ -9,8 +11,14 @@ import homeIcon from './assets/icons/home.svg';
 import profileIcon from './assets/icons/profile.svg';
 
 function HomePage() {
+  const { user } = useContext(UserContext);
   const [activeButton, setActiveButton] = useState(null); // State to manage active button
 
+  useEffect(() => {
+    if (user && user.id) {
+
+    }
+  });
   return (
     <div className="home-page">
       <img src={grassImage} alt="Grass" className="grass" />
@@ -22,27 +30,49 @@ function HomePage() {
         <img src={boyImage} alt="Boy" className="boy" />
       </div>
       <div className="buttons">
-        <button className={`btn ${activeButton === 'learn' ? 'active' : ''}`} onClick={() => setActiveButton('learn')}>Learn</button>
-        <button className={`btn ${activeButton === 'quiz' ? 'active' : ''}`} onClick={() => setActiveButton('quiz')}>Quiz</button>
-        <button className={`btn ${activeButton === 'leaderboard' ? 'active' : ''}`} onClick={() => setActiveButton('leaderboard')}>Leaderboard</button>
+        <Link to="/courses" className="btn-link">
+          <button
+            className={`btn ${activeButton === 'learn' ? 'active' : ''}`}
+            onClick={() => setActiveButton('learn')}
+          >
+            Learn
+          </button>
+        </Link>
+        <Link to="/quiz" className="btn-link">
+        <button
+          className={`btn ${activeButton === 'quiz' ? 'active' : ''}`}
+          onClick={() => setActiveButton('quiz')}
+        >
+          Quiz
+        </button>
+        </Link>
+        <button
+          className={`btn ${activeButton === 'leaderboard' ? 'active' : ''}`}
+          onClick={() => setActiveButton('leaderboard')}
+        >
+          Leaderboard
+        </button>
       </div>
       <p className="play-text">LET'S PLAY!</p>
       <div className="icons">
-        <button 
-          className={`icon-button home-button ${activeButton === 'home' ? 'active' : ''}`} 
+        <button
+          className={`icon-button home-button ${activeButton === 'home' ? 'active' : ''}`}
           onClick={() => setActiveButton('home')}
         >
           <img src={homeIcon} alt="Home" className="icon" />
         </button>
-        <button 
-          className={`icon-button profile-button ${activeButton === 'profile' ? 'active' : ''}`} 
+        <Link to={`/profile/${user}`}>
+        <button
+          className={`icon-button profile-button ${activeButton === 'profile' ? 'active' : ''}`}
           onClick={() => setActiveButton('profile')}
         >
           <img src={profileIcon} alt="Profile" className="icon" />
         </button>
+        </Link>
       </div>
     </div>
   );
 }
+
 
 export default HomePage;
