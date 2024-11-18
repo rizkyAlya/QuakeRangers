@@ -1,0 +1,218 @@
+/* CoursesPage.css */
+
+.courses-page {
+    display: flex;
+    flex-direction: column;  /* Ensure the layout is stacked */
+    padding-left: 0;
+    padding-right: 0;
+    min-height: 100vh;
+    background-color: #5F6F52; /* Background color */
+}
+
+/* Header */
+.header {
+    width: 100%;
+    background-color: #A9B388 !important; /* Maintain background color for header */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 20px;
+    position: relative !important;  /* Changed from fixed to relative */
+    z-index: 1000; /* Ensure it stays above other content */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
+}
+
+/* Logo and title */
+.logo-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 110px;
+    height: 100px;
+    transform: rotate(0.651deg);
+    flex-shrink: 0;
+}
+
+h1 {
+    text-align: left;
+    color: #5C2C10;
+    font-family: 'Poppins', sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 20%;
+    padding: 20px;
+    background-color: #5F6F52;
+    position: relative;  /* Changed to relative */
+    z-index: 5;  /* Ensure sidebar stays under header */
+    height: auto;
+}
+
+/* Sidebar Menu */
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    background-color: #F9EBC7;
+    border-radius: 8px;
+    border: 1px solid #A9B388;
+    margin-top: 40px;
+}
+
+/* Sidebar Menu Items */
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    cursor: pointer;
+    color: #000; /* Default color */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Active state (when clicked) */
+.menu-item.active {
+    background-color: transparent; /* Remove background color when active */
+    color: #fff; /* Change text color to white when active */
+}
+
+/* Hover effect */
+.menu-item:hover {
+    background-color: #A9B388; /* Set background on hover */
+    color: #fff; /* Change text color to white when hovered */
+}
+
+.menu-item img {
+    margin-right: 10px;
+}
+
+/* Profile Menu */
+.profile-menu {
+    position: absolute;
+    top: 10px;
+    left: 1120px;
+    cursor: pointer;
+    z-index: 0;
+    border-radius: 12px; /* Rounded corners for profile menu */
+    padding: 5px;
+}
+
+.profile-menu img {
+    width: 80px; /* Sesuaikan dengan ukuran yang lebih kecil */
+    height: 80px; /* Sesuaikan dengan ukuran yang lebih kecil */
+}
+
+/* Profile Dropdown */
+.profile-dropdown {
+    background-color: #F9EBC7;
+    padding: 10px;
+    position: absolute;
+    right: 10px;
+    border-radius: 12px; /* Rounded corners for dropdown */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+}
+
+.profile-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.profile-item img {
+    margin-right: 10px;
+}
+
+/* Main Content */
+.my-courses-container {
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: -450px; /* Adjust the space between sections */
+}
+
+.my-courses-container h2 {
+    color: #F9EBC7;
+    font-family: Poppins, sans-serif;
+    font-size: 50px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-right: 420px;
+}
+
+/* Courses Grid */
+.courses-grid {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-left: 250px;
+}
+
+/* Course Cards */
+.course-card {
+    background-color: #F9EBC7;
+    width: 308px;
+    height: 480px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-10px);
+}
+
+.course-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.course-card h3 {
+    color: #5C2C10;
+    font-family: Poppins, sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.course-card p {
+    color: #000;
+    font-family: Inter, sans-serif;
+    font-size: 24.2px;
+    font-weight: 600;
+}
+
+/* Ensuring responsiveness */
+@media (max-width: 768px) {
+    .courses-page {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+    }
+
+    .main-content {
+        margin-left: 25%;
+        padding: 20px;
+        width: 75%;
+    }
+
+    .course-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+}

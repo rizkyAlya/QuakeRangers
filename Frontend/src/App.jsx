@@ -4,24 +4,15 @@ import LandingPage from "./LandingPage";
 import RegisterPage from "./RegisterPage";
 import LoginPage from "./LoginPage";
 import HomePage from "./HomePage";
+import CoursesPage from "./CoursesPage";
 
-const App = () => {
+
+function App() {
   return (
-      <Router>
-        <Main />
-      </Router>
+    <div>
+      <LandingPage />
+    </div>
   );
-};
-
-const Main = () => {
-  return(
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/signup" element={<RegisterPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/home" element={<HomePage />} />
-    </Routes>
-  );
-};
+}
 
 export default App;
