@@ -34,6 +34,8 @@ function CoursesPage() {
           {menuOpen && (
             <div className="profile-dropdown">
               <div className="profile-item">
+                <img src={profileIcon} alt="Profile" />
+                <span>Profile</span>
               <Link to="/userprofile" className="profile-item">
                 <img src={profileIcon} alt="Profile" />
                 <span>Profile</span>

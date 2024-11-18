@@ -12,11 +12,13 @@
 /* Header */
 .header {
     width: 100%;
+    background-color: #A9B388 !important; /* Maintain background color for header */
     background-color: #A9B388; /* Maintain background color for header */
     display: flex;
     align-items: center;
     gap: 20px;
     padding: 10px 20px;
+    position: relative !important;  /* Changed from fixed to relative */
     position: relative;  /* Changed from fixed to relative */
     z-index: 1000; /* Ensure it stays above other content */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
@@ -114,11 +116,13 @@ h1 {
 /* Profile Dropdown */
 .profile-dropdown {
     background-color: #F9EBC7;
+    padding: 10px;
     position: absolute;
     right: 10px;
     border-radius: 12px; /* Rounded corners for dropdown */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
 }
+
 body .courses-page .profile-dropdown{
     padding:30px;
     width: 200px
@@ -127,6 +131,7 @@ body .courses-page .profile-dropdown{
 .profile-item {
     display: flex;
     align-items: center;
+    padding: 10px;
 }
 
 body .courses-page .profile-item{

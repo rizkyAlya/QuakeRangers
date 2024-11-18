@@ -9,14 +9,18 @@ import CoursesPage from "./CoursesPage";
 import QuizPage from "./QuizPage";
 import ProfilePage from "./UserProfile";
 
-const App = () => {
+function App() {
   return (
+    <div>
+      <LandingPage />
+    </div>
+  );
+
     <UserProvider>
       <Router>
         <Main />
       </Router>
     </UserProvider>  
-  );
 };
 
 const Main = () => {
