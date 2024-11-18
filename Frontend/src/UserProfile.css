@@ -76,8 +76,13 @@
   }
   
   .form-group {
-    margin-bottom: 20px;
-    margin-top: 70px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    
+  }
+
+  .form-group:first-child {
+    margin-top: 90px; 
   }
   
   .form-group label {
@@ -96,6 +101,17 @@
     color: #5C2C10;
   }
 
+  .dropdown {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: #FEFAE0;
+    color: #5C2C10;
+    font-size: 14px;
+    appearance: none; /* Untuk menyembunyikan panah default di browser */
+  }  
+
   .edit-profile-btn {
     background-color: #5F6F52; /* Warna latar belakang tombol */
     color: #FEFAE0; /* Warna teks tombol */
@@ -105,7 +121,7 @@
     border: none; /* Hilangkan border */
     border-radius: 5px; /* Ujung tombol melengkung */
     cursor: pointer; /* Pointer saat hover */
-    margin-top: 50px; /* Jarak dari kolom Age */
+    margin-top: 30px; /* Jarak dari kolom Age */
     display: block; /* Buat tombol tampil sebagai block */
     width: auto; /* Sesuaikan tombol dengan lebar kolom */
     text-align: center; /* Pusatkan teks dalam tombol */
@@ -164,6 +180,18 @@
     border-radius: 5px;
     background-color: #FEFAE0;
     color: #5C2C10;
+  }
+
+  .close-btn-main {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 10; /* Pastikan berada di atas konten lainnya */
   }
 
   .close-btn {

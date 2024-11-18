@@ -10,17 +10,13 @@ import QuizPage from "./QuizPage";
 import ProfilePage from "./UserProfile";
 
 function App() {
-  return (
-    <div>
-      <LandingPage />
-    </div>
-  );
-
+  return(
     <UserProvider>
       <Router>
         <Main />
       </Router>
     </UserProvider>  
+  );
 };
 
 const Main = () => {

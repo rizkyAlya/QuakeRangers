@@ -8,7 +8,7 @@ const url = import.meta.env.VITE_BACKEND_URL;
 function ProfilePage() {
   const { userID } = useParams();
   const [profile, setProfile] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState('false');
   const [editedProfile, setEditedProfile] = useState('');
 
   useEffect(() => {
@@ -34,17 +34,39 @@ function ProfilePage() {
     };
 
     fetchProfile();
-  }, []);
+  }, [userID]);
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false); 
+  };
 
   const handleUpdate = async () => {
-    try {
-      const response = await axios.put(`${url}/user/updateProfile/${userID}`, editedProfile);
-      console.log('Profile updated successfully: ', response.data);
-      setProfile(response.data);
-    } catch (error) {
-      console.error('Error updating profile:', error);
-    }
-  };
+  try {
+    const token = localStorage.getItem('token'); // Pastikan token tersedia
+    const response = await axios.put(`${url}/user/updateProfile/${userID}`, editedProfile, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    console.log('Profile updated successfully:', response.data);
+
+    // Update data profile di halaman utama
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      user: {
+        ...prevProfile.user,
+        ...editedProfile, // Gabungkan data yang sudah diedit
+      }
+    }));
+
+    // Tutup modal
+    handleCloseModal();
+  } catch (error) {
+    console.error('Error updating profile:', error);
+  }
+};
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -62,14 +84,15 @@ function ProfilePage() {
       .toUpperCase();
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false); 
-  };
+  
 
   if (!profile) return <div>Loading...</div>;
 
   return (
     <div className="profile-page">
+       <button className="close-btn-main" onClick={() => console.log("Close button clicked")}>
+    <img src={closeIcon} alt="Close Icon" />
+  </button>
       <div className="profile-left">
         <div className="avatar">
           {profile.user.profile ? (
@@ -89,21 +112,22 @@ function ProfilePage() {
 
       <div className="profile-right">
         <div className="form-group">
-          <label>Name:</label>
-          <input type="text" value={profile.user.name} readOnly />
-        </div>
-        <div className="form-group">
-          <label>Email:</label>
-          <input type="text" value={profile.user.email} readOnly />
-        </div>
-        <div className="form-group">
-          <label>Gender:</label>
-          <input type="text" value={profile.user.gender} readOnly />
-        </div>
-        <div className="form-group">
-          <label>Age:</label>
-          <input type="text" value={profile.user.age} readOnly />
-        </div>
+  <label>Name:</label>
+  <input type="text" value={profile.user.name} readOnly />
+</div>
+<div className="form-group">
+  <label>Email:</label>
+  <input type="text" value={profile.user.email} readOnly />
+</div>
+<div className="form-group">
+  <label>Gender:</label>
+  <input type="text" value={profile.user.gender} readOnly />
+</div>
+<div className="form-group">
+  <label>Age:</label>
+  <input type="text" value={profile.user.age} readOnly />
+</div>
+
         <button onClick={() => setIsModalOpen(true)} className="edit-profile-btn">Edit Profile</button>
       </div>
 
@@ -124,14 +148,19 @@ function ProfilePage() {
               />
             </div>
             <div className="form-group-edit">
-              <label>Gender:</label>
-              <input
-                type="text"
-                name="gender"
-                value={editedProfile.gender || ''}
-                onChange={handleInputChange}
-              />
-            </div>
+  <label>Gender:</label>
+  <select
+    name="gender"
+    value={editedProfile.gender || ''}
+    onChange={handleInputChange}
+    className="dropdown"
+  >
+    <option value="">Select Gender</option>
+    <option value="Girl">Girl</option>
+    <option value="Boy">Boy</option>
+  </select>
+</div>
+
             <div className="form-group-edit">
               <label>Age:</label>
               <input
