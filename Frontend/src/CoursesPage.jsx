@@ -33,14 +33,10 @@ function CoursesPage() {
           <img src={groupIcon} alt="Group" />
           {menuOpen && (
             <div className="profile-dropdown">
-              <div className="profile-item">
-                <img src={profileIcon} alt="Profile" />
-                <span>Profile</span>
               <Link to="/userprofile" className="profile-item">
                 <img src={profileIcon} alt="Profile" />
                 <span>Profile</span>
-                </Link>
-              </div>
+              </Link>
               <div className="profile-item">
                 <img src={logoutIcon} alt="Logout" />
                 <span>Logout</span>
@@ -53,18 +49,24 @@ function CoursesPage() {
       {/* Sidebar Section */}
       <div className="sidebar">
         <div className="menu">
-          <div className="menu-item">
-            <img src={homeIcon} alt="Home" />
-            <span>Home</span>
-          </div>
-          <div className="menu-item active">
-            <img src={coursesIcon} alt="Courses" />
-            <span>Courses</span>
-          </div>
-          <div className="menu-item">
-            <img src={quizIcon} alt="Quiz" />
-            <span>Quiz</span>
-          </div>
+          <Link to="/home">
+            <div className="menu-item">
+              <img src={homeIcon} alt="Home" />
+              <span>Home</span>
+            </div>
+          </Link>
+          <Link to="/courses">
+            <div className="menu-item">
+              <img src={coursesIcon} alt="Quiz" />
+              <span>Courses</span>
+            </div>
+          </Link>
+          <Link to="/quiz">
+            <div className="menu-item">
+              <img src={quizIcon} alt="Quiz" />
+              <span>Quiz</span>
+            </div>
+          </Link>
           <div className="menu-item">
             <img src={leaderboardIcon} alt="Leaderboard" />
             <span>Leaderboard</span>

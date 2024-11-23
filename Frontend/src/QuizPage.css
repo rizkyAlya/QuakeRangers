@@ -28,12 +28,12 @@
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-top: 15px;
 }
 
 .logo {
-    width: 110px;
-    height: 100px;
+    width: 90px;
+    height: 80px;
     transform: rotate(0.651deg);
     flex-shrink: 0;
 }
@@ -42,7 +42,7 @@ h1 {
     text-align: left;
     color: #5C2C10;
     font-family: 'Poppins', sans-serif;
-    font-size: 50px;
+    font-size: 45px;
     font-weight: 700;
 }
 
@@ -96,9 +96,9 @@ h1 {
 
 /* Profile Menu */
 .profile-menu {
-    position: absolute;
+    position: relative;
     top: 10px;
-    left: 1120px;
+    left: 1250px;
     cursor: pointer;
     z-index: 0;
     border-radius: 12px; /* Rounded corners for profile menu */
@@ -106,8 +106,11 @@ h1 {
 }
 
 .profile-menu img {
-    width: 80px; /* Sesuaikan dengan ukuran yang lebih kecil */
-    height: 80px; /* Sesuaikan dengan ukuran yang lebih kecil */
+    width: 70px; 
+    height: 70px;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-right: 20px;
 }
 
 /* Profile Dropdown */
@@ -145,7 +148,8 @@ body .quiz-page .profile-item{
 .my-quiz-container {
     text-align: center;
     padding: 40px 20px;
-    margin-top: -450px; /* Adjust the space between sections */
+    margin-top: -435px; /* Adjust the space between sections */
+    margin-left: 150px;
 }
 
 .my-quiz-container h2 {
@@ -154,7 +158,7 @@ body .quiz-page .profile-item{
     font-size: 50px;
     font-weight: 600;
     margin-bottom: 20px;
-    margin-right: 610px;
+    margin-right: 1125px;
 }
 
 /* Quiz Grid */
@@ -169,8 +173,8 @@ body .quiz-page .profile-item{
 /* Quiz Cards */
 .quiz-card {
     background-color: #F9EBC7;
-    width: 308px;
-    height: 480px;
+    width: 370px;
+    height: 550px;
     padding: 20px;
     text-align: center;
     border-radius: 8px;

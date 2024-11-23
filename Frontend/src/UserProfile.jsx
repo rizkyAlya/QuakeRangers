@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './UserProfile.css';
 import closeIcon from './assets/icons/close.svg';
@@ -41,32 +42,31 @@ function ProfilePage() {
   };
 
   const handleUpdate = async () => {
-  try {
-    const token = localStorage.getItem('token'); // Pastikan token tersedia
-    const response = await axios.put(`${url}/user/updateProfile/${userID}`, editedProfile, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+    try {
+      const token = localStorage.getItem('token'); // Pastikan token tersedia
+      const response = await axios.put(`${url}/user/updateProfile/${userID}`, editedProfile, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
 
-    console.log('Profile updated successfully:', response.data);
+      console.log('Profile updated successfully:', response.data);
 
-    // Update data profile di halaman utama
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      user: {
-        ...prevProfile.user,
-        ...editedProfile, // Gabungkan data yang sudah diedit
-      }
-    }));
+      // Update data profile di halaman utama
+      setProfile((prevProfile) => ({
+        ...prevProfile,
+        user: {
+          ...prevProfile.user,
+          ...editedProfile, // Gabungkan data yang sudah diedit
+        }
+      }));
 
-    // Tutup modal
-    handleCloseModal();
-  } catch (error) {
-    console.error('Error updating profile:', error);
-  }
-};
-
+      // Tutup modal
+      handleCloseModal();
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -84,15 +84,15 @@ function ProfilePage() {
       .toUpperCase();
   };
 
-  
-
   if (!profile) return <div>Loading...</div>;
 
   return (
     <div className="profile-page">
-       <button className="close-btn-main" onClick={() => console.log("Close button clicked")}>
-    <img src={closeIcon} alt="Close Icon" />
-  </button>
+      <Link to="/home">
+        <button className="close-btn-main" onClick={() => console.log("Close button clicked")}>
+          <img src={closeIcon} alt="Close Icon" />
+        </button>
+      </Link>
       <div className="profile-left">
         <div className="avatar">
           {profile.user.profile ? (
@@ -112,21 +112,21 @@ function ProfilePage() {
 
       <div className="profile-right">
         <div className="form-group">
-  <label>Name:</label>
-  <input type="text" value={profile.user.name} readOnly />
-</div>
-<div className="form-group">
-  <label>Email:</label>
-  <input type="text" value={profile.user.email} readOnly />
-</div>
-<div className="form-group">
-  <label>Gender:</label>
-  <input type="text" value={profile.user.gender} readOnly />
-</div>
-<div className="form-group">
-  <label>Age:</label>
-  <input type="text" value={profile.user.age} readOnly />
-</div>
+        <label>Name:</label>
+        <input type="text" value={profile.user.name} readOnly />
+      </div>
+      <div className="form-group">
+        <label>Email:</label>
+        <input type="text" value={profile.user.email} readOnly />
+      </div>
+      <div className="form-group">
+        <label>Gender:</label>
+        <input type="text" value={profile.user.gender} readOnly />
+      </div>
+      <div className="form-group">
+        <label>Age:</label>
+        <input type="text" value={profile.user.age} readOnly />
+      </div>
 
         <button onClick={() => setIsModalOpen(true)} className="edit-profile-btn">Edit Profile</button>
       </div>
@@ -148,19 +148,18 @@ function ProfilePage() {
               />
             </div>
             <div className="form-group-edit">
-  <label>Gender:</label>
-  <select
-    name="gender"
-    value={editedProfile.gender || ''}
-    onChange={handleInputChange}
-    className="dropdown"
-  >
-    <option value="">Select Gender</option>
-    <option value="Girl">Girl</option>
-    <option value="Boy">Boy</option>
-  </select>
-</div>
-
+              <label>Gender:</label>
+              <select
+                name="gender"
+                value={editedProfile.gender || ''}
+                onChange={handleInputChange}
+                className="dropdown"
+              >
+                <option value="">Select Gender</option>
+                <option value="Girl">Girl</option>
+                <option value="Boy">Boy</option>
+              </select>
+            </div>
             <div className="form-group-edit">
               <label>Age:</label>
               <input
