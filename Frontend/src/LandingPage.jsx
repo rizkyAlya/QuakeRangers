@@ -14,7 +14,7 @@ function LandingPage() {
   return (
     <div className="landing-page">
       {/* Header dengan Logo dan Background */}
-      <div className="header">
+      <div className="header-landing">
         <img src={logoImage} alt="Logo" className="logo" />
         <div className="header-text">QUAKERANGERS!</div>
       </div>

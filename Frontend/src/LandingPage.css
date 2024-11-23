@@ -29,7 +29,7 @@ body, html {
 }
 
 /* Header dengan Background Penuh dari Atas */
-.header {
+.header-landing {
     width: 100%;
     background-color: #E3D5B4; /* Warna background header sama seperti footer */
     display: flex;

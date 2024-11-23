@@ -6,9 +6,10 @@ import RegisterPage from "./RegisterPage";
 import LoginPage from "./LoginPage";
 import HomePage from "./HomePage";
 import CoursesPage from "./CoursesPage";
+import MainCourses from "./MainCourses";  // Pastikan sudah import MainCourses
 import QuizPage from "./QuizPage";
 import ProfilePage from "./UserProfile";
-import LeaderboardPage from "./LeaderboardPage"; 
+import LeaderboardPage from "./LeaderboardPage";
 
 function App() {
   return (
@@ -28,9 +29,10 @@ const Main = () => {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/home" element={<HomePage />} />
       <Route path="/courses" element={<CoursesPage />} />
+      <Route path="/courses/:id" element={<MainCourses />} /> 
       <Route path="/quiz" element={<QuizPage />} />
       <Route path="/profile/:userID" element={<ProfilePage />} />
-      <Route path="/leaderboard" element={<LeaderboardPage />} /> 
+      <Route path="/leaderboard" element={<LeaderboardPage />} />
     </Routes>
   );
 };

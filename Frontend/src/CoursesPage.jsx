@@ -107,9 +107,11 @@ function CoursesPage() {
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.</p>
           </div>
           <div className="course-card">
+          <Link to={`/courses/${course._id}`} className="course-link">
             <img src={homeImage} alt="At Home" className="course-image" />
             <h3>AT HOME</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.</p>
+            </Link>
           </div>
           <div className="course-card">
             <img src={forestImage} alt="At Forest" className="course-image" />
