@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom'; // Tambahkan useNavigate
 import './CoursesPage.css';
 import logo from './assets/images/logo.png';
 import groupIcon from './assets/icons/group.svg';
@@ -12,12 +12,31 @@ import homeImage from './assets/images/home.png';
 import forestImage from './assets/images/forest.png';
 import profileIcon from './assets/icons/profile2.svg';
 import logoutIcon from './assets/icons/logout.svg';
+import { UserContext } from './UserContext'; // Import UserContext untuk mendapatkan user
 
 function CoursesPage() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user, setUser } = useContext(UserContext); // Dapatkan user dan setUser dari UserContext
+  const navigate = useNavigate(); // Gunakan untuk navigasi setelah logout
+
+  // Effect untuk logic tambahan user
+  useEffect(() => {
+    if (user && user.id) {
+      console.log(`User logged in: ${user.id}`);
+    } else {
+      console.log('User not logged in.');
+    }
+  }, [user]);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  // Fungsi untuk Logout
+  const handleLogout = () => {
+    setUser(null); // Hapus data user dari UserContext
+    navigate('/'); // Arahkan ke halaman login setelah logout
+    console.log('User logged out.');
   };
 
   return (
@@ -29,15 +48,17 @@ function CoursesPage() {
           <h1>QUAKERANGERS!</h1>
         </div>
         {/* Profile Menu */}
-        <div className="profile-menu" onClick={toggleMenu}>
+        <div className="profile-menu-courses" onClick={toggleMenu}>
           <img src={groupIcon} alt="Group" />
           {menuOpen && (
-            <div className="profile-dropdown">
-              <Link to="/userprofile" className="profile-item">
+            <div className="profile-dropdown-courses">
+              {/* Tambahkan Link ke halaman User Profile */}
+              <Link to={`/profile/${user}`} className="profile-item-courses">
                 <img src={profileIcon} alt="Profile" />
                 <span>Profile</span>
               </Link>
-              <div className="profile-item">
+              {/* Tambahkan Fungsi Logout */}
+              <div className="profile-item-courses" onClick={handleLogout}>
                 <img src={logoutIcon} alt="Logout" />
                 <span>Logout</span>
               </div>
@@ -57,7 +78,7 @@ function CoursesPage() {
           </Link>
           <Link to="/courses">
             <div className="menu-item">
-              <img src={coursesIcon} alt="Quiz" />
+              <img src={coursesIcon} alt="Courses" />
               <span>Courses</span>
             </div>
           </Link>
@@ -67,10 +88,12 @@ function CoursesPage() {
               <span>Quiz</span>
             </div>
           </Link>
-          <div className="menu-item">
-            <img src={leaderboardIcon} alt="Leaderboard" />
-            <span>Leaderboard</span>
-          </div>
+          <Link to="/leaderboard">
+            <div className="menu-item">
+              <img src={leaderboardIcon} alt="Leaderboard" />
+              <span>Leaderboard</span>
+            </div>
+          </Link>
         </div>
       </div>
 

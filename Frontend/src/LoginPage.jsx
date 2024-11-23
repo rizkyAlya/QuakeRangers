@@ -6,6 +6,7 @@ import './LoginPage.css';
 import userIcon from './assets/icons/user.svg';
 import passwordIcon from './assets/icons/password.svg';
 import mataIcon from './assets/icons/mata.svg';
+
 const url = import.meta.env.VITE_BACKEND_URL;
 
 function LoginPage() {
@@ -22,17 +23,19 @@ function LoginPage() {
   };
 
   const handleLogin = async () => {
+    // Validasi jika ada field yang kosong
     if (!emailOrUsername || !password) {
       setErrorMessage('All fields are required.');
-      console.log(errorMessage);
-      return; // Stop function jika ada field yang kosong
+      return;
     }
 
     try {
       const response = await axios.post(`${url}/auth/login`, {
         emailOrUsername,
-        password
+        password,
       });
+
+      // Simpan token dan ID pengguna
       const { token, id } = response.data;
 
       localStorage.setItem('token', token);
@@ -40,16 +43,40 @@ function LoginPage() {
 
       setUser(id);
 
+      // Navigasi ke halaman home jika login berhasil
       if (response.status === 200) {
-        console.log("Login successful:", response.data);
+        console.log('Login successful:', response.data);
         navigate('/home');
-      } else {
-        console.log("Login failed:", response.data);
       }
     } catch (error) {
-      console.error("Error during login:", error);
+      console.error('Login error:', error);
+
+      // Tangani error berdasarkan respons dari server
+      if (error.response) {
+        console.log('Error response data:', error.response.data);
+
+        // Tangani kode status
+        if (error.response.status === 401) {
+          setErrorMessage('Incorrect password. Please try again.');
+        } else if (error.response.status === 404) {
+          setErrorMessage('Account not found. Please sign up.');
+        } else if (error.response.status >= 500) {
+          setErrorMessage('Server error. Please try again later.');
+        } else {
+          setErrorMessage('An unexpected error occurred. Please try again later.');
+        }
+      } else if (error.request) {
+        // Tangani error ketika tidak ada respons dari server
+        console.log('No response received:', error.request);
+        setErrorMessage('No response from server. Please try again later.');
+      } else {
+        // Tangani error lainnya
+        console.log('Error:', error.message);
+        setErrorMessage('An unexpected error occurred. Please try again later.');
+      }
     }
-  }
+  };
+
   return (
     <div className="login-page">
       {/* Left Section */}
@@ -65,25 +92,23 @@ function LoginPage() {
 
       {/* Right Section */}
       <div className="right-section">
-        <div className="sign-in">
-          Sign in
-        </div>
+        <div className="sign-in">Sign in</div>
 
         <div className="form">
           <div className="input-group">
             <img src={userIcon} alt="Username or Email Icon" className="input-icon" />
-            <input 
-            type="text" 
-            placeholder="Username or Email" 
-            className="input-field" 
-            value={emailOrUsername}
-            onChange={(e) => setEmailOrUsername(e.target.value)}
+            <input
+              type="text"
+              placeholder="Username or Email"
+              className="input-field"
+              value={emailOrUsername}
+              onChange={(e) => setEmailOrUsername(e.target.value)}
             />
           </div>
           <div className="input-group">
             <img src={passwordIcon} alt="Password Icon" className="input-icon" />
             <input
-              type={showPassword ? "text" : "password"}  // Toggle type based on showPassword state
+              type={showPassword ? 'text' : 'password'}
               placeholder="Password"
               className="input-field"
               value={password}
@@ -93,10 +118,16 @@ function LoginPage() {
               src={mataIcon}
               alt="Show Password"
               className="mata-icon"
-              onClick={togglePassword}  // Handle click to toggle password visibility
+              onClick={togglePassword}
             />
           </div>
-          <button className="sign-in-btn" onClick={handleLogin}>SIGN IN</button>
+
+          {/* Tampilkan pesan error di sini */}
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+          <button className="sign-in-btn" onClick={handleLogin}>
+            SIGN IN
+          </button>
         </div>
       </div>
     </div>

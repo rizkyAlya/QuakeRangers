@@ -1,49 +1,82 @@
-/* QuizPage.css */
-
+/* General Page Styles */
 .quiz-page {
-    display: flex;
-    flex-direction: column;  /* Ensure the layout is stacked */
-    padding-left: 0;
-    padding-right: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #5F6F52;
     min-height: 100vh;
-    background-color: #5F6F52; /* Background color */
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header */
 .header {
-    width: 100%;
-    background-color: #A9B388; /* Maintain background color for header */
+    background-color: #A9B388;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 20px;
     padding: 10px 20px;
-    position: relative;  /* Changed from fixed to relative */
-    z-index: 1000; /* Ensure it stays above other content */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
 }
 
 /* Logo and title */
 .logo-container {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
     gap: 10px;
-    margin-top: 15px;
 }
 
 .logo {
-    width: 90px;
-    height: 80px;
-    transform: rotate(0.651deg);
-    flex-shrink: 0;
+    width: 80px;
+    height: auto;
 }
 
 h1 {
-    text-align: left;
+    font-size: 36px;
     color: #5C2C10;
-    font-family: 'Poppins', sans-serif;
-    font-size: 45px;
     font-weight: 700;
+    margin: 0;
+}
+
+/* Profile Menu */
+.profile-menu {
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-menu img {
+    width: 50px;
+    height: 50px;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #FFE8C0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1000;
+    padding: 10px 0;
+    width: 150px;
+}
+
+.profile-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: left;
+}
+
+.profile-item img.dropdown-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.profile-item:hover {
+    background-color: #F9EBC7;
 }
 
 /* Sidebar */
@@ -51,8 +84,7 @@ h1 {
     width: 20%;
     padding: 20px;
     background-color: #5F6F52;
-    position: relative;  /* Changed to relative */
-    z-index: 5;  /* Ensure sidebar stays under header */
+    position: relative;
     height: auto;
 }
 
@@ -74,73 +106,21 @@ h1 {
     align-items: center;
     padding: 10px 0;
     cursor: pointer;
-    color: #000; /* Default color */
+    color: #000;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Active state (when clicked) */
 .menu-item.active {
-    background-color: transparent; /* Remove background color when active */
-    color: #fff; /* Change text color to white when active */
+    background-color: transparent;
+    color: #fff;
 }
 
-/* Hover effect */
 .menu-item:hover {
-    background-color: #A9B388; /* Set background on hover */
-    color: #fff; /* Change text color to white when hovered */
+    background-color: #A9B388;
+    color: #fff;
 }
 
 .menu-item img {
-    margin-right: 10px;
-}
-
-/* Profile Menu */
-.profile-menu {
-    position: relative;
-    top: 10px;
-    left: 1250px;
-    cursor: pointer;
-    z-index: 0;
-    border-radius: 12px; /* Rounded corners for profile menu */
-    padding: 5px;
-}
-
-.profile-menu img {
-    width: 70px; 
-    height: 70px;
-    align-items: center;
-    margin-bottom: 20px;
-    margin-right: 20px;
-}
-
-/* Profile Dropdown */
-.profile-dropdown {
-    background-color: #F9EBC7;
-    padding: 10px;
-    position: absolute;
-    right: 10px;
-    border-radius: 12px; /* Rounded corners for dropdown */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
-}
-
-body .quiz-page .profile-dropdown{
-    padding:30px;
-    width: 200px
-}
-
-.profile-item {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-}
-
-body .quiz-page .profile-item{
-    padding: 0px;
-    display: flex;
-    align-items: center;
-}
-
-.profile-item img {
     margin-right: 10px;
 }
 
@@ -148,7 +128,7 @@ body .quiz-page .profile-item{
 .my-quiz-container {
     text-align: center;
     padding: 40px 20px;
-    margin-top: -435px; /* Adjust the space between sections */
+    margin-top: -450px;
     margin-left: 150px;
 }
 
@@ -158,7 +138,7 @@ body .quiz-page .profile-item{
     font-size: 50px;
     font-weight: 600;
     margin-bottom: 20px;
-    margin-right: 1125px;
+    margin-right: 500px;
 }
 
 /* Quiz Grid */
@@ -167,14 +147,14 @@ body .quiz-page .profile-item{
     justify-content: flex-start;
     gap: 20px;
     flex-wrap: wrap;
-    padding-left: 250px;
+    padding-left: 150px;
 }
 
 /* Quiz Cards */
 .quiz-card {
     background-color: #F9EBC7;
-    width: 370px;
-    height: 550px;
+    width: 280px;
+    height: 500px;
     padding: 20px;
     text-align: center;
     border-radius: 8px;

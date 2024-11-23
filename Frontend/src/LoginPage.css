@@ -163,9 +163,16 @@ body, html {
     margin: 20px auto;
 }
 
-body .login-page .sign-in-btn{
-    
-}
+/* Pesan Error */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: -10px; /* Mengurangi jarak ke atas */
+    margin-bottom: 10px; /* Menambahkan jarak ke tombol */
+    text-align: center; /* Pusatkan teks */
+    font-family: 'Poppins', sans-serif; /* Font seragam */
+  }
+  
 
 
 .sign-in-btn:hover {

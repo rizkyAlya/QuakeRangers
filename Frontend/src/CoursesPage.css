@@ -1,27 +1,23 @@
-/* CoursesPage.css */
-
 .courses-page {
     display: flex;
-    flex-direction: column;  /* Ensure the layout is stacked */
+    flex-direction: column;
     padding-left: 0;
     padding-right: 0;
     min-height: 100vh;
-    background-color: #5F6F52; /* Background color */
+    background-color: #5F6F52;
 }
 
 /* Header */
 .header {
     width: 100%;
-    background-color: #A9B388 !important; /* Maintain background color for header */
-    background-color: #A9B388; /* Maintain background color for header */
+    background-color: #A9B388;
     display: flex;
     align-items: center;
     gap: 20px;
     padding: 10px 20px;
-    position: relative !important;  /* Changed from fixed to relative */
-    position: relative;  /* Changed from fixed to relative */
-    z-index: 1000; /* Ensure it stays above other content */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    position: relative;
+    z-index: 1000;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Logo and title */
@@ -30,23 +26,20 @@
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
-    margin-bottom: 20px;
 }
 
 .logo {
-    width: 110px;
-    height: 100px;
+    width: 90px;
+    height: 80px;
     transform: rotate(0.651deg);
-    flex-shrink: 0;
 }
 
 h1 {
     text-align: left;
     color: #5C2C10;
     font-family: 'Poppins', sans-serif;
-    font-size: 50px;
+    font-size: 45px;
     font-weight: 700;
-    margin: 0;
 }
 
 /* Sidebar */
@@ -54,12 +47,11 @@ h1 {
     width: 20%;
     padding: 20px;
     background-color: #5F6F52;
-    position: relative;  /* Changed to relative */
-    z-index: 5;  /* Ensure sidebar stays under header */
+    position: relative;
+    z-index: 5;
     height: auto;
 }
 
-/* Sidebar Menu */
 .menu {
     display: flex;
     flex-direction: column;
@@ -71,26 +63,23 @@ h1 {
     margin-top: 40px;
 }
 
-/* Sidebar Menu Items */
 .menu-item {
     display: flex;
     align-items: center;
     padding: 10px 0;
     cursor: pointer;
-    color: #000; /* Default color */
+    color: #000;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Active state (when clicked) */
 .menu-item.active {
-    background-color: transparent; /* Remove background color when active */
-    color: #fff; /* Change text color to white when active */
+    background-color: transparent;
+    color: #fff;
 }
 
-/* Hover effect */
 .menu-item:hover {
-    background-color: #A9B388; /* Set background on hover */
-    color: #fff; /* Change text color to white when hovered */
+    background-color: #A9B388;
+    color: #fff;
 }
 
 .menu-item img {
@@ -98,60 +87,68 @@ h1 {
 }
 
 /* Profile Menu */
-.profile-menu {
+.profile-menu-courses {
     position: relative;
-    top: 10px;
-    left: 1250px;
     cursor: pointer;
-    z-index: 0;
-    border-radius: 12px; /* Rounded corners for profile menu */
-    padding: 5px;
 }
 
-.profile-menu img {
-    width: 70px; 
-    height: 70px;
-    align-items: center;
-    margin-bottom: 20px;
-    margin-right: 20px;
+.profile-menu-courses img {
+    width: 50px;
+    height: 50px;
 }
 
 /* Profile Dropdown */
-.profile-dropdown {
-    background-color: #F9EBC7;
-    padding: 10px;
+.profile-dropdown-courses {
     position: absolute;
-    right: 10px;
-    border-radius: 12px; /* Rounded corners for dropdown */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+    top: 60px;
+    right: 0;
+    background-color: #FFE8C0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1000;
+    padding: 10px 0;
+    width: 180px; /* Lebar dropdown */
+    animation: fadeIn 0.2s ease-in-out; /* Animasi muncul */
 }
 
-body .courses-page .profile-dropdown{
-    padding:30px;
-    width: 200px
+/* Animasi untuk Dropdown */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.profile-item {
+.profile-item-courses {
     display: flex;
     align-items: center;
-    padding: 10px;
+    gap: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: left;
 }
 
-body .courses-page .profile-item{
-    padding: 0px;
-    display: flex;
-    align-items: center;
-}
-
-.profile-item img {
+.profile-item-courses img.dropdown-icon {
+    width: 25px;
+    height: 25px;
     margin-right: 10px;
+}
+
+.profile-item-courses:hover {
+    background-color: #F4DFC6;
+    transform: translateX(5px);
 }
 
 /* Main Content */
 .my-courses-container {
     text-align: center;
     padding: 40px 20px;
-    margin-top: -450px; 
+    margin-top: -450px;
     margin-left: 150px;
 }
 
@@ -161,23 +158,21 @@ body .courses-page .profile-item{
     font-size: 50px;
     font-weight: 600;
     margin-bottom: 20px;
-    margin-right: 940px;
+    margin-right: 500px;
 }
 
-/* Courses Grid */
 .courses-grid {
     display: flex;
     justify-content: flex-start;
     gap: 20px;
     flex-wrap: wrap;
-    padding-left: 250px;
+    padding-left: 150px;
 }
 
-/* Course Cards */
 .course-card {
     background-color: #F9EBC7;
-    width: 370px;
-    height: 550px;
+    width: 280px;
+    height: 500px;
     padding: 20px;
     text-align: center;
     border-radius: 8px;
@@ -211,7 +206,7 @@ body .courses-page .profile-item{
     font-weight: 600;
 }
 
-/* Ensuring responsiveness */
+/* Responsiveness */
 @media (max-width: 768px) {
     .courses-page {
         flex-direction: column;
