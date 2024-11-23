@@ -177,17 +177,17 @@ body .register-page .sign-in{
 }
 
 .left-section {
-    background-color: #5F6F52;  /* Green background */
-    width: 60%;  /* Left section width */
-    height: 100vh;  /* Full height of the viewport */
+    background-color: #5F6F52;  
+    width: 60%;  
+    height: 100vh; 
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;  /* Align content towards the top */
+    justify-content: flex-start;  
     align-items: center;
     position: relative;
-    background: url('./assets/images/registercharacter.png') no-repeat center bottom;  /* Position the image at the bottom */
-    background-size:80%;  /* Ensure the image covers the area without stretching */
-    padding-top: 80px;  /* Adjust this value to move content and image further down */
+    background: url('./assets/images/registercharacter.png') no-repeat center bottom;  
+    background-size:80%;  
+    padding-top: 80px;  
 }
 
 body .register-page .left-section{

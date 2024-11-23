@@ -8,7 +8,7 @@ const url = import.meta.env.VITE_BACKEND_URL;
 function ProfilePage() {
   const { userID } = useParams();
   const [profile, setProfile] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState('false');
+  const [isModalOpen, setIsModalOpen] = useState('');
   const [editedProfile, setEditedProfile] = useState('');
 
   useEffect(() => {
@@ -34,7 +34,7 @@ function ProfilePage() {
     };
 
     fetchProfile();
-  }, [userID]);
+  }, []);
 
   const handleCloseModal = () => {
     setIsModalOpen(false); 
