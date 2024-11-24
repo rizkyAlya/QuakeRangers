@@ -29,7 +29,7 @@ body, html {
 }
 
 /* Header dengan Background Penuh dari Atas */
-.header {
+.header-landing {
     width: 100%;
     background-color: #E3D5B4; /* Warna background header sama seperti footer */
     display: flex;
@@ -45,7 +45,7 @@ body, html {
 body .landing-page .header {
     background-color: #E3D5B4;
     position: absolute;
-    padding: 20px;
+    padding: 10px 20px;
 }
 
 .logo {
@@ -56,8 +56,8 @@ body .landing-page .header {
 .header-text {
     color: #5C2C10;
     font-family: 'Poppins', sans-serif; /* Menggunakan Poppins */
-    font-size: 50px;
-    font-weight: 700; /* Menggunakan berat bold */
+    font-size: 36px;
+    font-weight: 700;
     line-height: normal;
 }
 
@@ -130,7 +130,7 @@ body .landing-page .header {
 }
 
 .welcome-text {
-    font-size: 40px; /* Ukuran lebih kecil agar lebih pas */
+    font-size: 30px; /* Ukuran lebih kecil agar lebih pas */
     color: #351B0C;
     font-family: "Pixelify Sans", sans-serif;
     font-weight: 500; /* Mengubah font-weight menjadi bold */
@@ -138,7 +138,7 @@ body .landing-page .header {
     margin-bottom: 10px;
 }
 body .landing-page .welcome-text{
-    font-weight: 600; 
+    font-weight: 500; 
     color: #351B0C;
 }
 

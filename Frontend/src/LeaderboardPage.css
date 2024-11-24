@@ -1,0 +1,183 @@
+/* General Page Styles */
+.leaderboard-page {
+    font-family: 'Poppins', sans-serif;
+    background-color: #D3BFA4;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header Section */
+.header-leaderboard {
+    background-color: #E3D5B4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 80px;
+    height: auto;
+}
+
+h1 {
+    font-size: 36px;
+    color: #5C2C10;
+    font-weight: 700;
+    margin: 0;
+}
+
+.profile-menu-leaderboard {
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-menu-leaderboard img {
+    width: 50px;
+    height: 50px;
+}
+
+.profile-dropdown-leaderboard {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #FFE8C0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1000;
+    padding: 10px 0;
+    width: 150px;
+}
+
+.profile-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: left;
+}
+
+.profile-item img.dropdown-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.profile-item:hover {
+    background-color: #F9EBC7;
+}
+
+/* Main Content */
+.main-content-leaderboard {
+    padding: 40px;
+    text-align: center;
+}
+
+.leaderboard-title {
+    font-size: 48px;
+    color: #5C2C10;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+/* Rankings Section */
+.rankings {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 50px;
+    margin-bottom: 40px;
+}
+
+.rank-1 {
+    order: 2; /* Center Rank 1 */
+    transform: scale(1.2); /* Make Rank 1 larger */
+}
+
+.rank-2 {
+    order: 1; /* Place Rank 2 on the left */
+}
+
+.rank-3 {
+    order: 3; /* Place Rank 3 on the right */
+}
+
+.ranking {
+    text-align: center;
+    position: relative;
+}
+
+.ranking-ellipse {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #FFE8C0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.ranking-profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ranking-image {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.ranking-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #5C2C10;
+    margin-top: 10px;
+}
+
+.ranking-points {
+    font-size: 16px;
+    color: #5C2C10;
+}
+
+/* Leaderboard Table */
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+    border: 1px solid #5C2C10;
+    padding: 10px;
+    text-align: center;
+}
+
+.leaderboard-table th {
+    background-color: #d3c39c;
+    color: #5C2C10;
+    font-weight: bold;
+}
+
+.leaderboard-table td {
+    background-color: #FFE8C0;
+    color: #5C2C10;
+}
+

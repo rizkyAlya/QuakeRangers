@@ -1,6 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { UserContext } from './UserContext';
+import React, { useState, useContext, useEffect } from 'react'; // Tambahkan useContext dan useEffect
+import { Link, useNavigate } from 'react-router-dom'; // Tambahkan useNavigate
 import './QuizPage.css';
 import logo from './assets/images/logo.png';
 import groupIcon from './assets/icons/group.svg';
@@ -13,13 +12,31 @@ import homeImage from './assets/images/home.png';
 import forestImage from './assets/images/forest.png';
 import profileIcon from './assets/icons/profile2.svg';
 import logoutIcon from './assets/icons/logout.svg';
+import { UserContext } from './UserContext'; // Import UserContext untuk mendapatkan user
 
 function QuizPage() {
-  const { user } = useContext(UserContext);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user, setUser } = useContext(UserContext); // Gunakan UserContext untuk mendapatkan user dan setUser
+  const navigate = useNavigate(); // Gunakan untuk navigasi setelah logout
+
+  // Effect untuk validasi user
+  useEffect(() => {
+    if (user && user.id) {
+      console.log(`User ID ditemukan: ${user.id}`);
+    } else {
+      console.log('User tidak ditemukan. Harap login.');
+    }
+  }, [user]);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+
+  // Fungsi untuk Logout
+  const handleLogout = () => {
+    setUser(null); // Hapus data user dari UserContext
+    navigate('/'); // Arahkan ke halaman login setelah logout
+    console.log('User logged out.');
   };
 
   return (
@@ -36,10 +53,11 @@ function QuizPage() {
           {menuOpen && (
             <div className="profile-dropdown">
               <Link to={`/profile/${user}`} className="profile-item">
+              <Link to={`/profile/${user}`} className="profile-item">
                 <img src={profileIcon} alt="Profile" />
                 <span>Profile</span>
               </Link>
-              <div className="profile-item">
+              <div className="profile-item" onClick={handleLogout}>
                 <img src={logoutIcon} alt="Logout" />
                 <span>Logout</span>
               </div>
@@ -59,7 +77,7 @@ function QuizPage() {
           </Link>
           <Link to="/courses">
             <div className="menu-item">
-              <img src={coursesIcon} alt="Quiz" />
+              <img src={coursesIcon} alt="Courses" />
               <span>Courses</span>
             </div>
           </Link>
@@ -69,10 +87,13 @@ function QuizPage() {
               <span>Quiz</span>
             </div>
           </Link>
-          <div className="menu-item">
-            <img src={leaderboardIcon} alt="Leaderboard" />
-            <span>Leaderboard</span>
-          </div>
+          {/* Tambahkan Link ke Leaderboard */}
+          <Link to="/leaderboard">
+            <div className="menu-item">
+              <img src={leaderboardIcon} alt="Leaderboard" />
+              <span>Leaderboard</span>
+            </div>
+          </Link>
         </div>
       </div>
 
