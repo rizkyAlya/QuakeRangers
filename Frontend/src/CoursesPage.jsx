@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Tambahkan useNavigate
+import { Link, useNavigate } from 'react-router-dom'; 
+import axios from 'axios';
 import './CoursesPage.css';
 import logo from './assets/images/logo.png';
 import groupIcon from './assets/icons/group.svg';
@@ -12,21 +13,33 @@ import homeImage from './assets/images/home.png';
 import forestImage from './assets/images/forest.png';
 import profileIcon from './assets/icons/profile2.svg';
 import logoutIcon from './assets/icons/logout.svg';
-import { UserContext } from './UserContext'; // Import UserContext untuk mendapatkan user
+import { UserContext } from './UserContext';
+const url = import.meta.env.VITE_BACKEND_URL;
 
 function CoursesPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user, setUser } = useContext(UserContext); // Dapatkan user dan setUser dari UserContext
   const navigate = useNavigate(); // Gunakan untuk navigasi setelah logout
+  const [courses, setCourses] = useState([]);
 
-  // Effect untuk logic tambahan user
+  // Mendapatkan semua course di database
   useEffect(() => {
-    if (user && user.id) {
-      console.log(`User logged in: ${user.id}`);
-    } else {
-      console.log('User not logged in.');
-    }
-  }, [user]);
+    const fetchAllCourses = async () => {
+      try {
+        const response = await axios.get(`${url}/course/`);
+
+        setCourses(response.data.data);
+      } catch (error) {
+        console.error('Error fetching courses:', error);
+      }
+    };
+
+    fetchAllCourses();
+  }, []);
+  
+  const handleCourseClick = (id) => {
+    navigate(`/course/${id}`); // Beralih ke course tertentu
+  };
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -101,24 +114,23 @@ function CoursesPage() {
       <div className="my-courses-container">
         <h2>My Courses</h2>
         <div className="courses-grid">
-          <div className="course-card">
-            <img src={schoolImage} alt="At School" className="course-image" />
-            <h3>AT SCHOOL</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.</p>
+        {courses.map((course) => (
+          <div 
+            key={course._id} 
+            className="course-card"
+            onClick={() => handleCourseClick(course._id)} // Event klik untuk navigasi
+            style={{ cursor: "pointer" }} // Tambahkan cursor pointer untuk indikasi klik
+          >
+            <img
+              src={schoolImage}
+              alt={course.title}
+              className="course-image"
+            />
+            <h3>{course.title}</h3>
+            <p>{course.description}</p>
           </div>
-          <div className="course-card">
-          <Link to={`/courses/${course._id}`} className="course-link">
-            <img src={homeImage} alt="At Home" className="course-image" />
-            <h3>AT HOME</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.</p>
-            </Link>
-          </div>
-          <div className="course-card">
-            <img src={forestImage} alt="At Forest" className="course-image" />
-            <h3>AT FOREST</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.</p>
-          </div>
-        </div>
+        ))}
+      </div>
       </div>
     </div>
   );

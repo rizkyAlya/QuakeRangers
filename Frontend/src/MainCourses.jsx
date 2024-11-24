@@ -6,21 +6,22 @@ import logo from './assets/images/logo.png';
 import menuIcon from './assets/icons/group.svg';
 import chapterIcon from './assets/icons/chapter.svg';
 import backIcon from './assets/icons/back.svg';
-
-const API_URL = import.meta.env.VITE_BACKEND_URL;
+const url = import.meta.env.VITE_BACKEND_URL;
 
 function MainCourses() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [chapters, setChapters] = useState([]);
   const { id } = useParams(); // Get the course ID from the URL
+  const [courses, setCourses] = useState([]);
   const navigate = useNavigate();
 
+  // Untuk ambil detail dari salah satu course
   useEffect(() => {
     // Fetch course details
     const fetchCourse = async () => {
       try {
-        const response = await axios.get(`${API_URL}/courses/${id}`);
-        setChapters(response.data.data.content); // Assuming the content contains the chapters
+        const response = await axios.get(`${url}/course/${id}`);
+        setChapters(response.data.data); // Assuming the content contains the chapters
       } catch (error) {
         console.error('Error fetching course data:', error);
       }
@@ -28,6 +29,25 @@ function MainCourses() {
 
     fetchCourse();
   }, [id]);
+
+  // Untuk ambil semua course dan ditampilkan di sidebar
+  useEffect(() => {
+    const fetchAllCourses = async () => {
+      try {
+        const response = await axios.get(`${url}/course/`);
+
+        setCourses(response.data.data);
+      } catch (error) {
+        console.error('Error fetching courses:', error);
+      }
+    };
+
+    fetchAllCourses();
+  }, []);
+
+  const handleCourseClick = (id) => {
+    navigate(`/course/${id}`); // Beralih ke course lain
+  };
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -53,10 +73,10 @@ function MainCourses() {
       {/* Sidebar */}
       <aside className="sidebar-chapter">
         <h2>Chapters</h2>
-        {chapters.map((chapter, index) => (
-          <div className="chapter-item" key={index}>
+        {courses.map((course) => (
+          <div className="chapter-item" key={course._id} onClick={() => handleCourseClick(course._id)}>
             <img src={chapterIcon} alt="Chapter Icon" />
-            <span>{chapter.title}</span>
+            <span>{course.title}</span>
           </div>
         ))}
       </aside>
@@ -66,7 +86,9 @@ function MainCourses() {
         <button className="back-button" onClick={handleBackToCourses}>
           <img src={backIcon} alt="Back Icon" />
         </button>
-        {/* Show course details here */}
+        {/* Tolong dikasih style */}
+        <h3>{chapters.title}</h3>
+        <p>{chapters.content}</p>
       </main>
     </div>
   );

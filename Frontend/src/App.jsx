@@ -29,7 +29,7 @@ const Main = () => {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/home" element={<HomePage />} />
       <Route path="/courses" element={<CoursesPage />} />
-      <Route path="/courses/:id" element={<MainCourses />} /> 
+      <Route path="/course/:id" element={<MainCourses />} /> 
       <Route path="/quiz" element={<QuizPage />} />
       <Route path="/profile/:userID" element={<ProfilePage />} />
       <Route path="/leaderboard" element={<LeaderboardPage />} />

@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'; // Tambahkan useContext dan useEffect
 import { Link, useNavigate } from 'react-router-dom'; // Tambahkan useNavigate
+import axios from 'axios';
 import './QuizPage.css';
 import logo from './assets/images/logo.png';
 import groupIcon from './assets/icons/group.svg';
@@ -13,20 +14,32 @@ import forestImage from './assets/images/forest.png';
 import profileIcon from './assets/icons/profile2.svg';
 import logoutIcon from './assets/icons/logout.svg';
 import { UserContext } from './UserContext'; // Import UserContext untuk mendapatkan user
+const url = import.meta.env.VITE_BACKEND_URL;
 
 function QuizPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user, setUser } = useContext(UserContext); // Gunakan UserContext untuk mendapatkan user dan setUser
   const navigate = useNavigate(); // Gunakan untuk navigasi setelah logout
+  const [quiz, setQuiz] = useState([]);
 
-  // Effect untuk validasi user
-  useEffect(() => {
-    if (user && user.id) {
-      console.log(`User ID ditemukan: ${user.id}`);
-    } else {
-      console.log('User tidak ditemukan. Harap login.');
-    }
-  }, [user]);
+   // Mendapatkan semua course di database
+   useEffect(() => {
+    const fetchAllQuiz = async () => {
+      try {
+        const response = await axios.get(`${url}/quiz/`);
+
+        setQuiz(response.data.data);
+      } catch (error) {
+        console.error('Error fetching quiz:', error);
+      }
+    };
+
+    fetchAllQuiz();
+  }, []);
+
+  const handleQuizClick = (id) => {
+    navigate('/'); // Beralih ke course tertentu
+  };
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -52,7 +65,6 @@ function QuizPage() {
           <img src={groupIcon} alt="Group" />
           {menuOpen && (
             <div className="profile-dropdown">
-              <Link to={`/profile/${user}`} className="profile-item">
               <Link to={`/profile/${user}`} className="profile-item">
                 <img src={profileIcon} alt="Profile" />
                 <span>Profile</span>
@@ -101,21 +113,23 @@ function QuizPage() {
       <div className="my-quiz-container">
         <h2>Quiz</h2>
         <div className="quiz-grid">
-          <div className="quiz-card">
-            <img src={schoolImage} alt="At School" className="quiz-image" />
-            <h3>AT SCHOOL</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.</p>
+        {quiz.map((chapter) => (
+          <div 
+            key={chapter._id} 
+            className="quiz-card"
+            onClick={() => handleQuizClick(chapter._id)} // Event klik untuk navigasi
+            style={{ cursor: "pointer" }} // Tambahkan cursor pointer untuk indikasi klik
+          >
+            <img
+              src={schoolImage}
+              alt={chapter.title}
+              className="quiz-image"
+            />
+            <h3>{chapter.title}</h3>
+            <p>{chapter.description}</p>
+            <p>{chapter.point}</p>
           </div>
-          <div className="quiz-card">
-            <img src={homeImage} alt="At Home" className="quiz-image" />
-            <h3>AT HOME</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.</p>
-          </div>
-          <div className="quiz-card">
-            <img src={forestImage} alt="At Forest" className="quiz-image" />
-            <h3>AT FOREST</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.</p>
-          </div>
+        ))}
         </div>
       </div>
     </div>
