@@ -6,8 +6,13 @@ import RegisterPage from "./RegisterPage";
 import LoginPage from "./LoginPage";
 import HomePage from "./HomePage";
 import CoursesPage from "./CoursesPage";
-import MainCourses from "./MainCourses";  // Pastikan sudah import MainCourses
+import MainCourses from "./MainCourses";
 import QuizPage from "./QuizPage";
+import Chapter1 from "./Quiz/chapter1/chapter1";
+import Chap1Scene1 from "./Quiz/chapter1/chapter1-scene1";
+import Chap1Scene2 from "./Quiz/chapter1/chapter1-scene2";
+import Chap1Scene3 from "./Quiz/chapter1/chapter1-scene3";
+import Chap1Scene4 from "./Quiz/chapter1/chapter1-scene4";
 import ProfilePage from "./UserProfile";
 import LeaderboardPage from "./LeaderboardPage";
 
@@ -31,6 +36,11 @@ const Main = () => {
       <Route path="/courses" element={<CoursesPage />} />
       <Route path="/course/:id" element={<MainCourses />} /> 
       <Route path="/quiz" element={<QuizPage />} />
+      <Route path="/quiz/:id" element={<Chapter1 />} />
+      <Route path="/quiz/:id/scene1" element={<Chap1Scene1 />} />
+      <Route path="/quiz/:id/scene2" element={<Chap1Scene2 />} />
+      <Route path="/quiz/:id/scene3" element={<Chap1Scene3 />} />
+      <Route path="/quiz/:id/scene4" element={<Chap1Scene4 />} />
       <Route path="/profile/:userID" element={<ProfilePage />} />
       <Route path="/leaderboard" element={<LeaderboardPage />} />
     </Routes>

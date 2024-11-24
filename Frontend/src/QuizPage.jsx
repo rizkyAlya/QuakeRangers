@@ -38,7 +38,7 @@ function QuizPage() {
   }, []);
 
   const handleQuizClick = (id) => {
-    navigate('/'); // Beralih ke course tertentu
+    navigate(`/quiz/${id}`); // Beralih ke course tertentu
   };
 
   const toggleMenu = () => {
@@ -126,7 +126,6 @@ function QuizPage() {
               className="quiz-image"
             />
             <h3>{chapter.title}</h3>
-            <p>{chapter.description}</p>
             <p>{chapter.point}</p>
           </div>
         ))}
