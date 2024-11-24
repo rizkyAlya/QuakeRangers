@@ -41,13 +41,13 @@ body, html {
 .tree1 {
     left: 10%;
     bottom: 20%; /* Positioning for the first tree */
-    width: 15%; /* Adjust size as needed */
+    width: 20%; /* Adjust size as needed */
 }
 
 .tree2 {
     right: 10%;
     bottom: 20%; /* Positioning for the second tree */
-    width: 15%; /* Adjust size as needed */
+    width: 20%; /* Adjust size as needed */
 }
 
 /* Title styling */
@@ -68,12 +68,12 @@ body, html {
     justify-content: center; /* Center the characters */
     align-items: flex-end; /* Align to the bottom of the container */
     width: 150px; /* Set a fixed width to position correctly */
-    top: 45%; /* Adjust position to be just above "LET'S PLAY!" */
+    top: 55%; /* Adjust position to be just above "LET'S PLAY!" */
     z-index: 3; /* Above grass and trees */
 }
 
 .boy, .girl {
-    width: 80px; /* Set size for characters */
+    width: 100px; /* Set size for characters */
     height: auto;
     margin: 0 5px; /* Add margin to bring them closer together */
 }

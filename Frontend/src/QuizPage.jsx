@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link dari React Router
+import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { UserContext } from './UserContext';
 import './QuizPage.css';
 import logo from './assets/images/logo.png';
 import groupIcon from './assets/icons/group.svg';
@@ -14,6 +15,7 @@ import profileIcon from './assets/icons/profile2.svg';
 import logoutIcon from './assets/icons/logout.svg';
 
 function QuizPage() {
+  const { user } = useContext(UserContext);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -33,7 +35,7 @@ function QuizPage() {
           <img src={groupIcon} alt="Group" />
           {menuOpen && (
             <div className="profile-dropdown">
-              <Link to="/userprofile" className="profile-item">
+              <Link to={`/profile/${user}`} className="profile-item">
                 <img src={profileIcon} alt="Profile" />
                 <span>Profile</span>
               </Link>
