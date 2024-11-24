@@ -5,7 +5,8 @@ import { UserContext } from './UserContext';
 import './LoginPage.css';
 import userIcon from './assets/icons/user.svg';
 import passwordIcon from './assets/icons/password.svg';
-import mataIcon from './assets/icons/mata.svg';
+import mataTertutupIcon from './assets/icons/mata-tertutup.svg';
+import mataTerbukaIcon from './assets/icons/mata-terbuka.svg';
 
 const url = import.meta.env.VITE_BACKEND_URL;
 
@@ -14,6 +15,7 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [loginSuccess, setLoginSuccess] = useState(false); // State untuk bubble sukses
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
 
@@ -23,7 +25,6 @@ function LoginPage() {
   };
 
   const handleLogin = async () => {
-    // Validasi jika ada field yang kosong
     if (!emailOrUsername || !password) {
       setErrorMessage('All fields are required.');
       return;
@@ -40,22 +41,17 @@ function LoginPage() {
 
       localStorage.setItem('token', token);
       localStorage.setItem('userID', id);
-
       setUser(id);
 
-      // Navigasi ke halaman home jika login berhasil
       if (response.status === 200) {
-        console.log('Login successful:', response.data);
-        navigate('/home');
+        setLoginSuccess(true); // Tampilkan bubble sukses
+        setTimeout(() => {
+          navigate('/home'); // Navigasi setelah beberapa detik
+        }, 2000); // Navigasi setelah bubble tampil
       }
     } catch (error) {
-      console.error('Login error:', error);
-
-      // Tangani error berdasarkan respons dari server
       if (error.response) {
-        console.log('Error response data:', error.response.data);
-
-        // Tangani kode status
+        // Tangani error spesifik berdasarkan status kode
         if (error.response.status === 401) {
           setErrorMessage('Incorrect password. Please try again.');
         } else if (error.response.status === 404) {
@@ -65,21 +61,14 @@ function LoginPage() {
         } else {
           setErrorMessage('An unexpected error occurred. Please try again later.');
         }
-      } else if (error.request) {
-        // Tangani error ketika tidak ada respons dari server
-        console.log('No response received:', error.request);
-        setErrorMessage('No response from server. Please try again later.');
       } else {
-        // Tangani error lainnya
-        console.log('Error:', error.message);
-        setErrorMessage('An unexpected error occurred. Please try again later.');
+        setErrorMessage('No response from server. Please try again later.');
       }
     }
   };
 
   return (
     <div className="login-page">
-      {/* Left Section */}
       <div className="left-section">
         <p className="welcome-text">Welcome Back To QuakeRangers</p>
         <p className="now-here">Now here?</p>
@@ -90,7 +79,6 @@ function LoginPage() {
         </div>
       </div>
 
-      {/* Right Section */}
       <div className="right-section">
         <div className="sign-in">Sign in</div>
 
@@ -115,8 +103,8 @@ function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
             />
             <img
-              src={mataIcon}
-              alt="Show Password"
+              src={showPassword ? mataTerbukaIcon : mataTertutupIcon}
+              alt={showPassword ? "Hide Password" : "Show Password"}
               className="mata-icon"
               onClick={togglePassword}
             />
@@ -129,6 +117,13 @@ function LoginPage() {
             SIGN IN
           </button>
         </div>
+
+        {/* Bubble untuk login berhasil */}
+        {loginSuccess && (
+          <div className="success-bubble">
+            Login Successful!
+          </div>
+        )}
       </div>
     </div>
   );

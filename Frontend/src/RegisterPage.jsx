@@ -5,7 +5,9 @@ import './RegisterPage.css';
 import userIcon from './assets/icons/user.svg';
 import mailIcon from './assets/icons/mail.svg';
 import passwordIcon from './assets/icons/password.svg';
-import mataIcon from './assets/icons/mata.svg';
+import mataTertutupIcon from './assets/icons/mata-tertutup.svg';
+import mataTerbukaIcon from './assets/icons/mata-terbuka.svg';
+
 const url = import.meta.env.VITE_BACKEND_URL;
 
 function RegisterPage() {
@@ -14,6 +16,7 @@ function RegisterPage() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [registerSuccess, setRegisterSuccess] = useState(false); // State untuk bubble sukses
   const navigate = useNavigate();
 
   // Fungsi untuk toggle visibility password
@@ -24,26 +27,30 @@ function RegisterPage() {
   const handleRegister = async () => {
     if (!username || !email || !password) {
       setErrorMessage('All fields are required.');
-      console.log(errorMessage);
-      return; // Stop function jika ada field yang kosong
+      return;
     }
-    
+
     try {
       const response = await axios.post(`${url}/auth/register`, {
         username,
         email,
-        password
+        password,
       });
-      
+
       if (response.status === 201) {
-        console.log("Registration successful:", response.data);
-        localStorage.setItem('token', response.data.token);
-        navigate('/login'); // Navigasi ke halaman home setelah berhasil
-      } else {
-        console.error("Registration failed:", response.data);
+        setRegisterSuccess(true); // Tampilkan bubble sukses
+        setTimeout(() => {
+          navigate('/login'); // Navigasi ke halaman login setelah beberapa detik
+        }, 2000); // Navigasi setelah bubble tampil
       }
     } catch (error) {
-      console.error("Error during registration:", error);
+      console.error('Error during registration:', error);
+      if (error.response) {
+        const apiMessage = error.response.data?.message || 'An unexpected error occurred.';
+        setErrorMessage(apiMessage);
+      } else {
+        setErrorMessage('No response from server. Please try again later.');
+      }
     }
   };
 
@@ -54,35 +61,33 @@ function RegisterPage() {
         <p className="welcome-text">Welcome to QuakeRangers</p>
         <p className="already-have-account">Already have an account?</p>
         <div className="sign-in-container">
-        <Link to="/login">
+          <Link to="/login">
             <button className="sign-in">SIGN IN</button>
-        </Link>
+          </Link>
         </div>
       </div>
 
       {/* Right Section */}
       <div className="right-section">
-        <div className="create-account">
-          Create Account
-        </div>
+        <div className="create-account">Create Account</div>
 
         <div className="form">
           <div className="input-group">
             <img src={userIcon} alt="Username Icon" className="input-icon" />
-            <input 
-              type="text" 
-              placeholder="Username" 
-              className="input-field" 
+            <input
+              type="text"
+              placeholder="Username"
+              className="input-field"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
           <div className="input-group">
             <img src={mailIcon} alt="Email Icon" className="input-icon" />
-            <input 
-              type="email" 
-              placeholder="Email" 
-              className="input-field" 
+            <input
+              type="email"
+              placeholder="Email"
+              className="input-field"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -90,22 +95,33 @@ function RegisterPage() {
           <div className="input-group">
             <img src={passwordIcon} alt="Password Icon" className="input-icon" />
             <input
-              type={showPassword ? "text" : "password"}
+              type={showPassword ? 'text' : 'password'}
               placeholder="Password"
               className="input-field"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
             <img
-              src={mataIcon}
-              alt="Show Password"
+              src={showPassword ? mataTerbukaIcon : mataTertutupIcon}
+              alt={showPassword ? 'Hide Password' : 'Show Password'}
               className="mata-icon"
               onClick={togglePassword}
             />
           </div>
-          <button className="sign-up-btn" onClick={handleRegister}>SIGN UP</button>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+          <button className="sign-up-btn" onClick={handleRegister}>
+            SIGN UP
+          </button>
         </div>
       </div>
+
+      {/* Bubble untuk register berhasil */}
+      {registerSuccess && (
+        <div className="success-bubble">
+          Register Successful!
+        </div>
+      )}
     </div>
   );
 }
