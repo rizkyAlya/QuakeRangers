@@ -1,10 +1,9 @@
 const dotenv = require("dotenv");
 dotenv.config();
-const express = require('express');
+const express = require("express");
 const cors = require("cors");
+const path = require("path");
 const db = require("./config/db");
-const app = express();
-const PORT = process.env.PORT; 
 
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
@@ -12,7 +11,10 @@ const leaderboarRoutes = require("./routes/leaderboard");
 const courseRoutes = require("./routes/course");
 const quizRoutes = require("./routes/quiz");
 
-// Menghubungkan dengan database
+const app = express();
+const PORT = process.env.PORT;
+
+// Hubungkan database
 db.connectDB();
 
 app.use(express.json());
@@ -31,6 +33,13 @@ app.use("/leaderboard", leaderboarRoutes);
 app.use("/course", courseRoutes);
 app.use("/quiz", quizRoutes);
 
+app.use('/uploads', (req, res, next) => {
+  res.set('Cross-Origin-Resource-Policy', 'cross-origin');
+  next();
+});
+// Static files
+app.use('/uploads', express.static(path.join(__dirname, 'config', 'uploads')));
+
 app.listen(PORT, () => {
-    console.log(`Server is running on PORT ${PORT} `);
+  console.log(`Server is running on PORT ${PORT}`);
 });
