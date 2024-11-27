@@ -1,24 +1,32 @@
-import React, { useState, useContext, useEffect } from 'react'; // Import useState dan useContext
-import { Link } from 'react-router-dom'; // Import Link dari React Router
-import { UserContext } from './UserContext';
-import './HomePage.css';
-import grassImage from './assets/images/rumput.png';
-import treeImage1 from './assets/images/pohon1.png';
-import treeImage2 from './assets/images/pohon2.png';
-import boyImage from './assets/images/boy.png';
-import girlImage from './assets/images/girl.png';
-import homeIcon from './assets/icons/home.svg';
-import profileIcon from './assets/icons/profile.svg';
+import React, { useState, useContext, useEffect } from 'react'; 
+import { Link, useNavigate } from 'react-router-dom'; 
+import { UserContext } from './UserContext'; 
+import './HomePage.css'; 
+import grassImage from './assets/images/rumput.png'; 
+import treeImage1 from './assets/images/pohon1.png'; 
+import treeImage2 from './assets/images/pohon2.png'; 
+import boyImage from './assets/images/boy.png'; 
+import girlImage from './assets/images/girl.png'; 
+import profileIcon from './assets/icons/profile.svg'; 
+import logoutIcon from './assets/icons/logout.svg';
 
 function HomePage() {
-  const { user } = useContext(UserContext);
-  const [activeButton, setActiveButton] = useState(null); // State untuk mengelola tombol yang aktif
+  const { user, setUser } = useContext(UserContext); 
+  const [activeButton, setActiveButton] = useState(null); 
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     if (user && user.id) {
       // Logic untuk user jika diperlukan
     }
   }, [user]);
+
+  // Fungsi untuk logout
+  const handleLogout = () => {
+    setUser(null); // Hapus data user dari UserContext
+    navigate('/'); // Arahkan ke halaman login setelah logout
+    console.log('User logged out.');
+  };
 
   return (
     <div className="home-page">
@@ -47,7 +55,6 @@ function HomePage() {
             Quiz
           </button>
         </Link>
-        {/* Tambahkan Link ke Leaderboard */}
         <Link to="/leaderboard" className="btn-link">
           <button
             className={`btn ${activeButton === 'leaderboard' ? 'active' : ''}`}
@@ -59,12 +66,7 @@ function HomePage() {
       </div>
       <p className="play-text">LET'S PLAY!</p>
       <div className="icons">
-        <button
-          className={`icon-button home-button ${activeButton === 'home' ? 'active' : ''}`}
-          onClick={() => setActiveButton('home')}
-        >
-          <img src={homeIcon} alt="Home" className="icon" />
-        </button>
+        {/* Profile Icon */}
         <Link to={`/profile/${user}`}>
           <button
             className={`icon-button profile-button ${activeButton === 'profile' ? 'active' : ''}`}
@@ -73,6 +75,14 @@ function HomePage() {
             <img src={profileIcon} alt="Profile" className="icon" />
           </button>
         </Link>
+
+        {/* Logout Icon */}
+        <button
+          className={`icon-button logout-button ${activeButton === 'logout' ? 'active' : ''}`}
+          onClick={handleLogout} 
+        >
+          <img src={logoutIcon} alt="Logout" className="icon" />
+        </button>
       </div>
     </div>
   );

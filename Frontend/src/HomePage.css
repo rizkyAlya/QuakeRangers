@@ -127,35 +127,33 @@ body, html {
     top: 10px; /* Position icons at the top */
     right: 10px; /* Align to the right */
     display: flex;
-    gap: 10px; /* Space between icons */
+    gap: 20px; /* Space between icons (increase the gap between profile and logout) */
+    z-index: 4; /* Ensure icons are above other elements */
 }
 
 .icon-button {
-    background-color: #E3D5B4; /* Light color for Profile button */
-    border: none;
-    border-radius: 15px;
-    padding: 15px 30px; /* Menambah padding agar tombol lebih besar */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: #FEFAE0; /* Bungkus warna latar belakang */
+    border: none; /* Remove border */
+    padding: 15px 18px; /* Adjust padding to make icons look similar in size */
     cursor: pointer;
+    border-radius: 15px; /* Membuat tombol persegi dengan sudut melengkung */
     transition: background-color 0.3s; /* Smooth transition */
 }
 
-
-.home-button {
-    background-color: #E3D5B4; 
-}
-
-/* Active state styling for icon buttons */
+/* Icon button hover effect */
 .icon-button:hover {
-    background-color: #C4661F; /* Change color to orange on hover */
+    background-color: #C4661F; /* Darker orange on hover */
 }
 
 /* Icon size */
 .icon {
-    width: 30px; /* Set icon size */
-    height: auto;
+    width: 40px; /* Set icon size to the same value */
+    height: 24px; /* Set the height to match width */
+}
+
+/* Active state styling for icon buttons */
+.icon-button.active {
+    background-color: #C4661F; /* Highlight color for active button */
 }
 
 /* Media Queries for Responsiveness */
