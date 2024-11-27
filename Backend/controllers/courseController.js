@@ -44,7 +44,7 @@ const editCourse = async (req, res) => {
 
 const getAllCourses = async (req, res) => {
     try {
-        const course = await Course.find({}, 'title description');
+        const course = await Course.find({}, 'image title description');
 
         res.status(200).json({ success: true, message: "Berhasil mendapatkan semua course", data: course });
     } catch (error) {

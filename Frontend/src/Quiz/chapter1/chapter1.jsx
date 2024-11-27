@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Typewriter from 'typewriter-effect';
 import './chapter1.css';
 import deskImage from '../../assets/chapter1/Elemen-Skenario1.png'; // Gambar meja terpisah
 import tableImage from '../../assets/chapter1/Elemen-Skenario2.png';
@@ -13,16 +14,15 @@ function Chapter1() {
     const { id } = useParams();
     const user = useContext(UserContext);
     const navigate = useNavigate();
-
-    // Menyimpan status apakah jendela sudah maksimal
     const [isWindowMaximized, setIsWindowMaximized] = useState(true);
     const [warningMessage, setWarningMessage] = useState('');
+    const [showTips, setShowTips] = useState(false);
 
     const handleSubmit = async (answer) => {
         console.log(user, answer);
         try {
-            const userId = user.user; 
-            
+            const userId = user.user;
+
             const response = await axios.post(`${url}/quiz/submit/${id}`, {
                 userId,  // Pastikan user.id sudah valid dan dalam format string 24 karakter
                 userAnswer: answer
@@ -39,29 +39,13 @@ function Chapter1() {
                 } else {
                     navigate(`/quiz/${id}/scene4`);
                 }
-              } else {
+            } else {
                 console.log(response.data);
-              }
+            }
         } catch (error) {
             console.error('Submit error:', error);
             console.log(user);
         }
-    }
-    // Fungsi untuk navigasi ketika meja diklik
-    const handleDeskClick = () => {
-        handleSubmit('meja_guru');
-    };
-
-    const handleTableClick = () => {
-        handleSubmit('meja_murid');
-    }
-
-    const handleDoorClick = () => {
-        handleSubmit('pintu');
-    }
-
-    const handleCupboardClick = () => {
-        handleSubmit('lemari');
     }
 
     // Menentukan ukuran maksimal yang diinginkan untuk jendela
@@ -84,11 +68,11 @@ function Chapter1() {
             setWarningMessage('');
         }
     };
-    
+
     // Tambahkan event listener untuk memonitor perubahan ukuran jendela
     useEffect(() => {
         window.addEventListener('resize', checkWindowSize);
-        
+
         // Cek ukuran jendela saat pertama kali halaman dimuat
         checkWindowSize();
 
@@ -100,33 +84,53 @@ function Chapter1() {
 
     return (
         <div className="chapter-container">
-            {/* Jika ukuran jendela tidak maksimal, tampilkan peringatan */}
             {!isWindowMaximized && (
                 <div className="warning-message">{warningMessage}</div>
             )}
+            <div className="message" >
+                <Typewriter
+                    onInit={(typewriter) => {
+                        typewriter
+                            .typeString('You are at school.')
+                            .pauseFor(500) // Pause sebelum melanjutkan ke teks berikutnya
+                            .typeString('<br />Suddenly an earthquake occurs!')
+                            .pauseFor(500)
+                            .typeString('<br />Quick! You must take shelter.')
+                            .pauseFor(1000) // Pause lebih lama setelah selesai
+                            .callFunction(() => {
+                                setShowTips(true); // Setel state showTip menjadi true setelah pengetikan selesai
+                            })
+                            .start();
+                    }}
+                    options={{
+                        delay: 75,  // Mengatur kecepatan pengetikan lebih cepat
+                    }}
+                />
+                {showTips && <h4 className='tips'>Move your cursor across the page and select a shelter</h4>}
+            </div>
             <img
                 src={deskImage}
                 alt="Meja Guru"
                 className="desk-button"
-                onClick={handleDeskClick} // Event klik untuk tombol
+                onClick={() => handleSubmit('meja_guru')}
             />
             <img
                 src={tableImage}
                 alt="Meja Murid"
                 className='table-button'
-                onClick={handleTableClick}
+                onClick={() => handleSubmit('meja_murid')}
             />
             <img
                 src={doorImage}
                 alt="Pintu"
                 className='door-button'
-                onClick={handleDoorClick}
+                onClick={() => handleSubmit('pintu')}
             />
             <img
                 src={cupboardImage}
                 alt="Lemari"
                 className="cupboard-button"
-                onClick={handleCupboardClick}
+                onClick={() => handleSubmit('lemari')}
             />
         </div>
     );
