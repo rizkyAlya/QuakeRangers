@@ -13,3 +13,34 @@
     transition: background-color 0.3s ease;
     overflow: hidden;
 }
+
+.message1 {
+    font-family: 'Quantico', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    font-style: normal;
+    margin-right: 315px;
+    margin-top: 20px;
+    text-align: right;
+}
+/* Tampilan tombol di pop-up */
+.popup-buttons1 button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #7f4d5e;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    margin-top: 720px;
+    margin-left: 1480px;
+}
+
+.popup-buttons1 button:hover {
+    background-color: #c292a2;
+}
+
+.text {
+    font-size: 30px;
+}

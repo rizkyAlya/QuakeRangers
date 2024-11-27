@@ -13,6 +13,7 @@ import Chap1Scene1 from "./Quiz/chapter1/chapter1-scene1";
 import Chap1Scene2 from "./Quiz/chapter1/chapter1-scene2";
 import Chap1Scene3 from "./Quiz/chapter1/chapter1-scene3";
 import Chap1Scene4 from "./Quiz/chapter1/chapter1-scene4";
+import Chap1Ending from "./Quiz/chapter1/chapter1-ending";
 import ProfilePage from "./UserProfile";
 import LeaderboardPage from "./LeaderboardPage";
 
@@ -41,6 +42,7 @@ const Main = () => {
       <Route path="/quiz/:id/scene2" element={<Chap1Scene2 />} />
       <Route path="/quiz/:id/scene3" element={<Chap1Scene3 />} />
       <Route path="/quiz/:id/scene4" element={<Chap1Scene4 />} />
+      <Route path="/quiz/:id/ending" element={<Chap1Ending />} />
       <Route path="/profile/:userID" element={<ProfilePage />} />
       <Route path="/leaderboard" element={<LeaderboardPage />} />
     </Routes>

@@ -4,7 +4,9 @@ const chapterSchema = new mongoose.Schema({
     title: String,
     description: String,
     correctAnswer: String,
+    correctAnswer2: String,
     point: Number,
+    point2: Number
 });
 
 const Chapter = mongoose.model("Chapter", chapterSchema);

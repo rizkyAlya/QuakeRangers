@@ -26,10 +26,10 @@ const addCourse = async (req, res) => {
 const editCourse = async (req, res) => {
     const { id } = req.params;
     const { title, description, video, content } = req.body; 
-    const photo = req.file;
+    const image = req.file;
   
     try {
-        const photoPath = photo ? `/uploads/${photo.filename}` : null;
+        const photoPath = image ? `/uploads/${image.filename}` : null;
 
         const updatedCourse = await Course.findByIdAndUpdate(
             id,

@@ -9,8 +9,6 @@ import coursesIcon from './assets/icons/courses.svg';
 import quizIcon from './assets/icons/quiz.svg';
 import leaderboardIcon from './assets/icons/leaderboard2.svg';
 import schoolImage from './assets/images/school.png';
-import homeImage from './assets/images/home.png';
-import forestImage from './assets/images/forest.png';
 import profileIcon from './assets/icons/profile2.svg';
 import logoutIcon from './assets/icons/logout.svg';
 import { UserContext } from './UserContext'; // Import UserContext untuk mendapatkan user

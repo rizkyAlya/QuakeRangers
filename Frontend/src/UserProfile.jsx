@@ -37,7 +37,7 @@ function ProfilePage() {
     };
 
     fetchProfile();
-  }, [userID]);
+  }, [id]);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);

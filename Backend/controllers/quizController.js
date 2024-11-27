@@ -2,14 +2,16 @@ const { Chapter } = require("../models/quizModel");
 const { User } = require("../models/userModel");
 
 const addChapters = async (req, res) => {
-    const { title, description, correctAnswer, point } = req.body; 
+    const { title, description, correctAnswer, correctAnswer2, point, point2 } = req.body; 
   
     try {
         const newChapter = new Chapter({
             title,
             description,
             correctAnswer,
-            point
+            correctAnswer2,
+            point,
+            point2
         });
     
         await newChapter.save();
@@ -89,7 +91,12 @@ const checkAnswer = async (req, res) => {
             await user.save();
             
             return res.status(200).json({ success: true, message: "Jawaban benar" });
-        } 
+        } else if (userAnswer == chapter.correctAnswer2) {
+            user.score += chapter.point2;
+            await user.save();
+            
+            return res.status(200).json({ success: true, message: "Jawaban benar" });
+        }
         return res.status(200).json({ success: true, message: "Jawaban salah" });
         
     } catch (error) {
