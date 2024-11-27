@@ -1,13 +1,16 @@
 const { Course } = require("../models/courseModel");
 
 const addCourse = async (req, res) => {
-    const { title, description, image, video, content } = req.body; 
+    const { title, description, video, content } = req.body; 
+    const image = req.file;
   
     try {
+        const photoPath = image ? `/uploads/${image.filename}` : null;
+
         const newCourse = new Course({
             title,
             description,
-            image,
+            image: photoPath,
             video,
             content
         });
@@ -22,12 +25,21 @@ const addCourse = async (req, res) => {
 
 const editCourse = async (req, res) => {
     const { id } = req.params;
-    const { title, description, image, video, content } = req.body; 
+    const { title, description, video, content } = req.body; 
+    const photo = req.file;
   
     try {
+        const photoPath = photo ? `/uploads/${photo.filename}` : null;
+
         const updatedCourse = await Course.findByIdAndUpdate(
             id,
-            { title, description, image, video, content },
+            { 
+                title, 
+                description, 
+                image: photoPath, 
+                video, 
+                content 
+            },
             { new: true, runValidators: true } 
         ).select("title description image video content");
     
@@ -69,6 +81,23 @@ const getCourseById = async (req, res) => {
     }
 };
 
+const deleteCourseById = async (req, res) => {
+    try {
+        const { id } = req.params; 
+        const deletedCourse = await Course.findByIdAndDelete(id);
+    
+        if (!deletedCourse) {
+            return res.status(404).json({ success: false, message: "Course tidak ditemukan", error});
+        }
+    
+        res.status(200).json({ success: true, message: "Course berhasil dihapus" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error pada server", error });
+    }
+}
+
+
 const searchCourse = async (req, res) => {
     try {
         const { keyword } = req.body;
@@ -89,5 +118,6 @@ module.exports = {
     editCourse,
     getAllCourses,
     getCourseById,
+    deleteCourseById,
     searchCourse
 }

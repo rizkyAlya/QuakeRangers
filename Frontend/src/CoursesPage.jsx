@@ -122,7 +122,7 @@ function CoursesPage() {
             style={{ cursor: "pointer" }} // Tambahkan cursor pointer untuk indikasi klik
           >
             <img
-              src={schoolImage}
+              src={`${url}${course.image}`}
               alt={course.title}
               className="course-image"
             />
