@@ -5,6 +5,7 @@ import './UserProfile.css';
 import closeIcon from './assets/icons/close.svg';
 import { useParams } from 'react-router-dom';
 const url = import.meta.env.VITE_BACKEND_URL;
+import gifImage from './assets/gif/hi.gif'; 
 
 function ProfilePage() {
   const { userID } = useParams();
@@ -126,6 +127,8 @@ function ProfilePage() {
       <div className="form-group">
         <label>Age:</label>
         <input type="text" value={profile.user.age} readOnly />
+        <img className="bottom-right-gif" src={gifImage} alt="GIF" />
+
       </div>
 
         <button onClick={() => setIsModalOpen(true)} className="edit-profile-btn">Edit Profile</button>

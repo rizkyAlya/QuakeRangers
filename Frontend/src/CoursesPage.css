@@ -158,7 +158,7 @@ h1 {
     font-size: 50px;
     font-weight: 600;
     margin-bottom: 20px;
-    margin-right: 500px;
+    margin-right: 900px;
 }
 
 .courses-grid {
@@ -166,18 +166,21 @@ h1 {
     justify-content: flex-start;
     gap: 20px;
     flex-wrap: wrap;
-    padding-left: 150px;
+    padding-left: 250px;
 }
 
 .course-card {
     background-color: #F9EBC7;
-    width: 280px;
-    height: 500px;
+    max-width: 280px; /* Atur lebar maksimal */
     padding: 20px;
     text-align: center;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .course-card:hover {

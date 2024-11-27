@@ -89,15 +89,17 @@ body, html {
 
 /* Button styling */
 .btn {
-    padding: 10px 50px;
+    padding: 20px 70px;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     background-color: #E3D5B4; /* Light background for buttons */
     color: #351B0C; /* Text color */
     font-weight: bold;
+    font-size: 24px; /* Memperbesar ukuran font */
     cursor: pointer;
     transition: background-color 0.3s; /* Smooth transition */
 }
+
 
 .btn:hover {
     background-color: #C4661F; /* Darker shade on hover */
@@ -131,14 +133,15 @@ body, html {
 .icon-button {
     background-color: #E3D5B4; /* Light color for Profile button */
     border: none;
-    border-radius: 5px;
-    padding: 10px;
+    border-radius: 15px;
+    padding: 15px 30px; /* Menambah padding agar tombol lebih besar */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: background-color 0.3s; /* Smooth transition */
 }
+
 
 .home-button {
     background-color: #E3D5B4; 
@@ -151,7 +154,7 @@ body, html {
 
 /* Icon size */
 .icon {
-    width: 24px; /* Set icon size */
+    width: 30px; /* Set icon size */
     height: auto;
 }
 

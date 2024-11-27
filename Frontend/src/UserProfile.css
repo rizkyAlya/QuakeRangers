@@ -1,209 +1,221 @@
 /* General Layout */
+.profile-page {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #FEFAE0; /* Tetap menggunakan warna yang ada */
+}
+
+/* Left Section */
+.profile-left {
+  background-color: #FEFAE0; /* Tetap warna aslinya */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 2px solid #A9B388;
+  padding: 40px; /* Tambahkan padding untuk ruang lebih */
+}
+
+.avatar {
+  width: 150px; /* Ukuran avatar lebih besar untuk proporsi */
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #A9B388; /* Tetap */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 50px; /* Ukuran teks avatar proporsional */
+  font-weight: bold;
+  color: #FEFAE0; /* Tetap */
+  text-transform: uppercase;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-left h2 {
+  margin: 15px 0;
+  font-size: 28px; /* Ukuran teks lebih besar */
+  color: #5C2C10;
+}
+
+.info {
+  margin-top: 20px;
+}
+
+.info p {
+  font-size: 18px; /* Ukuran teks info lebih besar */
+  color: #5C2C10;
+}
+
+.info span {
+  color: #A9B388;
+  font-weight: bold;
+}
+
+/* Right Section */
+.profile-right {
+  background-color: #A9B388; /* Tetap */
+  flex: 2;
+  padding: 50px;
+}
+
+.form-group {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 16px; /* Ukuran teks label lebih besar */
+  color: #FEFAE0;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 15px; /* Padding lebih besar untuk kenyamanan */
+  border: none;
+  border-radius: 20px;
+  background-color: #FEFAE0;
+  color: #5C2C10;
+  font-size: 24px; /* Ukuran font lebih besar */
+  box-sizing: border-box;
+}
+
+/* Dropdown Styling */
+.dropdown {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #FEFAE0;
+  color: #5C2C10;
+  font-size: 16px; /* Ukuran font dropdown */
+  appearance: none;
+}
+
+/* Edit Button */
+.edit-profile-btn {
+  background-color: #5F6F52; /* Tetap */
+  color: #FEFAE0; /* Tetap */
+  padding: 14px 25px; /* Padding lebih besar */
+  font-size: 18px; /* Ukuran font lebih besar */
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 30px;
+  transition: background-color 0.3s ease;
+}
+
+.edit-profile-btn:hover {
+  background-color: #4E5E46; /* Tetap */
+}
+
+/* Modal Styling */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #A9B388; /* Tetap */
+  padding: 30px;
+  border-radius: 8px;
+  width: 450px; /* Lebar modal proporsional */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+  color: #FEFAE0; /* Tetap */
+  font-size: 22px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-group-edit {
+  margin-bottom: 20px;
+}
+
+.form-group-edit label {
+  display: block;
+  font-size: 16px; /* Ukuran label modal */
+  color: #FEFAE0; /* Tetap */
+  margin-bottom: 8px;
+}
+
+.form-group-edit input,
+.form-group-edit select {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #FEFAE0;
+  color: #5C2C10;
+  font-size: 16px; /* Ukuran input lebih besar */
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.close-btn img {
+  width: 24px;
+  height: 24px;
+}
+
+.close-btn-main {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.close-btn-main img {
+  width: 32px;
+  height: 32px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
   .profile-page {
-    display: flex;
-    position: relative;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-    background-color: #FEFAE0; /* Warna background */
-  }
-
-  /* Left Section */
-  .profile-left {
-    background-color: #FEFAE0;
-    flex: 1;
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-right: 2px solid #A9B388;
+    height: auto;
+  }
+
+  .profile-left {
+    border-right: none;
+    border-bottom: 2px solid #A9B388;
     padding: 20px;
   }
-  
-  .avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: #A9B388; /* Background placeholder */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    font-size: 36px;
-    font-weight: bold;
-    color: #FEFAE0; /* Warna inisial */
-    text-transform: uppercase;
-  }
-  
-  .avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .avatar-placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .profile-left h2 {
-    margin: 10px 0;
-    font-size: 24px;
-    color: #5C2C10;
-  }
-  
-  .info {
-    margin-top: 20px;
-  }
-  
-  .info p {
-    font-size: 16px;
-    color: #5C2C10;
-  }
-  
-  .info span {
-    color: #A9B388;
-  }
-  
-  /* Right Section */
+
   .profile-right {
-    background-color: #A9B388;
-    flex: 2;
     padding: 20px;
   }
-  
-  .form-group {
-    margin-bottom: 10px;
-    margin-top: 10px;
-    
-  }
 
-  .form-group:first-child {
-    margin-top: 90px; 
-  }
-  
-  .form-group label {
-    display: block;
-    font-size: 14px;
-    color: #FEFAE0;
-    margin-bottom: 5px;
-  }
-  
-  .form-group input {
-    width: 100%;
-    padding: 8px;
-    border: none;
-    border-radius: 5px;
-    background-color: #FEFAE0;
-    color: #5C2C10;
-  }
-
-  .dropdown {
-    width: 100%;
-    padding: 8px;
-    border: none;
-    border-radius: 5px;
-    background-color: #FEFAE0;
-    color: #5C2C10;
-    font-size: 14px;
-    appearance: none; /* Untuk menyembunyikan panah default di browser */
-  }  
-
-  .edit-profile-btn {
-    background-color: #5F6F52; /* Warna latar belakang tombol */
-    color: #FEFAE0; /* Warna teks tombol */
-    padding: 10px 20px; /* Spasi dalam tombol */
-    font-size: 16px; /* Ukuran font */
-    font-weight: bold; /* Teks bold */
-    border: none; /* Hilangkan border */
-    border-radius: 5px; /* Ujung tombol melengkung */
-    cursor: pointer; /* Pointer saat hover */
-    margin-top: 30px; /* Jarak dari kolom Age */
-    display: block; /* Buat tombol tampil sebagai block */
-    width: auto; /* Sesuaikan tombol dengan lebar kolom */
-    text-align: center; /* Pusatkan teks dalam tombol */
-  }
-  
-  .edit-profile-btn:hover {
-    background-color: #4E5E46; /* Warna saat tombol di-hover */
-  }
-
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .modal-content {
-    position: relative;
-    background-color: #A9B388;
-    padding: 20px;
-    border-radius: 8px;
-    width: 400px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .edit-text {
-    color: #FEFAE0;
-    font-size: 23px;
-    text-align: center;
-    margin-top: 20px;
-    padding: 10px;
-  }
-
-  .form-group-edit {
-    margin-bottom: 20px;
-    margin-top: 30px;
-  }
-  
-  .form-group-edit  label {
-    display: block;
-    font-size: 14px;
-    color: #FEFAE0;
-    margin-bottom: 5px;
-  }
-  
-  .form-group-edit  input {
-    width: 100%;
-    padding: 8px;
-    border: none;
-    border-radius: 5px;
-    background-color: #FEFAE0;
-    color: #5C2C10;
-  }
-
-  .close-btn-main {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    z-index: 10; /* Pastikan berada di atas konten lainnya */
-  }
-
-  .close-btn {
-    position: absolute;
-    top: 10px; 
-    right: 10px; 
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    background: none; 
-    border: none;
-  }
-  
-  
-  
+}
