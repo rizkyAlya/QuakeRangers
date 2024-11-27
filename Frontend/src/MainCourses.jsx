@@ -16,17 +16,19 @@ const url = import.meta.env.VITE_BACKEND_URL;
 
 function MainCourses() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [chapters, setChapters] = useState([]);
+  const [course, setCourse] = useState({});
   const { id } = useParams();
   const [courses, setCourses] = useState([]);
   const { user, setUser } = useContext(UserContext);
+  const [videoUrl, setVideoUrl] = useState(""); // State to store video URL
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCourse = async () => {
       try {
         const response = await axios.get(`${url}/course/${id}`);
-        setChapters(response.data.data);
+        setCourse(response.data.data);  // Assuming 'data' contains course details
+        setVideoUrl(response.data.data.video);  // Store the video URL here
       } catch (error) {
         console.error('Error fetching course data:', error);
       }
@@ -114,8 +116,29 @@ function MainCourses() {
         <button className="back-button" onClick={() => navigate('/courses')}>
           <img src={backIcon} alt="Back Icon" />
         </button>
-        <h3>{chapters.title || 'No Title Available'}</h3>
-        <ReactMarkdown>{chapters.content || 'No Content Available'}</ReactMarkdown>
+
+        {/* Add text below the back button */}
+        <div className="video-reference-text">
+          <span>Video Reference:</span>
+        </div>
+
+        {/* Display YouTube Video if URL exists */}
+        {videoUrl && (
+          <div className="video-container">
+            <iframe
+              width="100%"
+              height="400"
+              src={`https://www.youtube.com/embed/${videoUrl.split('v=')[1]}`}
+              frameBorder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Course Video"
+            />
+          </div>
+        )}
+
+        {/* Display course content */}
+        <ReactMarkdown>{course.content || 'No Content Available'}</ReactMarkdown>
       </main>
     </div>
   );

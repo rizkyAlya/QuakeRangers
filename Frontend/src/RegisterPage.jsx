@@ -58,11 +58,11 @@ function RegisterPage() {
     <div className="register-page">
       {/* Left Section */}
       <div className="left-section">
-        <p className="welcome-text">Welcome to QuakeRangers</p>
+        <p className="welcome-text-register">Welcome to QuakeRangers</p>
         <p className="already-have-account">Already have an account?</p>
         <div className="sign-in-container">
           <Link to="/login">
-            <button className="sign-in">SIGN IN</button>
+            <button className="sign-in-register">SIGN IN</button>
           </Link>
         </div>
       </div>
@@ -71,33 +71,33 @@ function RegisterPage() {
       <div className="right-section">
         <div className="create-account">Create Account</div>
 
-        <div className="form">
-          <div className="input-group">
+        <div className="form-register">
+          <div className="input-group-register">
             <img src={userIcon} alt="Username Icon" className="input-icon" />
             <input
               type="text"
               placeholder="Username"
-              className="input-field"
+              className="input-field-register"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
-          <div className="input-group">
+          <div className="input-group-register">
             <img src={mailIcon} alt="Email Icon" className="input-icon" />
             <input
               type="email"
               placeholder="Email"
-              className="input-field"
+              className="input-field-register"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className="input-group">
+          <div className="input-group-register">
             <img src={passwordIcon} alt="Password Icon" className="input-icon" />
             <input
               type={showPassword ? 'text' : 'password'}
               placeholder="Password"
-              className="input-field"
+              className="input-field-register"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />

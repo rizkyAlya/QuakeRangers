@@ -80,10 +80,50 @@
   overflow-y: auto;
 }
 
+.back-button {
+  margin-top: 20px; /* Adjust this value to move the button down */
+  padding: 5px;
+  border: none;
+  background: none; /* No background */
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back-button img {
+  width: 40px; /* Adjust size of the icon */
+  height: auto;
+}
+.video-reference-text { 
+  font-size: 32px; /* Large text */
+  font-weight: bold;
+  color: #333; /* Dark color for readability */
+  text-transform: uppercase; /* Uppercase letters for emphasis */
+  letter-spacing: 2px; /* Add some spacing between letters */
+}
+.video-container {
+  margin-bottom: -110px;
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 80%;
+}
+
+
 .main-content-courses h3 {
   font-size: 24px;
   color: #5C2C10;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .main-content-courses ul {
