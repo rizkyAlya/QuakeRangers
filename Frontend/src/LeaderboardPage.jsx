@@ -12,7 +12,7 @@ import profileIcon from './assets/icons/profile2.svg';
 import logoutIcon from './assets/icons/logout.svg';
 import { UserContext } from './UserContext';
 
-const API_URL = import.meta.env.VITE_BACKEND_URL;
+const url = import.meta.env.VITE_BACKEND_URL;
 
 function LeaderboardPage() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,7 +37,7 @@ function LeaderboardPage() {
     // Fetch leaderboard data
     const fetchLeaderboard = async () => {
       try {
-        const response = await axios.get(`${API_URL}/leaderboard`);
+        const response = await axios.get(`${url}/leaderboard`);
         setLeaderboardData(response.data.data); // Ambil data leaderboard dari backend
       } catch (err) {
         console.error('Error fetching leaderboard data:', err);
@@ -101,8 +101,8 @@ function LeaderboardPage() {
           {leaderboardData[1] && (
             <div className="ranking rank-2">
               <div className="ranking-ellipse">
-                <img
-                  src={leaderboardData[1].profile || rank2}
+                <img 
+                  src={leaderboardData[1].profile ? `${url}${leaderboardData[1].profile}` : rank2}
                   alt="Rank 2 Profile"
                   className="ranking-profile-image"
                 />
@@ -118,7 +118,7 @@ function LeaderboardPage() {
             <div className="ranking rank-1">
               <div className="ranking-ellipse">
                 <img
-                  src={leaderboardData[0].profile || rank1}
+                  src={`${url}${leaderboardData[0].profile}` || rank1}
                   alt="Rank 1 Profile"
                   className="ranking-profile-image"
                 />
@@ -134,7 +134,7 @@ function LeaderboardPage() {
             <div className="ranking rank-3">
               <div className="ranking-ellipse">
                 <img
-                  src={leaderboardData[2].profile || rank3}
+                  src={leaderboardData[2].profile ? `${url}${leaderboardData[2].profile}` : rank3}
                   alt="Rank 3 Profile"
                   className="ranking-profile-image"
                 />
