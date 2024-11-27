@@ -3,34 +3,36 @@
   display: flex;
   height: 100vh;
   font-family: Arial, sans-serif;
-  background-color: #FEFAE0; /* Tetap menggunakan warna yang ada */
+  background-color: #FEFAE0; 
+  padding-bottom: 0; 
 }
 
 /* Left Section */
 .profile-left {
-  background-color: #FEFAE0; /* Tetap warna aslinya */
+  background-color: #FEFAE0;
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-right: 2px solid #A9B388;
-  padding: 40px; /* Tambahkan padding untuk ruang lebih */
+  padding: 40px; 
+  overflow: hidden; 
 }
 
 .avatar {
-  width: 150px; /* Ukuran avatar lebih besar untuk proporsi */
+  width: 150px; 
   height: 150px;
   border-radius: 50%;
   overflow: hidden;
-  background-color: #A9B388; /* Tetap */
+  background-color: #A9B388;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  font-size: 50px; /* Ukuran teks avatar proporsional */
+  font-size: 50px;
   font-weight: bold;
-  color: #FEFAE0; /* Tetap */
+  color: #FEFAE0; 
   text-transform: uppercase;
 }
 
@@ -42,7 +44,7 @@
 
 .profile-left h2 {
   margin: 15px 0;
-  font-size: 28px; /* Ukuran teks lebih besar */
+  font-size: 28px; 
   color: #5C2C10;
 }
 
@@ -51,7 +53,7 @@
 }
 
 .info p {
-  font-size: 18px; /* Ukuran teks info lebih besar */
+  font-size: 18px; 
   color: #5C2C10;
 }
 
@@ -62,19 +64,23 @@
 
 /* Right Section */
 .profile-right {
-  background-color: #A9B388; /* Tetap */
+  background-color: #A9B388; 
   flex: 2;
   padding: 50px;
+  overflow: hidden; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%; 
 }
 
 .form-group {
-  margin-top: 30px;
   margin-bottom: 20px;
 }
 
 .form-group label {
   display: block;
-  font-size: 16px; /* Ukuran teks label lebih besar */
+  font-size: 16px; 
   color: #FEFAE0;
   margin-bottom: 8px;
   font-weight: bold;
@@ -82,12 +88,12 @@
 
 .form-group input {
   width: 100%;
-  padding: 15px; /* Padding lebih besar untuk kenyamanan */
+  padding: 10px; 
   border: none;
   border-radius: 20px;
   background-color: #FEFAE0;
   color: #5C2C10;
-  font-size: 24px; /* Ukuran font lebih besar */
+  font-size: 24px; 
   box-sizing: border-box;
 }
 
@@ -99,26 +105,26 @@
   border-radius: 5px;
   background-color: #FEFAE0;
   color: #5C2C10;
-  font-size: 16px; /* Ukuran font dropdown */
+  font-size: 16px; 
   appearance: none;
 }
 
 /* Edit Button */
 .edit-profile-btn {
-  background-color: #5F6F52; /* Tetap */
-  color: #FEFAE0; /* Tetap */
-  padding: 14px 25px; /* Padding lebih besar */
-  font-size: 18px; /* Ukuran font lebih besar */
+  background-color: #5F6F52; 
+  color: #FEFAE0; 
+  padding: 14px 25px; 
+  font-size: 18px; 
   font-weight: bold;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   cursor: pointer;
   margin-top: 30px;
   transition: background-color 0.3s ease;
 }
 
 .edit-profile-btn:hover {
-  background-color: #4E5E46; /* Tetap */
+  background-color: #4E5E46; 
 }
 
 /* Modal Styling */
@@ -136,15 +142,15 @@
 }
 
 .modal-content {
-  background-color: #A9B388; /* Tetap */
+  background-color: #A9B388; 
   padding: 30px;
   border-radius: 8px;
-  width: 450px; /* Lebar modal proporsional */
+  width: 450px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .modal-content h2 {
-  color: #FEFAE0; /* Tetap */
+  color: #FEFAE0; 
   font-size: 22px;
   margin-bottom: 20px;
   text-align: center;
@@ -156,8 +162,8 @@
 
 .form-group-edit label {
   display: block;
-  font-size: 16px; /* Ukuran label modal */
-  color: #FEFAE0; /* Tetap */
+  font-size: 16px; 
+  color: #FEFAE0; 
   margin-bottom: 8px;
 }
 
@@ -169,7 +175,7 @@
   border-radius: 5px;
   background-color: #FEFAE0;
   color: #5C2C10;
-  font-size: 16px; /* Ukuran input lebih besar */
+  font-size: 16px; 
 }
 
 /* Close Button */
@@ -205,7 +211,8 @@
 @media (max-width: 768px) {
   .profile-page {
     flex-direction: column;
-    height: auto;
+    height: auto; 
+    padding-bottom: 20px; 
   }
 
   .profile-left {
@@ -218,4 +225,16 @@
     padding: 20px;
   }
 
+  .gif-container {
+    position: absolute;
+    bottom: -50px; 
+    right: 0;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .profile-gif {
+    width: 100%;
+    max-height: 300px; 
+  }
 }

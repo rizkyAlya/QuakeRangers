@@ -25,8 +25,8 @@ function ProfilePage() {
 
         const response = await axios.get(`${url}/user/${userID}`, {
           headers: {
-            Authorization: `Bearer ${token}`
-          }
+            Authorization: `Bearer ${token}`,
+          },
         });
 
         setProfile(response.data.data);
@@ -179,7 +179,15 @@ function ProfilePage() {
         <div className="form-group">
           <label>Age:</label>
           <input type="text" value={profile.user.age} readOnly />
-          <img className="bottom-right-gif" src={gifImage} alt="GIF" />
+          <div className="gif-container" style={{ position: 'relative' }}>
+            <img className="profile-gif" src={gifImage} alt="GIF" style={{
+              position: 'absolute',
+              left: '750px',
+              bottom: '-480px',
+              width: '500px',
+              height: 'auto'
+            }} />
+          </div>
         </div>
 
         <button onClick={() => setIsModalOpen(true)} className="edit-profile-btn">Edit Profile</button>
