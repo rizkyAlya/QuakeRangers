@@ -4,7 +4,7 @@ const getLeaderboard = async (req, res) => {
   try {
     const result = await User.find()
       .sort({ score: -1, updateAt: 1 }) 
-      .select("username score updateAt"); 
+      .select("username score profile updateAt"); 
 
     res.status(200).json({ success: true, message: "Success", data: result });
   } catch (error) {
