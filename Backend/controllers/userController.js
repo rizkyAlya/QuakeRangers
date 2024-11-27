@@ -28,14 +28,22 @@ const getProfile = async (req, res) => {
 
 const editProfile = async (req, res) => {
     const { id } = req.params;
-    const { name, profile, gender, age } = req.body; 
+    const { name, gender, age } = req.body; 
+    const profile = req.file;
 
     try {
+        const photoPath = profile ? `/uploads/${profile.filename}` : null;
+
         const updatedUser = await User.findByIdAndUpdate(
             id,
-            { name, profile, gender, age },
-            { new: true, runValidators: true } 
-        ).select("name profile gender age");
+            {
+                name,
+                profile: photoPath,
+                gender,
+                age,
+            },
+            { new: true, runValidators: true }
+        ).select(" name profile age gender ");
 
         if (!updatedUser) {
             return res.status(404).json({ success: false, message: "User tidak ditemukan" });

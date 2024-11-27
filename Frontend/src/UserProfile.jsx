@@ -5,13 +5,14 @@ import './UserProfile.css';
 import closeIcon from './assets/icons/close.svg';
 import { useParams } from 'react-router-dom';
 const url = import.meta.env.VITE_BACKEND_URL;
-import gifImage from './assets/gif/hi.gif'; 
+import gifImage from './assets/gif/hi.gif';
 
 function ProfilePage() {
   const { userID } = useParams();
-  const [profile, setProfile] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState('');
-  const [editedProfile, setEditedProfile] = useState('');
+  const [profile, setProfile] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isPhotoModalOpen, setIsPhotoModalOpen] = useState(false);
+  const [editedProfile, setEditedProfile] = useState({});
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -36,36 +37,76 @@ function ProfilePage() {
     };
 
     fetchProfile();
-  }, []);
+  }, [userID]);
 
   const handleCloseModal = () => {
-    setIsModalOpen(false); 
+    setIsModalOpen(false);
   };
 
   const handleUpdate = async () => {
     try {
-      const token = localStorage.getItem('token'); // Pastikan token tersedia
-      const response = await axios.put(`${url}/user/updateProfile/${userID}`, editedProfile, {
+      const token = localStorage.getItem('token');
+      const formData = new FormData();
+
+      // Add the edited profile data to FormData
+      Object.keys(editedProfile).forEach((key) => {
+        formData.append(key, editedProfile[key]);
+      });
+
+      const response = await axios.put(`${url}/user/updateProfile/${userID}`, formData, {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+        },
       });
 
       console.log('Profile updated successfully:', response.data);
 
-      // Update data profile di halaman utama
+      // Update profile data in the UI
       setProfile((prevProfile) => ({
         ...prevProfile,
         user: {
           ...prevProfile.user,
-          ...editedProfile, // Gabungkan data yang sudah diedit
-        }
+          ...response.data.updatedUser,
+        },
       }));
 
-      // Tutup modal
+      // Close modal
       handleCloseModal();
     } catch (error) {
       console.error('Error updating profile:', error);
+    }
+  };
+
+  const handleUpdateProfilePicture = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const formData = new FormData();
+
+      formData.append('photo', editedProfile.profile);
+
+      const response = await axios.put(`${url}/user/updateProfile/${userID}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      console.log('Profile picture updated successfully:', response.data);
+
+      // Update avatar in UI
+      setProfile((prevProfile) => ({
+        ...prevProfile,
+        user: {
+          ...prevProfile.user,
+          profile: response.data.updatedProfilePicture, // New URL from server
+        },
+      }));
+
+      // Close photo modal
+      setIsPhotoModalOpen(false);
+    } catch (error) {
+      console.error('Error updating profile picture:', error);
     }
   };
 
@@ -75,6 +116,18 @@ function ProfilePage() {
       ...prevProfile,
       [name]: value,
     }));
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setEditedProfile((prevProfile) => ({
+      ...prevProfile,
+      profile: file,
+    }));
+  };
+
+  const handleAvatarClick = () => {
+    setIsPhotoModalOpen(true);
   };
 
   const getInitials = (name) => {
@@ -95,15 +148,14 @@ function ProfilePage() {
         </button>
       </Link>
       <div className="profile-left">
-        <div className="avatar">
+        <div className="avatar" onClick={handleAvatarClick}>
           {profile.user.profile ? (
-            <img src={profile.user.profile} alt="User Avatar" />
+            <img src={`${url}${profile.user.profile}`} alt="User Avatar" />
           ) : (
-            <div className="avatar-placeholder">
-              {getInitials(profile.user.username)}
-            </div>
+            <div className="avatar-placeholder">{getInitials(profile.user.username)}</div>
           )}
         </div>
+
         <h2>{profile.user.username || "No Username"}</h2>
         <div className="info">
           <p>Points: <span>{profile.user.score}</span></p>
@@ -113,23 +165,22 @@ function ProfilePage() {
 
       <div className="profile-right">
         <div className="form-group">
-        <label>Name:</label>
-        <input type="text" value={profile.user.name} readOnly />
-      </div>
-      <div className="form-group">
-        <label>Email:</label>
-        <input type="text" value={profile.user.email} readOnly />
-      </div>
-      <div className="form-group">
-        <label>Gender:</label>
-        <input type="text" value={profile.user.gender} readOnly />
-      </div>
-      <div className="form-group">
-        <label>Age:</label>
-        <input type="text" value={profile.user.age} readOnly />
-        <img className="bottom-right-gif" src={gifImage} alt="GIF" />
-
-      </div>
+          <label>Name:</label>
+          <input type="text" value={profile.user.name} readOnly />
+        </div>
+        <div className="form-group">
+          <label>Email:</label>
+          <input type="text" value={profile.user.email} readOnly />
+        </div>
+        <div className="form-group">
+          <label>Gender:</label>
+          <input type="text" value={profile.user.gender} readOnly />
+        </div>
+        <div className="form-group">
+          <label>Age:</label>
+          <input type="text" value={profile.user.age} readOnly />
+          <img className="bottom-right-gif" src={gifImage} alt="GIF" />
+        </div>
 
         <button onClick={() => setIsModalOpen(true)} className="edit-profile-btn">Edit Profile</button>
       </div>
@@ -173,6 +224,29 @@ function ProfilePage() {
               />
             </div>
             <button onClick={handleUpdate} className="edit-profile-btn">Save Changes</button>
+          </div>
+        </div>
+      )}
+
+      {isPhotoModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <button className="close-btn" onClick={() => setIsPhotoModalOpen(false)}>
+              <img src={closeIcon} alt="Close Icon" />
+            </button>
+            <h2 className="edit-text">Update Profile Picture</h2>
+            <div className="form-group-edit">
+              <input
+                type="file"
+                name="photo"
+                id="fileInput"
+                accept="image/*"
+                onChange={handleFileChange}
+              />
+            </div>
+            <button onClick={handleUpdateProfilePicture} className="edit-profile-btn">
+              Upload Photo
+            </button>
           </div>
         </div>
       )}
