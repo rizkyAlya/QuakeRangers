@@ -113,7 +113,7 @@
 .edit-profile-btn {
   background-color: #5F6F52; 
   color: #FEFAE0; 
-  padding: 14px 25px; 
+  padding: 10px 20px;  /* Mengurangi padding agar tombol lebih kecil */
   font-size: 18px; 
   font-weight: bold;
   border: none;
@@ -121,7 +121,9 @@
   cursor: pointer;
   margin-top: 30px;
   transition: background-color 0.3s ease;
+  width: 150px;  /* Menyesuaikan lebar tombol dengan konten */
 }
+
 
 .edit-profile-btn:hover {
   background-color: #4E5E46; 

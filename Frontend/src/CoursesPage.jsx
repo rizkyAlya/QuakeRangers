@@ -114,23 +114,23 @@ function CoursesPage() {
       <div className="my-courses-container">
         <h2>My Courses</h2>
         <div className="courses-grid">
-        {courses.map((course) => (
-          <div 
-            key={course._id} 
-            className="course-card"
-            onClick={() => handleCourseClick(course._id)} // Event klik untuk navigasi
-            style={{ cursor: "pointer" }} // Tambahkan cursor pointer untuk indikasi klik
-          >
-            <img
-              src={`${url}${course.image}`}
-              alt={course.title}
-              className="course-image"
-            />
-            <h3>{course.title}</h3>
-            <p>{course.description}</p>
-          </div>
-        ))}
-      </div>
+          {courses.map((course) => (
+            <div 
+              key={course._id} 
+              className="course-card"
+              onClick={() => handleCourseClick(course._id)} // Event klik untuk navigasi
+              style={{ cursor: "pointer" }} // Tambahkan cursor pointer untuk indikasi klik
+            >
+              <h3>{course.title}</h3>  {/* Judul duluan */}
+              <img
+                src={`${url}${course.image}`}
+                alt={course.title}
+                className="course-image"
+              />
+              <p>{course.description}</p> {/* Deskripsi di bawah gambar */}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

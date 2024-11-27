@@ -22,12 +22,11 @@ function QuizPage() {
   const navigate = useNavigate(); // Gunakan untuk navigasi setelah logout
   const [quiz, setQuiz] = useState([]);
 
-   // Mendapatkan semua course di database
-   useEffect(() => {
+  // Mendapatkan semua course di database
+  useEffect(() => {
     const fetchAllQuiz = async () => {
       try {
         const response = await axios.get(`${url}/quiz/`);
-
         setQuiz(response.data.data);
       } catch (error) {
         console.error('Error fetching quiz:', error);
@@ -113,22 +112,22 @@ function QuizPage() {
       <div className="my-quiz-container">
         <h2>Quiz</h2>
         <div className="quiz-grid">
-        {quiz.map((chapter) => (
-          <div 
-            key={chapter._id} 
-            className="quiz-card"
-            onClick={() => handleQuizClick(chapter._id)} // Event klik untuk navigasi
-            style={{ cursor: "pointer" }} // Tambahkan cursor pointer untuk indikasi klik
-          >
-            <img
-              src={schoolImage}
-              alt={chapter.title}
-              className="quiz-image"
-            />
-            <h3>{chapter.title}</h3>
-            <p>{chapter.point}</p>
-          </div>
-        ))}
+          {quiz.map((chapter) => (
+            <div 
+              key={chapter._id} 
+              className="quiz-card"
+              onClick={() => handleQuizClick(chapter._id)} // Event klik untuk navigasi
+              style={{ cursor: "pointer" }} // Tambahkan cursor pointer untuk indikasi klik
+            >
+              <h3>{chapter.title}</h3> {/* Judul dipindahkan ke atas gambar */}
+              <img
+                src={schoolImage}
+                alt={chapter.title}
+                className="quiz-image"
+              />
+              <p>Poin: {chapter.point}</p> {/* Menambahkan keterangan 'Poin: ' */}
+            </div>
+          ))}
         </div>
       </div>
     </div>

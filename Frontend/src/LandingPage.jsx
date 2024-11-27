@@ -15,14 +15,14 @@ function LandingPage() {
     <div className="landing-page">
       {/* Header dengan Logo dan Background */}
       <div className="header-landing">
-        <img src={logoImage} alt="Logo" className="logo" />
+        <img src={logoImage} alt="Logo" className="logo-landing" />
         <div className="header-text">QUAKERANGERS!</div>
       </div>
 
       {/* Main Content */}
       <main className="main-content">
         <div className="text-section">
-          <h1 className="welcome-text">Hello, Welcome!</h1>
+          <h1 className="welcome-text-landing">Hello, Welcome!</h1>
           <p className="description">
             Quakerangers is an interactive educational platform that teaches kids about earthquake preparedness through quizzes, games, and engaging content.
           </p>
@@ -48,7 +48,7 @@ function LandingPage() {
       {/* New Goal Section Below */}
       <section className="goal-section">
         <h2>Our Goals</h2>
-        <p>Our goal is to empower children with the knowledge and skills they need to confidently face earthquakes and stay safe.</p>
+        <p>Our goal is to empower children with the knowledge and skills they need to confidently face earthquakes, stay safe, and take proactive steps to protect themselves and others. Through engaging educational content, interactive activities, and real-world scenarios, we aim to prepare the next generation to respond effectively in the event of a disaster, ensuring that they not only survive but thrive in times of crisis.</p>
         <div className="goal-icons">
           <div className="goal-item">
             <img src={bookIcon} alt="Learn Icon" className="goal-icon" />

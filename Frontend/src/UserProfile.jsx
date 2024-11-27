@@ -183,8 +183,8 @@ function ProfilePage() {
             <img className="profile-gif" src={gifImage} alt="GIF" style={{
               position: 'absolute',
               left: '750px',
-              bottom: '-480px',
-              width: '500px',
+              bottom: '-400px',
+              width: '400px',
               height: 'auto'
             }} />
           </div>
