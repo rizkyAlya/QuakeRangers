@@ -85,66 +85,66 @@ function Chapter3() {
                 <img
                     src={snack}
                     alt="Snack"
-                    className="element3-button"
+                    className="snack-button"
                     onClick={() => handleElementClick('snack', snack)}
                     disabled={disabledElements.includes('snack')}
-                    style={{ position: 'absolute', top: '20%', left: '10%' }}
+                    style={{ position: 'absolute', top: '21%', left: '70.5%' }}
                 />
                 <img
                     src={p3k}
                     alt="First Aid"
-                    className="element3-button"
+                    className="p3k-button"
                     onClick={() => handleElementClick('p3k', p3k)}
                     disabled={disabledElements.includes('p3k')}
-                    style={{ position: 'absolute', top: '20%', left: '30%' }}
+                    style={{ position: 'absolute', top: '23.5%', left: '77.5%' }}
                 />
                 <img
                     src={senter}
                     alt="Flashlight"
-                    className="element3-button"
+                    className="senter-button"
                     onClick={() => handleElementClick('senter', senter)}
                     disabled={disabledElements.includes('senter')}
-                    style={{ position: 'absolute', top: '40%', left: '50%' }}
+                    style={{ position: 'absolute', top: '9.5%', left: '70.5%' }}
                 />
                 <img
                     src={botol}
                     alt="Water Bottle"
-                    className="element3-button"
+                    className="botol-button"
                     onClick={() => handleElementClick('botol', botol)}
                     disabled={disabledElements.includes('botol')}
-                    style={{ position: 'absolute', top: '60%', left: '30%' }}
+                    style={{ position: 'absolute', top: '26%', left: '28.3%' }}
                 />
                 <img
                     src={tas}
                     alt="Bag"
-                    className="element3-button"
+                    className="tas-button"
                     onClick={() => handleElementClick('tas', tas)}
                     disabled={disabledElements.includes('tas')}
-                    style={{ position: 'absolute', top: '70%', left: '10%' }}
+                    style={{ position: 'absolute', top: '48%', left: '25%' }}
                 />
                 <img
                     src={buku}
                     alt="Book"
-                    className="element3-button"
+                    className="buku-button"
                     onClick={() => handleElementClick('buku', buku)}
                     disabled={disabledElements.includes('buku')}
-                    style={{ position: 'absolute', top: '10%', left: '70%' }}
+                    style={{ position: 'absolute', top: '26%', left: '37%' }}
                 />
                 <img
                     src={lampu_meja}
                     alt="Lamp"
-                    className="element3-button"
+                    className="lampu_meja-button"
                     onClick={() => handleElementClick('lampu_meja', lampu_meja)}
                     disabled={disabledElements.includes('lampu_meja')}
-                    style={{ position: 'absolute', top: '50%', left: '80%' }}
+                    style={{ position: 'absolute', top: '37%', left: '84.5%' }}
                 />
                 <img
                     src={pot}
                     alt="Pot"
-                    className="element3-button"
+                    className="pot-button"
                     onClick={() => handleElementClick('pot', pot)}
                     disabled={disabledElements.includes('pot')}
-                    style={{ position: 'absolute', top: '40%', left: '80%' }}
+                    style={{ position: 'absolute', top: '18.5%', left: '42.5%' }}
                 />
             </div>
 
