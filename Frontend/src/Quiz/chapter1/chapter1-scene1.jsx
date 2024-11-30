@@ -6,7 +6,7 @@ function Chap1Scene1() {
     const { id } = useParams();
     const navigate = useNavigate();
         const handleFinish = () => {
-            navigate(`/quiz/${id}/ending`);
+            navigate(`/quiz/${id}/${id}/ending`);
         };
     return (
         <div className="skenario1-container">

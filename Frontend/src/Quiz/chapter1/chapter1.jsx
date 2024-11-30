@@ -147,13 +147,13 @@ function Chapter1() {
             if (response.status === 200) {
                 console.log('Submit successful:', response.data);
                 if (answer == "meja_guru") {
-                    navigate(`/quiz/${id}/scene1`);
+                    navigate(`/quiz/${id}/${id}/scene1`);
                 } else if (answer == "meja_murid") {
-                    navigate(`/quiz/${id}/scene2`);
+                    navigate(`/quiz/${id}/${id}/scene2`);
                 } else if (answer == "pintu") {
-                    navigate(`/quiz/${id}/scene3`);
+                    navigate(`/quiz/${id}/${id}/scene3`);
                 } else {
-                    navigate(`/quiz/${id}/scene4`);
+                    navigate(`/quiz/${id}/${id}/scene4`);
                 }
             } else {
                 console.log(response.data);

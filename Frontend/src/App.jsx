@@ -37,12 +37,12 @@ const Main = () => {
       <Route path="/courses" element={<CoursesPage />} />
       <Route path="/course/:id" element={<MainCourses />} /> 
       <Route path="/quiz" element={<QuizPage />} />
-      <Route path="/quiz/:id" element={<Chapter1 />} />
-      <Route path="/quiz/:id/scene1" element={<Chap1Scene1 />} />
-      <Route path="/quiz/:id/scene2" element={<Chap1Scene2 />} />
-      <Route path="/quiz/:id/scene3" element={<Chap1Scene3 />} />
-      <Route path="/quiz/:id/scene4" element={<Chap1Scene4 />} />
-      <Route path="/quiz/:id/ending" element={<Chap1Ending />} />
+      <Route path="/quiz/67474e68f8b29b91943e9105/:id" element={<Chapter1 />} />
+      <Route path="/quiz/67474e68f8b29b91943e9105/:id/scene1" element={<Chap1Scene1 />} />
+      <Route path="/quiz/67474e68f8b29b91943e9105/:id/scene2" element={<Chap1Scene2 />} />
+      <Route path="/quiz/67474e68f8b29b91943e9105/:id/scene3" element={<Chap1Scene3 />} />
+      <Route path="/quiz/67474e68f8b29b91943e9105/:id/scene4" element={<Chap1Scene4 />} />
+      <Route path="/quiz/67474e68f8b29b91943e9105/:id/ending" element={<Chap1Ending />} />
       <Route path="/profile/:userID" element={<ProfilePage />} />
       <Route path="/leaderboard" element={<LeaderboardPage />} />
     </Routes>
