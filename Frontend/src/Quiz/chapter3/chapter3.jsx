@@ -1,0 +1,166 @@
+import React, { useState, useEffect, useContext } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Typewriter from 'typewriter-effect';
+import './chapter3.css';
+import snack from '../../assets/chapter3/ElemenBenar1.png';
+import p3k from '../../assets/chapter3/ElemenBenar2.png';
+import senter from '../../assets/chapter3/ElemenBenar3.png';
+import botol from '../../assets/chapter3/ElemenBenar4.png';
+import tas from '../../assets/chapter3/ElemenBenar5.png';
+import buku from '../../assets/chapter3/ElemenSalah1.png';
+import lampu_meja from '../../assets/chapter3/ElemenSalah2.png';
+import pot from '../../assets/chapter3/ElemenSalah3.png';
+import { UserContext } from '../../UserContext';
+const url = import.meta.env.VITE_BACKEND_URL;
+
+function Chapter3() {
+    const { id } = useParams();
+    const user = useContext(UserContext);
+    const navigate = useNavigate();
+    const [lives, setLives] = useState(0);
+    const [score, setScore] = useState(0);
+    const [progress, setProgress] = useState('');
+    const [showHintPopup, setShowHintPopup] = useState(false);
+    const [hintVisible, setHintVisible] = useState(false);
+    const [isWindowMaximized, setIsWindowMaximized] = useState(true);
+    const [warningMessage, setWarningMessage] = useState('');
+    const [showTips, setShowTips] = useState(false);
+    const [showHint, setShowHint] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
+    const [showNextButton, setShowNextButton] = useState(false);
+    const [selectedElements, setSelectedElements] = useState([]);
+    const [disabledElements, setDisabledElements] = useState([]);
+    const userId = user.user;
+
+    useEffect(() => {
+        const userProgress = async () => {
+            try {
+                const response = await axios.get(`${url}/user/progress/${userId}`);
+                setLives(response.data.data.user.lives);
+                setScore(response.data.data.user.score);
+                setProgress(response.data.data.user.progress);
+            } catch (error) {
+                console.error('Error getting user progress:', error);
+            }
+        };
+
+        userProgress();
+    }, [userId]);
+
+    const handleElementClick = (elementName, imgSrc) => {
+        if (disabledElements.includes(elementName)) return;
+
+        setSelectedElements(prevState => [...prevState, { name: elementName, img: imgSrc }]);
+        setDisabledElements(prevState => [...prevState, elementName]);
+    };
+
+    const handleUndoElement = (elementName) => {
+        setSelectedElements(prevState => prevState.filter(item => item.name !== elementName));
+        setDisabledElements(prevState => prevState.filter(item => item !== elementName));
+    };
+
+    return (
+        <div className="chapter3-container">
+            <div className="message3">
+                <h4 className='score3'>Score: <span>{score}</span></h4>
+                <Typewriter
+                    onInit={(typewriter) => {
+                        typewriter
+                            .typeString('You are in the classroom.')
+                            .pauseFor(500)
+                            .typeString('<br />An emergency happens!')
+                            .pauseFor(500)
+                            .typeString('<br />Choose the right items to survive!')
+                            .start();
+                    }}
+                    options={{
+                        delay: 75,
+                    }}
+                />
+            </div>
+
+            <div className="elements3-container">
+                {/* Place elements with position absolute */}
+                <img
+                    src={snack}
+                    alt="Snack"
+                    className="snack-button"
+                    onClick={() => handleElementClick('snack', snack)}
+                    disabled={disabledElements.includes('snack')}
+                    style={{ position: 'absolute', top: '21%', left: '70.5%' }}
+                />
+                <img
+                    src={p3k}
+                    alt="First Aid"
+                    className="p3k-button"
+                    onClick={() => handleElementClick('p3k', p3k)}
+                    disabled={disabledElements.includes('p3k')}
+                    style={{ position: 'absolute', top: '23.5%', left: '77.5%' }}
+                />
+                <img
+                    src={senter}
+                    alt="Flashlight"
+                    className="senter-button"
+                    onClick={() => handleElementClick('senter', senter)}
+                    disabled={disabledElements.includes('senter')}
+                    style={{ position: 'absolute', top: '9.5%', left: '70.5%' }}
+                />
+                <img
+                    src={botol}
+                    alt="Water Bottle"
+                    className="botol-button"
+                    onClick={() => handleElementClick('botol', botol)}
+                    disabled={disabledElements.includes('botol')}
+                    style={{ position: 'absolute', top: '26%', left: '28.3%' }}
+                />
+                <img
+                    src={tas}
+                    alt="Bag"
+                    className="tas-button"
+                    onClick={() => handleElementClick('tas', tas)}
+                    disabled={disabledElements.includes('tas')}
+                    style={{ position: 'absolute', top: '48%', left: '25%' }}
+                />
+                <img
+                    src={buku}
+                    alt="Book"
+                    className="buku-button"
+                    onClick={() => handleElementClick('buku', buku)}
+                    disabled={disabledElements.includes('buku')}
+                    style={{ position: 'absolute', top: '26%', left: '37%' }}
+                />
+                <img
+                    src={lampu_meja}
+                    alt="Lamp"
+                    className="lampu_meja-button"
+                    onClick={() => handleElementClick('lampu_meja', lampu_meja)}
+                    disabled={disabledElements.includes('lampu_meja')}
+                    style={{ position: 'absolute', top: '37%', left: '84.5%' }}
+                />
+                <img
+                    src={pot}
+                    alt="Pot"
+                    className="pot-button"
+                    onClick={() => handleElementClick('pot', pot)}
+                    disabled={disabledElements.includes('pot')}
+                    style={{ position: 'absolute', top: '18.5%', left: '42.5%' }}
+                />
+            </div>
+
+            <div className="selected3-elements">
+                <h4>Selected Items:</h4>
+                <div className="selected3-items-list">
+                    {selectedElements.map((item, index) => (
+                        <div key={index} className="selected3-item">
+                            <img src={item.img} alt={item.name} className="selected3-item-img" />
+                            <button onClick={() => handleUndoElement(item.name)} className="undo-button">x</button>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default Chapter3;

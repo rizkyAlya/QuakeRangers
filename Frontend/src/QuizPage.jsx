@@ -35,6 +35,7 @@ function QuizPage() {
 
   const handleQuizClick = (id) => {
     navigate(`/quiz/${id}/${id}`); 
+    navigate(`/quiz/${id}/${id}`); // Beralih ke course tertentu
   };
 
   const toggleMenu = () => {

@@ -19,8 +19,10 @@ import Chap2Scene1 from "./Quiz/chapter2/chapter2-scene1";
 import Chap2Scene2 from "./Quiz/chapter2/chapter2-scene2";
 import Chap2Scene3 from "./Quiz/chapter2/chapter2-scene3";
 import Chap2Ending from "./Quiz/chapter2/chapter2-ending";
+import Chapter3 from "./Quiz/chapter3/chapter3";
 import ProfilePage from "./UserProfile";
 import LeaderboardPage from "./LeaderboardPage";
+
 
 function App() {
   return (
@@ -53,6 +55,7 @@ const Main = () => {
       <Route path="/quiz/67474e8cf8b29b91943e9107/:id/scene2" element={<Chap2Scene2 />} />
       <Route path="/quiz/67474e8cf8b29b91943e9107/:id/scene3" element={<Chap2Scene3 />} />
       <Route path="/quiz/67474e8cf8b29b91943e9107/:id/ending" element={<Chap2Ending />} />
+      <Route path="/quiz/674abb8d3771c421e3a88b3d/:id" element={<Chapter3 />} />
       <Route path="/profile/:userID" element={<ProfilePage />} />
       <Route path="/leaderboard" element={<LeaderboardPage />} />
     </Routes>
