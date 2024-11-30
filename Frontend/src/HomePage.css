@@ -1,4 +1,3 @@
-/* Reset and Basic Layout */
 * {
     margin: 0;
     padding: 0;
@@ -19,11 +18,10 @@ body, html {
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100vh; /* Full height */
-    background-color: #A9B388; /* Set background color */
+    height: 100vh; 
+    background-color: #A9B388; 
 }
 
-/* Background elements */
 .grass {
     position: absolute;
     bottom: 0;
@@ -40,129 +38,118 @@ body, html {
 
 .tree1 {
     left: 10%;
-    bottom: 20%; /* Positioning for the first tree */
-    width: 20%; /* Adjust size as needed */
+    bottom: 20%;
+    width: 20%;
 }
 
 .tree2 {
     right: 10%;
-    bottom: 20%; /* Positioning for the second tree */
-    width: 20%; /* Adjust size as needed */
+    bottom: 20%; 
+    width: 20%;
 }
 
-/* Title styling */
 .title {
     font-size: 70px;
-    font-family: 'Poppins', sans-serif; /* Using Poppins */
+    font-family: 'Poppins', sans-serif; 
     font-weight: bold;
-    color: #5C2C10; /* Adjust color as necessary */
+    color: #5C2C10; 
     position: absolute;
-    top: 10%; /* Position title */
-    z-index: 3; /* On top of other elements */
+    top: 10%;
+    z-index: 3;
 }
 
-/* Character positioning */
 .character {
     position: absolute;
     display: flex;
-    justify-content: center; /* Center the characters */
-    align-items: flex-end; /* Align to the bottom of the container */
-    width: 150px; /* Set a fixed width to position correctly */
-    top: 55%; /* Adjust position to be just above "LET'S PLAY!" */
-    z-index: 3; /* Above grass and trees */
+    justify-content: center; 
+    align-items: flex-end; 
+    width: 150px;
+    top: 55%; 
+    z-index: 3; 
 }
 
 .boy, .girl {
-    width: 100px; /* Set size for characters */
+    width: 100px;
     height: auto;
-    margin: 0 5px; /* Add margin to bring them closer together */
+    margin: 0 5px; 
 }
 
-/* Buttons */
 .buttons {
     display: flex;
-    gap: 20px; /* Space between buttons */
-    margin-top: 10px; /* Adjust space from title */
+    gap: 20px;
+    margin-top: 10px; 
     position: absolute;
-    top: 30%; /* Position directly below the title */
+    top: 30%; 
 }
 
-/* Button styling */
 .btn {
     padding: 20px 70px;
     border: none;
     border-radius: 20px;
-    background-color: #E3D5B4; /* Light background for buttons */
-    color: #351B0C; /* Text color */
+    background-color: #E3D5B4; 
+    color: #351B0C; 
     font-weight: bold;
-    font-size: 24px; /* Memperbesar ukuran font */
+    font-size: 24px; 
     cursor: pointer;
-    transition: background-color 0.3s; /* Smooth transition */
+    transition: background-color 0.3s; 
 }
 
 
 .btn:hover {
-    background-color: #C4661F; /* Darker shade on hover */
+    background-color: #C4661F; 
 }
 
-/* Active state styling for buttons */
 .active {
-    background-color: #C4661F; /* Change color to orange */
-    color: white; /* Change text color */
+    background-color: #C4661F;
+    color: white;
 }
 
-/* Play text styling */
 .play-text {
     font-size: 30px;
     font-weight: bold;
-    color: #643214; /* Change color */
+    color: #643214; 
     position: absolute;
-    bottom: 10%; /* Position near the bottom */
-    z-index: 3; /* On top of other elements */
+    bottom: 10%; 
+    z-index: 3; 
 }
 
-/* Icon styling */
 .icons {
     position: absolute;
-    top: 10px; /* Position icons at the top */
-    right: 10px; /* Align to the right */
+    top: 10px; 
+    right: 10px; 
     display: flex;
-    gap: 20px; /* Space between icons (increase the gap between profile and logout) */
-    z-index: 4; /* Ensure icons are above other elements */
+    gap: 20px; 
+    z-index: 4;
 }
 
 .icon-button {
-    background-color: #FEFAE0; /* Bungkus warna latar belakang */
-    border: none; /* Remove border */
-    padding: 15px 18px; /* Adjust padding to make icons look similar in size */
+    background-color: #FEFAE0;
+    border: none;
+    padding: 15px 18px;
     cursor: pointer;
-    border-radius: 15px; /* Membuat tombol persegi dengan sudut melengkung */
-    transition: background-color 0.3s; /* Smooth transition */
+    border-radius: 15px; 
+    transition: background-color 0.3s;
 }
 
-/* Icon button hover effect */
 .icon-button:hover {
-    background-color: #C4661F; /* Darker orange on hover */
+    background-color: #C4661F; 
 }
 
-/* Icon size */
 .icon {
-    width: 40px; /* Set icon size to the same value */
-    height: 24px; /* Set the height to match width */
+    width: 40px;
+    height: 24px;
 }
 
-/* Active state styling for icon buttons */
 .icon-button.active {
-    background-color: #C4661F; /* Highlight color for active button */
+    background-color: #C4661F; 
 }
 
-/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
     .title {
-        font-size: 48px; /* Adjust title size for mobile */
+        font-size: 48px; 
     }
 
     .boy, .girl {
-        width: 60px; /* Smaller character size for mobile */
+        width: 60px; 
     }
 }

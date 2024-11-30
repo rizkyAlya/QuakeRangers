@@ -15,11 +15,10 @@ const url = import.meta.env.VITE_BACKEND_URL;
 
 function CoursesPage() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { user, setUser } = useContext(UserContext); // Dapatkan user dan setUser dari UserContext
-  const navigate = useNavigate(); // Gunakan untuk navigasi setelah logout
+  const { user, setUser } = useContext(UserContext); 
+  const navigate = useNavigate(); 
   const [courses, setCourses] = useState([]);
 
-  // Mendapatkan semua course di database
   useEffect(() => {
     const fetchAllCourses = async () => {
       try {
@@ -35,39 +34,34 @@ function CoursesPage() {
   }, []);
   
   const handleCourseClick = (id) => {
-    navigate(`/course/${id}`); // Beralih ke course tertentu
+    navigate(`/course/${id}`); 
   };
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
-  // Fungsi untuk Logout
   const handleLogout = () => {
-    setUser(null); // Hapus data user dari UserContext
-    navigate('/'); // Arahkan ke halaman login setelah logout
+    setUser(null); 
+    navigate('/'); 
     console.log('User logged out.');
   };
 
   return (
     <div className="courses-page">
-      {/* Header Section */}
       <header className="header">
         <div className="logo-container">
           <img src={logo} alt="Logo" className="logo" />
           <h1>QUAKERANGERS!</h1>
         </div>
-        {/* Profile Menu */}
         <div className="profile-menu-courses" onClick={toggleMenu}>
           <img src={groupIcon} alt="Group" />
           {menuOpen && (
             <div className="profile-dropdown-courses">
-              {/* Tambahkan Link ke halaman User Profile */}
               <Link to={`/profile/${user}`} className="profile-item-courses">
                 <img src={profileIcon} alt="Profile" />
                 <span>Profile</span>
               </Link>
-              {/* Tambahkan Fungsi Logout */}
               <div className="profile-item-courses" onClick={handleLogout}>
                 <img src={logoutIcon} alt="Logout" />
                 <span>Logout</span>
@@ -77,7 +71,6 @@ function CoursesPage() {
         </div>
       </header>
 
-      {/* Sidebar Section */}
       <div className="sidebar">
         <div className="menu">
           <Link to="/home">
@@ -107,7 +100,6 @@ function CoursesPage() {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="my-courses-container">
         <h2>My Courses</h2>
         <div className="courses-grid">
@@ -115,16 +107,16 @@ function CoursesPage() {
             <div 
               key={course._id} 
               className="course-card"
-              onClick={() => handleCourseClick(course._id)} // Event klik untuk navigasi
-              style={{ cursor: "pointer" }} // Tambahkan cursor pointer untuk indikasi klik
+              onClick={() => handleCourseClick(course._id)} 
+              style={{ cursor: "pointer" }} 
             >
-              <h3>{course.title}</h3>  {/* Judul duluan */}
+              <h3>{course.title}</h3>  
               <img
                 src={`${url}${course.image}`}
                 alt={course.title}
                 className="course-image"
               />
-              <p>{course.description}</p> {/* Deskripsi di bawah gambar */}
+              <p>{course.description}</p> 
             </div>
           ))}
         </div>

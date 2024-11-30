@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
 
-/* Reset dan Layout Utama */
 * {
     margin: 0;
     padding: 0;
@@ -16,10 +15,9 @@ body, html {
 
 .landing-page {
     width: 100%;
-    /*max-width: 1440px;  Fit layar laptop */
     margin: 0 auto;
-    border: 1px solid #A9B388; /* Border sesuai permintaan */
-    background-color: #D3BFA4; /* Warna background seperti kopi susu */
+    border: 1px solid #A9B388; 
+    background-color: #D3BFA4; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,18 +26,17 @@ body, html {
     position: relative;
 }
 
-/* Header dengan Background Penuh dari Atas */
 .header-landing {
     width: 100%;
-    background-color: #E3D5B4; /* Warna background header sama seperti footer */
+    background-color: #E3D5B4; 
     display: flex;
     align-items: center;
-    gap: 20px; /* Jarak antara logo dan teks */
-    padding: 20px; /* Spasi dalam header */
-    position: fixed; /* Mengatur header di posisi absolut */
-    top: 0; /* Memastikan header mulai dari bagian paling atas */
-    left: 0; /* Memastikan header menempel di sisi kiri */
-    z-index: 1000; /* Menjaga agar header tetap berada di atas konten lain */
+    gap: 20px; 
+    padding: 20px; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    z-index: 1000; 
 }
 
 body .landing-page .header {
@@ -49,31 +46,30 @@ body .landing-page .header {
 }
 
 .logo-landing {
-    width: 100px; /* Memperbesar ukuran logo agar lebih proporsional */
+    width: 100px;
     height: auto;
 }
 
 .header-text {
     color: #5C2C10;
-    font-family: 'Poppins', sans-serif; /* Menggunakan Poppins */
+    font-family: 'Poppins', sans-serif; 
     font-size: 48px;
     font-weight: 700;
     line-height: normal;
 }
 
-/* Section untuk Goals */
 .goal-section {
-    margin-top: 80px; /* Memberikan jarak atas untuk section Goals */
+    margin-top: 80px;
     text-align: center;
     color: #5C2C10;
-    padding-bottom: 100px; /* Memberikan ruang di bawah agar tidak terpotong */
+    padding-bottom: 100px; 
 }
 
 .goal-section h2 {
     font-size: 50px;
     font-family: "Pixelify Sans", sans-serif;
     font-weight: 800;
-    margin-bottom: 20px; /* Memberikan ruang antara judul dan deskripsi */
+    margin-bottom: 20px; 
 }
 
 .goal-section p {
@@ -83,26 +79,25 @@ body .landing-page .header {
     color: #5C2C10;
 }
 
-/* Menyusun ikon-ikon di bawah "Our Goals" */
 .goal-icons {
     display: flex;
     justify-content: center;
-    gap: 80px; /* Jarak antar ikon */
-    flex-wrap: wrap; /* Agar responsif jika di layar kecil */
-    margin-top: 40px; /* Menambahkan jarak di atas */
+    gap: 80px; 
+    flex-wrap: wrap; 
+    margin-top: 40px; 
 }
 
 .goal-item {
     text-align: center;
     display: flex;
-    flex-direction: column; /* Menyusun ikon dan teks secara vertikal */
+    flex-direction: column;
     align-items: center;
 }
 
 .goal-icon {
     width: 130px;
     height: auto;
-    margin-bottom: 20px; /* Memberikan jarak antara ikon dan teks */
+    margin-bottom: 20px; 
 }
 
 .goal-item span {
@@ -111,7 +106,6 @@ body .landing-page .header {
     color: #5C2C10;
 }
 
-/* Konten Utama */
 .main-content {
     display: flex;
     width: 100%;
@@ -122,7 +116,6 @@ body .landing-page .header {
     gap: 40px;
 }
 
-/* Teks utama */
 .text-section {
     flex: 1;
     padding: 20px;
@@ -133,8 +126,8 @@ body .landing-page .header {
     color: #351B0C;
     font-family: "Pixelify Sans", sans-serif;
     font-size: 60px;
-    font-weight: 500; /* Mengubah font-weight menjadi bold */
-    text-align: left; /* Sesuaikan dengan header */
+    font-weight: 500; 
+    text-align: left; 
     margin-bottom: 10px;
     
 }
@@ -154,7 +147,6 @@ body .landing-page .header {
     text-transform: uppercase;
 }
 
-/* Hero Image dengan Ellipse Background */
 .hero-image {
     flex: 1;
     display: flex;
@@ -162,29 +154,28 @@ body .landing-page .header {
     align-items: center;
     position: relative;
     max-width: 50%;
-    margin-top: 40px; /* Menambahkan margin untuk menurunkan elemen */
+    margin-top: 40px; 
 }
 
 .ellipse-background {
-    width: 500px; /* Tetap menggunakan ukuran aslinya */
+    width: 500px; 
     height: 450px;
     background-color: #FEFAE0;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 20px; /* Menambahkan padding di bagian atas */
-    transform: scale(0.8); /* Mengecilkan elemen ini saja */
-    transform-origin: center; /* Tetap di tengah saat di-scaling */
+    padding-top: 20px; 
+    transform: scale(0.8); 
+    transform-origin: center; 
     margin-top: 20px;
 }
 
 .ellipse-background img {
-    width: 300px; /* Mengecilkan ukuran gambar anak-anak */
-    height: auto; /* Menjaga proporsi gambar */
+    width: 300px;
+    height: auto; 
 }
 
-/* Tombol */
 .buttons {
     display: flex;
     gap: 20px;
@@ -204,7 +195,7 @@ body .landing-page .buttons{
     border: none;
     cursor: pointer;
     font-weight: bold;
-    transition: all 0.3s ease; /* Menambahkan transisi untuk efek hover */
+    transition: all 0.3s ease; 
 }
 
 .register-button {
@@ -219,16 +210,14 @@ body .landing-page .buttons{
     border: 2px solid #643214;
 }
 
-/* Efek hover */
 .register-button:hover,
 .login-button:hover {
-    background-color: #643214; /* Warna latar belakang berubah saat hover */
-    color: #FEFAE0; /* Warna teks berubah saat hover */
-    border-color: #FEFAE0; /* Warna border berubah saat hover */
-    transform: scale(1.05); /* Menambah sedikit efek zoom saat hover */
+    background-color: #643214; 
+    color: #FEFAE0; 
+    border-color: #FEFAE0; 
+    transform: scale(1.05); 
 }
 
-/* Footer */
 .footer {
     width: 100vw; 
     display: flex;
@@ -245,16 +234,16 @@ body .landing-page .buttons{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 40px; /* Jarak antar kelompok kontak */
-    width: 80%; /* Mengatur lebar untuk posisi seimbang */
-    max-width: 1200px; /* Batas lebar untuk tampilan lebih besar */
+    gap: 40px; 
+    width: 80%; 
+    max-width: 1200px; 
     color: #643214;
 }
 
 .contact-item {
     display: flex;
     align-items: center;
-    gap: 8px; /* Jarak antara ikon dan teks */
+    gap: 8px; 
     font-size: rem;
     color: #643214;
 }
@@ -265,7 +254,6 @@ body .landing-page .buttons{
     vertical-align: middle;
 }
 
-/* Media Queries untuk Responsif */
 @media (max-width: 768px) {
     .landing-page {
         padding: 20px;

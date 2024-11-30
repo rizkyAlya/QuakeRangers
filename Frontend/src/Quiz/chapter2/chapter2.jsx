@@ -2,16 +2,15 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Typewriter from 'typewriter-effect';
-import './chapter1.css';
+import './chapter2.css';
 import fullHeart from '../../assets/icons/nyawa-penuh.png';
-import deskImage from '../../assets/chapter1/Elemen-Skenario1.png';
-import tableImage from '../../assets/chapter1/Elemen-Skenario2.png';
-import doorImage from '../../assets/chapter1/Elemen-Skenario3.jpeg';
-import cupboardImage from '../../assets/chapter1/Elemen-Skenario4.jpeg';
+import doorImage from '../../assets/chapter2/Elemen-Skenario1.png';
+import tableImage from '../../assets/chapter2/Elemen-Skenario2.png';
+import sofaImage from '../../assets/chapter2/Elemen-Skenario3.png';
 import { UserContext } from '../../UserContext';
 const url = import.meta.env.VITE_BACKEND_URL;
 
-function Chapter1() {
+function Chapter2() {
     const { id } = useParams();
     const user = useContext(UserContext);
     const navigate = useNavigate();
@@ -83,31 +82,26 @@ function Chapter1() {
         setElement(choice);
 
         switch (choice) {
-            case 'meja_guru':
-                setShowNextButton(true);
-                message = "You decided to stay under the teacher's desk for protection."
-                //message = "Good job! Taking shelter under the teacher's desk was the right choice.";
-                break;
-            case 'meja_murid':
-                message = "You picked the student desk as your shelter."
-                break;
             case 'pintu':
                 if (lives > 0) {
                     message = "You chose to run outside through the door."
-                    //message = "Danger! Running outside is too risky. Falling debris could hit you. It’s safer to stay inside and take shelter";
                     setLives(prevLives => prevLives - 1);
                 } else {
                     message = "Game Over! You ran out of lives. Stay safe and try again!";
                 }
                 break;
-            case 'lemari':
+            case 'meja':
+                setShowNextButton(true);
+                message = "You decide to stay under the table for protection."
+                break;
+            case 'sofa':
                 if (lives > 0) {
-                    message = "You chose to hide in the cabinet."
-                    //message = "Choosing the cabinet is risky! It could fall forward, trapping you inside. You won’t be able to escape if it does";
+                    message = "You decide to stay under the couch for protection."
                     setLives(prevLives => prevLives - 1);
                 } else {
                     message = "Game Over! You ran out of lives. Stay safe and try again!";
                 }
+                break;
         }
 
         setMessage(message);
@@ -128,7 +122,7 @@ function Chapter1() {
     const handleSubmit = async (answer) => {
         console.log(user, answer);
         try {
-            if (answer == "pintu" || answer == "lemari") {
+            if (answer == "pintu" || answer == "sofa") {
                 try {
                     const res = await axios.put(`${url}/user/progress/${userId}`, {
                         lives: lives // Kirim hanya 'lives' yang akan diperbarui
@@ -146,18 +140,17 @@ function Chapter1() {
 
             if (response.status === 200) {
                 console.log('Submit successful:', response.data);
-                if (answer == "meja_guru") {
+                if (answer == "pintu") {
                     navigate(`/quiz/${id}/${id}/scene1`);
-                } else if (answer == "meja_murid") {
+                } else if (answer == "meja") {
                     navigate(`/quiz/${id}/${id}/scene2`);
-                } else if (answer == "pintu") {
+                } else if (answer == "sofa") {
                     navigate(`/quiz/${id}/${id}/scene3`);
-                } else {
-                    navigate(`/quiz/${id}/${id}/scene4`);
                 }
             } else {
                 console.log(response.data);
             }
+            
         } catch (error) {
             console.error('Submit error:', error);
             console.log(user);
@@ -199,12 +192,12 @@ function Chapter1() {
     }, []);
 
     return (
-        <div className="chapter-container">
+        <div className="chapter2-container">
             {!isWindowMaximized && (
-                <div className="warning-message">{warningMessage}</div>
+                <div className="warning-message-chap2">{warningMessage}</div>
             )}
-            <div className="message" >
-                <div className='heart-container'>
+            <div className="message-chap2" >
+                <div className='heart-container-chap2'>
                     {Array.from({ length: lives }).map((_, index) => (
                         <img
                             key={index}
@@ -213,11 +206,11 @@ function Chapter1() {
                         />
                     ))}
                 </div>
-                <h4 className='score'>Score: <span>{score}</span></h4>
+                <h4 className='score-chap2'>Score: <span>{score}</span></h4>
                 <Typewriter
                     onInit={(typewriter) => {
                         typewriter
-                            .typeString('You are at school.')
+                            .typeString('You are at home.')
                             .pauseFor(500)
                             .typeString('<br />Suddenly an earthquake occurs!')
                             .pauseFor(500)
@@ -233,22 +226,22 @@ function Chapter1() {
                         delay: 75,
                     }}
                 />
-                {showTips && <h4 className='tips'>Move your cursor across the page and select a shelter</h4>}
+                {showTips && <h4 className='tips-chap2'>Move your cursor across the page and select a shelter</h4>}
             </div>
             {showHint &&
                 <button
                     onClick={handleHintClick}
                     disabled={score === 0}
-                    className={score === 0 ? "disabled-button" : "hint-button"}
+                    className={score === 0 ? "disabled-button-chap2" : "hint-button-chap2"}
                 >
                     Hint
                 </button>
             }
             {showHintPopup && (
-                <div className="popup-overlay">
-                    <div className="popup">
+                <div className="popup-overlay-chap2">
+                    <div className="popup-chap2">
                         <p>Using a hint will cost 100 points. Are you sure?</p>
-                        <div className="popup-buttons">
+                        <div className="popup-buttons-chap2">
                             <button onClick={confirmHint}>Yes, show me the hint</button>
                             <button onClick={cancelHint}>No, cancel</button>
                         </div>
@@ -256,44 +249,38 @@ function Chapter1() {
                 </div>
             )}
             {hintVisible && (
-                <div className="popup-overlay">
-                    <div className="popup">
-                        <p>Hint: Look for a sturdy object to protect yourself during the earthquake!</p>
-                        <div className="popup-buttons">
+                <div className="popup-overlay-chap2">
+                    <div className="popup-chap2">
+                        <p>Hint: Look for something solid to hide under to stay safe from falling debris!</p>
+                        <div className="popup-buttons-chap2">
                             <button onClick={closeHint}>Close</button>
                         </div>
                     </div>
                 </div>
             )}
             <img
-                src={deskImage}
-                alt="Meja Guru"
-                className="desk-button"
-                onClick={() => handleClick('meja_guru')}
-            />
-            <img
-                src={tableImage}
-                alt="Meja Murid"
-                className='table-button'
-                onClick={() => handleClick('meja_murid')}
-            />
-            <img
                 src={doorImage}
                 alt="Pintu"
-                className='door-button'
+                className="door-button-chap2"
                 onClick={() => handleClick('pintu')}
             />
             <img
-                src={cupboardImage}
-                alt="Lemari"
-                className="cupboard-button"
-                onClick={() => handleClick('lemari')}
+                src={tableImage}
+                alt="Meja"
+                className='table-button-chap2'
+                onClick={() => handleClick('meja')}
+            />
+            <img
+                src={sofaImage}
+                alt="Sofa"
+                className='sofa-button-chap2'
+                onClick={() => handleClick('sofa')}
             />
             {showPopup && (
-                <div className="popup-overlay">
-                    <div className="popup">
+                <div className="popup-overlay-chap2">
+                    <div className="popup-chap2">
                         <p>{message}</p>
-                        <div className="popup-buttons">
+                        <div className="popup-buttons-chap2">
                             {lives >= 1 && !showNextButton && (
                                 <button onClick={handleReplay}>Replay</button>
                             )}
@@ -306,4 +293,4 @@ function Chapter1() {
     );
 }
 
-export default Chapter1;
+export default Chapter2;

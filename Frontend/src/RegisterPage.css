@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Amiko&display=swap');
 
-/* Reset dan Layout Utama */
 * {
     margin: 0;
     padding: 0;
@@ -22,17 +21,17 @@ body, html {
 }
 
 .left-section {
-    background-color: #5F6F52;  /* Green background */
-    width: 30%;  /* Left section width */
-    height: 100vh;  /* Full height of the viewport */
+    background-color: #5F6F52;  
+    width: 30%;  
+    height: 100vh; 
     display: flex;
-    flex-direction: column;  /* Ensure elements are arranged vertically */
-    justify-content: center;  /* Center all the content vertically */
+    flex-direction: column;  
+    justify-content: center; 
     align-items: center;
     position: relative;
     background: url('./assets/images/registercharacter.png') no-repeat center bottom;
     background-size: contain;
-    padding-top: 80px;  /* Adjust this value if needed */
+    padding-top: 80px; 
 }
 
 .welcome-text-register {
@@ -50,18 +49,16 @@ body, html {
     font-family: Amiko, sans-serif;
     font-size: 32px;
     text-align: center;
-    margin-bottom: 40px;  /* Jarak antara teks dan tombol */
+    margin-bottom: 40px;  
 }
 
-/* Wadah untuk teks dan tombol Sign In */
 .sign-in-container {
     display: flex;
-    flex-direction: column;  /* Menyusun tombol di bawah teks */
-    align-items: center;  /* Menjaga tombol tetap di tengah */
-    margin-top: -20px; /* Memberikan jarak antara teks dengan tombol */
+    flex-direction: column;  
+    align-items: center;  
+    margin-top: -20px; 
 }
 
-/* Tombol Sign In */
 .sign-in-register {
     background-color: #E8E2B9;
     color: #5F6F52;
@@ -77,16 +74,14 @@ body, html {
     width: auto; 
     text-align: center;
     border: 2px solid #5F6F52;
-    margin-top: 10px;  /* Memberikan jarak antar elemen */
+    margin-top: 10px; 
 }
 
-/* Menambahkan efek hover pada tombol */
 .sign-in:hover {
     background-color: #E5D7A9;
     border-color: #5F6F52;
 }
 
-/* Right Section */
 .right-section {
     background-color: #A9B388;
     width: 70%;
@@ -121,24 +116,24 @@ body, html {
     border-radius: 5px;
     padding: 0 10px;
     font-size: 24px;
-  }
-  
-  .input-group-register {
+}
+
+.input-group-register {
     display: flex;
     align-items: center;
     gap: 10px;
     position: relative;
-  }
+}
 
-  .input-icon {
+.input-icon {
     width: 28px;
     height: 28px;
-  }
+}
 
 .mata-icon {
     position: absolute;
-    right: 10px; /* Menempatkan ikon di kanan */
-    top: 50%;  /* Menjaga ikon tetap di tengah */
+    right: 10px; 
+    top: 50%; 
     transform: translateY(-50%);
     cursor: pointer;
 }
@@ -192,22 +187,18 @@ body .register-page .left-section{
     text-align: center;
     animation: fadeOut 2s ease-out forwards;
     z-index: 9999;
-  }
-  
-  /* Animasi fade-out */
-  @keyframes fadeOut {
+}
+
+@keyframes fadeOut {
     0% {
-      opacity: 1;
+    opacity: 1;
     }
     100% {
-      opacity: 0;
-      transform: translate(-50%, -60%);
+    opacity: 0;
+    transform: translate(-50%, -60%);
     }
-  }
-  
+}
 
-
-/* Ensure responsiveness */
 @media (max-width: 768px) {
     .register-page {
         flex-direction: column;
@@ -220,6 +211,6 @@ body .register-page .left-section{
     .left-section {
         height: auto;
         background-size: cover;
-        background-position: center bottom;  /* Keep the background aligned at the bottom */
+        background-position: center bottom;  
     }
 }

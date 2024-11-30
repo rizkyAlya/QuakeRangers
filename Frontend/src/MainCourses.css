@@ -6,7 +6,6 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* Header */
 .header-chapter {
   width: 100%;
   background-color: #A9B388;
@@ -81,10 +80,10 @@
 }
 
 .back-button {
-  margin-top: 20px; /* Adjust this value to move the button down */
+  margin-top: 20px; 
   padding: 5px;
   border: none;
-  background: none; /* No background */
+  background: none; 
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -92,20 +91,22 @@
 }
 
 .back-button img {
-  width: 40px; /* Adjust size of the icon */
+  width: 40px; 
   height: auto;
 }
+
 .video-reference-text { 
-  font-size: 32px; /* Large text */
+  font-size: 32px; 
   font-weight: bold;
-  color: #333; /* Dark color for readability */
-  text-transform: uppercase; /* Uppercase letters for emphasis */
-  letter-spacing: 2px; /* Add some spacing between letters */
+  color: #333; 
+  text-transform: uppercase; 
+  letter-spacing: 2px; 
 }
+
 .video-container {
   margin-bottom: -110px;
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  padding-bottom: 56.25%; 
   height: 0;
   overflow: hidden;
   max-width: 100%;

@@ -16,10 +16,8 @@ function RegisterPage() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [registerSuccess, setRegisterSuccess] = useState(false); // State untuk bubble sukses
+  const [registerSuccess, setRegisterSuccess] = useState(false);
   const navigate = useNavigate();
-
-  // Fungsi untuk toggle visibility password
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
@@ -38,10 +36,10 @@ function RegisterPage() {
       });
 
       if (response.status === 201) {
-        setRegisterSuccess(true); // Tampilkan bubble sukses
+        setRegisterSuccess(true); 
         setTimeout(() => {
-          navigate('/login'); // Navigasi ke halaman login setelah beberapa detik
-        }, 2000); // Navigasi setelah bubble tampil
+          navigate('/login'); 
+        }, 2000); 
       }
     } catch (error) {
       console.error('Error during registration:', error);
@@ -56,7 +54,6 @@ function RegisterPage() {
 
   return (
     <div className="register-page">
-      {/* Left Section */}
       <div className="left-section">
         <p className="welcome-text-register">Welcome to QuakeRangers</p>
         <p className="already-have-account">Already have an account?</p>
@@ -67,7 +64,6 @@ function RegisterPage() {
         </div>
       </div>
 
-      {/* Right Section */}
       <div className="right-section">
         <div className="create-account">Create Account</div>
 
@@ -115,8 +111,6 @@ function RegisterPage() {
           </button>
         </div>
       </div>
-
-      {/* Bubble untuk register berhasil */}
       {registerSuccess && (
         <div className="success-bubble">
           Register Successful!

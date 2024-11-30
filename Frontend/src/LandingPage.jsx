@@ -6,20 +6,18 @@ import mailIcon from './assets/icons/mail-multiple.svg';
 import mapIcon from './assets/icons/map.svg';
 import logoImage from './assets/images/logo.png';
 import heroImage from './assets/images/image.png';
-import bookIcon from './assets/icons/book.svg'; // Add icons
-import practiceIcon from './assets/icons/practice.svg'; // Add icons
-import leaderboardIcon from './assets/icons/leaderboard.svg'; // Add icons
+import bookIcon from './assets/icons/book.svg'; 
+import practiceIcon from './assets/icons/practice.svg'; 
+import leaderboardIcon from './assets/icons/leaderboard.svg'; 
 
 function LandingPage() {
   return (
     <div className="landing-page">
-      {/* Header dengan Logo dan Background */}
       <div className="header-landing">
         <img src={logoImage} alt="Logo" className="logo-landing" />
         <div className="header-text">QUAKERANGERS!</div>
       </div>
 
-      {/* Main Content */}
       <main className="main-content">
         <div className="text-section">
           <h1 className="welcome-text-landing">Hello, Welcome!</h1>
@@ -45,7 +43,6 @@ function LandingPage() {
         </div>
       </main>
 
-      {/* New Goal Section Below */}
       <section className="goal-section">
         <h2>Our Goals</h2>
         <p>Our goal is to empower children with the knowledge and skills they need to confidently face earthquakes, stay safe, and take proactive steps to protect themselves and others. Through engaging educational content, interactive activities, and real-world scenarios, we aim to prepare the next generation to respond effectively in the event of a disaster, ensuring that they not only survive but thrive in times of crisis.</p>
@@ -65,7 +62,6 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="footer">
         <div className="contact-section">
           <div className="contact-item">

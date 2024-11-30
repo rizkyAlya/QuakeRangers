@@ -1,22 +1,22 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import './chapter1-scene1.css';
+import './chapter2-scene2.css';
 import Typewriter from 'typewriter-effect';
 
-function Chap1Scene1() {
+function Chap2Scene2() {
     const { id } = useParams();
     const navigate = useNavigate();
         const handleFinish = () => {
             navigate(`/quiz/${id}/${id}/ending`);
         };
     return (
-        <div className="skenario1-container">
+        <div className="skenario2-container-chap2">
             <div className="message1" >
                 <Typewriter
                     onInit={(typewriter) => {
                         typewriter
                             .typeString("Good job!")
                             .pauseFor(500)
-                            .typeString("<br />Taking shelter under the teacher's desk was the right choice.")
+                            .typeString("<br />Taking shelter under the desk was the right choice.")
                             .pauseFor(500)
                             .typeString('<br />Now you are safe, wait until the earthquake stops.')
                             .start();
@@ -33,4 +33,4 @@ function Chap1Scene1() {
     )
 }
 
-export default Chap1Scene1;
+export default Chap2Scene2;

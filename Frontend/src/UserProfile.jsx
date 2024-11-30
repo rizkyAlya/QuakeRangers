@@ -47,8 +47,6 @@ function ProfilePage() {
     try {
       const token = localStorage.getItem('token');
       const formData = new FormData();
-
-      // Add the edited profile data to FormData
       Object.keys(editedProfile).forEach((key) => {
         formData.append(key, editedProfile[key]);
       });
@@ -61,8 +59,6 @@ function ProfilePage() {
       });
 
       console.log('Profile updated successfully:', response.data);
-
-      // Update profile data in the UI
       setProfile((prevProfile) => ({
         ...prevProfile,
         user: {
@@ -70,8 +66,6 @@ function ProfilePage() {
           ...response.data.updatedUser,
         },
       }));
-
-      // Close modal
       handleCloseModal();
     } catch (error) {
       console.error('Error updating profile:', error);
@@ -93,17 +87,13 @@ function ProfilePage() {
       });
 
       console.log('Profile picture updated successfully:', response.data);
-
-      // Update avatar in UI
       setProfile((prevProfile) => ({
         ...prevProfile,
         user: {
           ...prevProfile.user,
-          profile: response.data.updatedProfilePicture, // New URL from server
+          profile: response.data.updatedProfilePicture, 
         },
       }));
-
-      // Close photo modal
       setIsPhotoModalOpen(false);
     } catch (error) {
       console.error('Error updating profile picture:', error);

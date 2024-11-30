@@ -20,25 +20,21 @@ function LeaderboardPage() {
   const [error, setError] = useState(null);
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
-
-  // Toggle dropdown menu
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
-  // Handle Logout
   const handleLogout = () => {
-    setUser(null); // Hapus data user dari context
-    navigate('/'); // Redirect ke halaman login
+    setUser(null); 
+    navigate('/'); 
     console.log('User logged out.');
   };
 
   useEffect(() => {
-    // Fetch leaderboard data
     const fetchLeaderboard = async () => {
       try {
         const response = await axios.get(`${url}/leaderboard`);
-        setLeaderboardData(response.data.data); // Ambil data leaderboard dari backend
+        setLeaderboardData(response.data.data); 
       } catch (err) {
         console.error('Error fetching leaderboard data:', err);
         setError('Failed to fetch leaderboard. Please try again.');
@@ -58,7 +54,6 @@ function LeaderboardPage() {
 
   return (
     <div className="leaderboard-page">
-      {/* Header Section */}
       <header className="header-leaderboard">
         <div className="logo-container">
           <img src={logo} alt="Logo" className="logo" />
@@ -68,19 +63,16 @@ function LeaderboardPage() {
           <img src={groupIcon} alt="Menu Icon" />
           {menuOpen && (
             <div className="profile-dropdown-leaderboard">
-              {/* Navigasi ke Home */}
               <Link to="/home" className="profile-item">
                 <img src={homeIcon} alt="Home Icon" className="dropdown-icon" />
                 Home
               </Link>
-              {/* Navigasi ke User Profile */}
               {user && (
                 <Link to={`/profile/${user}`} className="profile-item">
                   <img src={profileIcon} alt="Profile Icon" className="dropdown-icon" />
                   Profile
                 </Link>
               )}
-              {/* Logout */}
               <div className="profile-item" onClick={handleLogout}>
                 <img src={logoutIcon} alt="Logout Icon" className="dropdown-icon" />
                 Logout
@@ -89,15 +81,12 @@ function LeaderboardPage() {
           )}
         </div>
       </header>
-
-      {/* Main Content */}
       <main className="main-content-leaderboard">
         <h2 className="leaderboard-title">Leaderboard</h2>
 
         {error && <p className="error-message">{error}</p>}
 
         <div className="rankings">
-          {/* Rank 2 */}
           {leaderboardData[1] && (
             <div className="ranking rank-2">
               <div className="ranking-ellipse">
@@ -113,7 +102,6 @@ function LeaderboardPage() {
             </div>
           )}
 
-          {/* Rank 1 */}
           {leaderboardData[0] && (
             <div className="ranking rank-1">
               <div className="ranking-ellipse">
@@ -129,7 +117,6 @@ function LeaderboardPage() {
             </div>
           )}
 
-          {/* Rank 3 */}
           {leaderboardData[2] && (
             <div className="ranking rank-3">
               <div className="ranking-ellipse">

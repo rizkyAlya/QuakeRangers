@@ -15,11 +15,10 @@ function LoginPage() {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [loginSuccess, setLoginSuccess] = useState(false); // State untuk bubble sukses
+  const [loginSuccess, setLoginSuccess] = useState(false); 
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);
 
-  // Function to toggle password visibility
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
@@ -36,7 +35,6 @@ function LoginPage() {
         password,
       });
 
-      // Simpan token dan ID pengguna
       const { token, id } = response.data;
 
       localStorage.setItem('token', token);
@@ -44,14 +42,13 @@ function LoginPage() {
       setUser(id);
 
       if (response.status === 200) {
-        setLoginSuccess(true); // Tampilkan bubble sukses
+        setLoginSuccess(true); 
         setTimeout(() => {
-          navigate('/home'); // Navigasi setelah beberapa detik
-        }, 2000); // Navigasi setelah bubble tampil
+          navigate('/home'); 
+        }, 2000); 
       }
     } catch (error) {
       if (error.response) {
-        // Tangani error spesifik berdasarkan status kode
         if (error.response.status === 401) {
           setErrorMessage('Incorrect password. Please try again.');
         } else if (error.response.status === 404) {
@@ -109,16 +106,11 @@ function LoginPage() {
               onClick={togglePassword}
             />
           </div>
-
-          {/* Tampilkan pesan error di sini */}
           {errorMessage && <p className="error-message">{errorMessage}</p>}
-
           <button className="sign-in-btn" onClick={handleLogin}>
             SIGN IN
           </button>
         </div>
-
-        {/* Bubble untuk login berhasil */}
         {loginSuccess && (
           <div className="success-bubble">
             Login Successful!

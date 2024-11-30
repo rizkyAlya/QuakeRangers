@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react'; // Tambahkan useContext dan useEffect
-import { Link, useNavigate } from 'react-router-dom'; // Tambahkan useNavigate
+import React, { useState, useContext, useEffect } from 'react'; 
+import { Link, useNavigate } from 'react-router-dom'; 
 import axios from 'axios';
 import './QuizPage.css';
 import logo from './assets/images/logo.png';
@@ -11,16 +11,15 @@ import leaderboardIcon from './assets/icons/leaderboard2.svg';
 import schoolImage from './assets/images/school.png';
 import profileIcon from './assets/icons/profile2.svg';
 import logoutIcon from './assets/icons/logout.svg';
-import { UserContext } from './UserContext'; // Import UserContext untuk mendapatkan user
+import { UserContext } from './UserContext'; 
 const url = import.meta.env.VITE_BACKEND_URL;
 
 function QuizPage() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { user, setUser } = useContext(UserContext); // Gunakan UserContext untuk mendapatkan user dan setUser
-  const navigate = useNavigate(); // Gunakan untuk navigasi setelah logout
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate(); 
   const [quiz, setQuiz] = useState([]);
 
-  // Mendapatkan semua course di database
   useEffect(() => {
     const fetchAllQuiz = async () => {
       try {
@@ -35,29 +34,26 @@ function QuizPage() {
   }, []);
 
   const handleQuizClick = (id) => {
-    navigate(`/quiz/${id}`); // Beralih ke course tertentu
+    navigate(`/quiz/${id}/${id}`); 
   };
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
-  // Fungsi untuk Logout
   const handleLogout = () => {
-    setUser(null); // Hapus data user dari UserContext
-    navigate('/'); // Arahkan ke halaman login setelah logout
+    setUser(null); 
+    navigate('/'); 
     console.log('User logged out.');
   };
 
   return (
     <div className="quiz-page">
-      {/* Header Section */}
       <header className="header">
         <div className="logo-container">
           <img src={logo} alt="Logo" className="logo" />
           <h1>QUAKERANGERS!</h1>
         </div>
-        {/* Profile Menu */}
         <div className="profile-menu" onClick={toggleMenu}>
           <img src={groupIcon} alt="Group" />
           {menuOpen && (
@@ -75,7 +71,6 @@ function QuizPage() {
         </div>
       </header>
 
-      {/* Sidebar Section */}
       <div className="sidebar">
         <div className="menu">
           <Link to="/home">
@@ -96,7 +91,7 @@ function QuizPage() {
               <span>Quiz</span>
             </div>
           </Link>
-          {/* Tambahkan Link ke Leaderboard */}
+    
           <Link to="/leaderboard">
             <div className="menu-item">
               <img src={leaderboardIcon} alt="Leaderboard" />
@@ -106,7 +101,6 @@ function QuizPage() {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="my-quiz-container">
         <h2>Quiz</h2>
         <div className="quiz-grid">
@@ -114,16 +108,16 @@ function QuizPage() {
             <div 
               key={chapter._id} 
               className="quiz-card"
-              onClick={() => handleQuizClick(chapter._id)} // Event klik untuk navigasi
-              style={{ cursor: "pointer" }} // Tambahkan cursor pointer untuk indikasi klik
+              onClick={() => handleQuizClick(chapter._id)} 
+              style={{ cursor: "pointer" }} 
             >
-              <h3>{chapter.title}</h3> {/* Judul dipindahkan ke atas gambar */}
+              <h3>{chapter.title}</h3> 
               <img
                 src={schoolImage}
                 alt={chapter.title}
                 className="quiz-image"
               />
-              <p>Poin: {chapter.point}</p> {/* Menambahkan keterangan 'Poin: ' */}
+              <p>Poin: {chapter.point}</p> 
             </div>
           ))}
         </div>

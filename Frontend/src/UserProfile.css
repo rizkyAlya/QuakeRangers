@@ -110,11 +110,10 @@
   appearance: none;
 }
 
-/* Edit Button */
 .edit-profile-btn {
   background-color: #5F6F52; 
   color: #FEFAE0; 
-  padding: 10px 20px;  /* Mengurangi padding agar tombol lebih kecil */
+  padding: 10px 20px;  
   font-size: 18px; 
   font-weight: bold;
   border: none;
@@ -122,7 +121,7 @@
   cursor: pointer;
   margin-top: 30px;
   transition: background-color 0.3s ease;
-  width: 150px;  /* Menyesuaikan lebar tombol dengan konten */
+  width: 150px;  
 }
 
 
@@ -130,7 +129,6 @@
   background-color: #4E5E46; 
 }
 
-/* Modal Styling */
 .modal {
   position: fixed;
   top: 0;
@@ -181,7 +179,6 @@
   font-size: 16px; 
 }
 
-/* Close Button */
 .close-btn {
   position: absolute;
   top: 10px;
@@ -210,7 +207,6 @@
   height: 32px;
 }
 
-/* Responsiveness */
 @media (max-width: 768px) {
   .profile-page {
     flex-direction: column;

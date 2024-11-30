@@ -7,7 +7,6 @@
     background-color: #5F6F52;
 }
 
-/* Header */
 .header {
     width: 100%;
     background-color: #A9B388;
@@ -20,7 +19,6 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Logo and title */
 .logo-container {
     display: flex;
     justify-content: flex-start;
@@ -42,7 +40,6 @@ h1 {
     font-weight: 700;
 }
 
-/* Sidebar */
 .sidebar {
     width: 20%;
     padding: 20px;
@@ -87,7 +84,6 @@ h1 {
     margin-right: 10px;
 }
 
-/* Profile Menu */
 .profile-menu-courses {
     position: relative;
     cursor: pointer;
@@ -98,7 +94,6 @@ h1 {
     height: 50px;
 }
 
-/* Profile Dropdown */
 .profile-dropdown-courses {
     position: absolute;
     top: 60px;
@@ -108,11 +103,10 @@ h1 {
     border-radius: 8px;
     z-index: 1000;
     padding: 10px 0;
-    width: 180px; /* Lebar dropdown */
-    animation: fadeIn 0.2s ease-in-out; /* Animasi muncul */
+    width: 180px; 
+    animation: fadeIn 0.2s ease-in-out; 
 }
 
-/* Animasi untuk Dropdown */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -145,7 +139,6 @@ h1 {
     transform: translateX(5px);
 }
 
-/* Main Content */
 .my-courses-container {
     text-align: center;
     padding: 40px 20px;
@@ -211,7 +204,6 @@ h1 {
     font-weight: 500;
 }
 
-/* Responsiveness */
 @media (max-width: 768px) {
     .courses-page {
         flex-direction: column;

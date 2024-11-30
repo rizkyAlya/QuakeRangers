@@ -20,15 +20,15 @@ function MainCourses() {
   const { id } = useParams();
   const [courses, setCourses] = useState([]);
   const { user, setUser } = useContext(UserContext);
-  const [videoUrl, setVideoUrl] = useState(""); // State to store video URL
+  const [videoUrl, setVideoUrl] = useState(""); 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCourse = async () => {
       try {
         const response = await axios.get(`${url}/course/${id}`);
-        setCourse(response.data.data);  // Assuming 'data' contains course details
-        setVideoUrl(response.data.data.video);  // Store the video URL here
+        setCourse(response.data.data);  
+        setVideoUrl(response.data.data.video);  
       } catch (error) {
         console.error('Error fetching course data:', error);
       }
@@ -116,13 +116,9 @@ function MainCourses() {
         <button className="back-button" onClick={() => navigate('/courses')}>
           <img src={backIcon} alt="Back Icon" />
         </button>
-
-        {/* Add text below the back button */}
         <div className="video-reference-text">
           <span>Video Reference:</span>
         </div>
-
-        {/* Display YouTube Video if URL exists */}
         {videoUrl && (
           <div className="video-container">
             <iframe
@@ -136,8 +132,6 @@ function MainCourses() {
             />
           </div>
         )}
-
-        {/* Display course content */}
         <ReactMarkdown>{course.content || 'No Content Available'}</ReactMarkdown>
       </main>
     </div>

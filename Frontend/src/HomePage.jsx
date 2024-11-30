@@ -17,14 +17,12 @@ function HomePage() {
 
   useEffect(() => {
     if (user && user.id) {
-      // Logic untuk user jika diperlukan
     }
   }, [user]);
 
-  // Fungsi untuk logout
   const handleLogout = () => {
-    setUser(null); // Hapus data user dari UserContext
-    navigate('/'); // Arahkan ke halaman login setelah logout
+    setUser(null); 
+    navigate('/'); 
     console.log('User logged out.');
   };
 
@@ -66,7 +64,6 @@ function HomePage() {
       </div>
       <p className="play-text">LET'S PLAY!</p>
       <div className="icons">
-        {/* Profile Icon */}
         <Link to={`/profile/${user}`}>
           <button
             className={`icon-button profile-button ${activeButton === 'profile' ? 'active' : ''}`}
@@ -76,7 +73,6 @@ function HomePage() {
           </button>
         </Link>
 
-        {/* Logout Icon */}
         <button
           className={`icon-button logout-button ${activeButton === 'logout' ? 'active' : ''}`}
           onClick={handleLogout} 
