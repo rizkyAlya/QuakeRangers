@@ -1,0 +1,213 @@
+.chapter3-container {
+    background-image: url('../../assets/chapter3/Chapter3.png');
+    position: relative;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    display: block;
+    object-fit: cover;
+    transition: background-color 0.3s ease;
+    overflow: hidden;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* Gaya untuk pesan peringatan */
+.warning3-message {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 0, 0, 0.7);
+    /* Warna latar belakang peringatan */
+    color: white;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 20;
+}
+
+.message3 {
+    font-family: 'Quantico', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    font-style: normal;
+    margin-left: 325px;
+    margin-top: 15px;
+}
+
+.tips3 {
+    font-family: 'Quantico', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+.heart3-container {
+    display: flex;
+    /* Mengatur elemen anak secara horizontal */
+    flex-direction: row;
+    /* Arah default untuk flex, bisa diabaikan */
+    gap: 8px;
+    /* Jarak antar gambar */
+    width: 70px;
+    margin-left: 1065px;
+}
+
+.score3 {
+    font-family: 'Quantico', sans-serif;
+    font-weight: 700;
+    font-size: 31px;
+    margin-top: 10px;
+    margin-left: 1075px;
+}
+
+.hint3-button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-left: 325px;
+}
+
+.disabled3-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 10px;
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+.hint3-container {
+    margin-top: 20px;
+    font-style: italic;
+    color: #555;
+}
+
+.lampu_meja-button {
+    position: absolute;
+    top: 88.5%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    width: 363px;
+    height: auto;
+    z-index: 10;
+}
+
+.lampu_meja-button:hover {
+    filter: brightness(0.5);
+}
+
+.tas-button {
+    position: absolute;
+    top: 88.5%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    width: 363px;
+    height: auto;
+    z-index: 10;
+}
+
+.tas-button:hover {
+    filter: brightness(0.5);
+}
+
+.snack-button {
+    position: absolute;
+    top: 12.5%;
+    left: 2%;
+    transform: translate(-10%, -10%);
+    cursor: pointer;
+    width: 363px;
+    height: 100px;
+    z-index: 1;
+}
+
+.snack-button:hover {
+    filter: brightness(0.5);
+}
+
+.p3k-button {
+    position: absolute;
+    top: 88.5%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    width: 363px;
+    height: auto;
+    z-index: 10;
+}
+
+.p3k-button:hover {
+    filter: brightness(0.5);
+}
+
+.senter-button {
+    position: absolute;
+    top: 88.5%;
+    left: 25%;
+    transform: translate(-30%, -30%);
+    cursor: pointer;
+    width: 363px;
+    height: auto;
+    z-index: 10;
+}
+
+.senter-button:hover {
+    filter: brightness(0.5);
+}
+
+.selected3-elements {
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.selected3-items-list {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.selected3-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.selected3-item-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+}
+
+.undo-button {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.undo-button:hover {
+    background-color: darkred;
+}
