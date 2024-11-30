@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Typewriter from 'typewriter-effect';
 import './chapter3.css';
+import fullHeart from '../../assets/icons/nyawa-penuh.png';
 import snack from '../../assets/chapter3/ElemenBenar1.png';
 import p3k from '../../assets/chapter3/ElemenBenar2.png';
 import senter from '../../assets/chapter3/ElemenBenar3.png';
@@ -31,7 +32,11 @@ function Chapter3() {
     const [showNextButton, setShowNextButton] = useState(false);
     const [selectedElements, setSelectedElements] = useState([]);
     const [disabledElements, setDisabledElements] = useState([]);
+    const [message, setMessage] = useState('');
     const userId = user.user;
+
+    const correctAnswers = ['snack', 'p3k', 'senter', 'botol', 'tas']; // List of correct elements
+    const wrongAnswers = ['buku', 'lampu_meja', 'pot']; // List of wrong elements
 
     useEffect(() => {
         const userProgress = async () => {
@@ -48,6 +53,38 @@ function Chapter3() {
         userProgress();
     }, [userId]);
 
+    const handleHintClick = () => {
+        if (score > 0) {
+            setShowHintPopup(true); // Tampilkan popup jika poin > 0
+        }
+    };
+
+    const confirmHint = async () => {
+        const newScore = score - 100;
+        setScore(prevScore => prevScore - 100);
+
+        try {
+            console.log(newScore);
+            const res = await axios.put(`${url}/user/progress/${userId}`, {
+                score: newScore
+            });
+            console.log('Score updated successfully:', res.data);
+        } catch (error) {
+            console.error('Error updating score:', error.response?.data || error.message);
+        }
+
+        setHintVisible(true); // Tampilkan hint
+        setShowHintPopup(false); // Sembunyikan popup
+    };
+
+    const cancelHint = () => {
+        setShowHintPopup(false); // Sembunyikan popup tanpa perubahan
+    };
+
+    const closeHint = () => {
+        setHintVisible(false); // Tutup popup hint
+    };
+
     const handleElementClick = (elementName, imgSrc) => {
         if (disabledElements.includes(elementName)) return;
 
@@ -60,26 +97,128 @@ function Chapter3() {
         setDisabledElements(prevState => prevState.filter(item => item !== elementName));
     };
 
+    const handleSubmit = () => {
+        const selectedNames = selectedElements.map(item => item.name);
+        const correct = selectedNames.every(name => correctAnswers.includes(name)); // Check if all selected items are correct
+        const wrong = selectedNames.some(name => wrongAnswers.includes(name)); // Check if any selected item is wrong
+
+        if (correct) {
+            setMessage('Correct! You have selected all the necessary items.');
+            setScore(prevScore => prevScore + 1000); // Add 1000 points if correct
+            setLives(prevLives => prevLives); // Keep lives as is
+            navigate(`/quiz/674abb8d3771c421e3a88b3d/${id}/success`); // Navigate to success scenario
+        } else {
+            setMessage('Wrong selection! Some of your choices were incorrect.');
+            setScore(prevScore => prevScore - 500); // Deduct 500 points if wrong
+            setLives(prevLives => Math.max(prevLives - 1, 0)); // Deduct 1 life
+            navigate(`/quiz/674abb8d3771c421e3a88b3d/${id}/fail`); // Navigate to fail scenario
+        }
+
+        // Update score and lives in the backend
+        UserProgress();
+    };
+
+    // Menentukan ukuran maksimal yang diinginkan untuk jendela
+    const checkWindowSize = () => {
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+        const screenMaxWidth = window.screen.width;
+        const screenMaxHeight = window.screen.height;
+
+        // Tentukan batas ukuran jendela yang diinginkan (misalnya 95% dari ukuran layar)
+        const widthThreshold = screenMaxWidth * 1.32;
+        const heightThreshold = screenMaxHeight * 1.13;
+
+        // Cek apakah jendela lebih kecil dari batas threshold
+        if (screenWidth < widthThreshold || screenHeight < heightThreshold) {
+            setIsWindowMaximized(false);
+            setWarningMessage('Perhatian: Ukuran jendela tidak maksimal. Harap perbesar jendela!');
+        } else {
+            setIsWindowMaximized(true);
+            setWarningMessage('');
+        }
+    };
+
+    // Tambahkan event listener untuk memonitor perubahan ukuran jendela
+    useEffect(() => {
+        window.addEventListener('resize', checkWindowSize);
+
+        // Cek ukuran jendela saat pertama kali halaman dimuat
+        checkWindowSize();
+
+        // Bersihkan event listener ketika komponen unmount
+        return () => {
+            window.removeEventListener('resize', checkWindowSize);
+        };
+    }, []);
+
     return (
         <div className="chapter3-container">
-            <div className="message3">
+            {!isWindowMaximized && (
+                <div className="warning3-message">{warningMessage}</div>
+            )}
+            <div className="message3" >
+                <div className='heart3-container'>
+                    {Array.from({ length: lives }).map((_, index) => (
+                        <img
+                            key={index}
+                            src={fullHeart}
+                            alt="Nyawa"
+                        />
+                    ))}
+                </div>
                 <h4 className='score3'>Score: <span>{score}</span></h4>
                 <Typewriter
                     onInit={(typewriter) => {
                         typewriter
-                            .typeString('You are in the classroom.')
+                            .typeString('Hurry up!')
                             .pauseFor(500)
-                            .typeString('<br />An emergency happens!')
+                            .typeString('<br />We dont know when the aftershocks will occur')
                             .pauseFor(500)
-                            .typeString('<br />Choose the right items to survive!')
+                            .typeString('<br />Quickly pack your important things!')
+                            .pauseFor(800)
+                            .callFunction(() => {
+                                setShowTips(true);
+                                setShowHint(true);
+                            })
                             .start();
                     }}
                     options={{
                         delay: 75,
                     }}
                 />
+                {showTips && <h4 className='tips3'>Tips: Choose  five correct items</h4>}
             </div>
-
+            {showHint &&
+                <button
+                    onClick={handleHintClick}
+                    disabled={score === 0}
+                    className={score === 0 ? "disabled-button-chap2" : "hint-button-chap2"}
+                >
+                    Hint
+                </button>
+            }
+            {showHintPopup && (
+                <div className="popup-overlay-chap2">
+                    <div className="popup3">
+                        <p>Using a hint will cost 100 points. Are you sure?</p>
+                        <div className="popup3-buttons">
+                            <button onClick={confirmHint}>Yes, show me the hint</button>
+                            <button onClick={cancelHint}>No, cancel</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {hintVisible && (
+                <div className="popup3-overlay">
+                    <div className="popup3">
+                        <p>Hint: Items such as books, lamps or pots may be attractive, but in emergency situations, more practical and functional items will be more important.</p>
+                        <div className="popup3-buttons">
+                            <button onClick={closeHint}>Close</button>
+                        </div>
+                    </div>
+                </div>
+            )}
             <div className="elements3-container">
                 {/* Place elements with position absolute */}
                 <img
@@ -159,6 +298,17 @@ function Chapter3() {
                     ))}
                 </div>
             </div>
+
+            <div className="submit-container">
+    {!message && <button className="submit-button" onClick={handleSubmit}>Submit</button>}
+</div>
+
+
+            {message && (
+                <div className="result-message">
+                    <h3>{message}</h3>
+                </div>
+            )}
         </div>
     );
 }

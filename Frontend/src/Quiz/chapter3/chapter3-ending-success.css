@@ -1,0 +1,46 @@
+.ending3-success-container {
+    background-image: url('../../assets/chapter3/Selamat.png');
+    position: relative;
+    background-size: contain;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    display: block;
+    object-fit: cover;
+    transition: background-color 0.3s ease;
+    overflow: hidden;
+}
+
+.message3 {
+    font-family: 'Quantico', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    font-style: normal;
+    margin-right: 315px;
+    margin-top: 20px;
+    text-align: right;
+}
+/* Tampilan tombol di pop-up */
+.popup3-success-buttons button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #7f4d5e;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    margin-top: 730px;
+    margin-left: 1480px;
+}
+
+.popup3-success-buttons button:hover {
+    background-color: #c292a2;
+}
+
+.text3 {
+    font-size: 30px;
+}
