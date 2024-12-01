@@ -13,3 +13,34 @@
     transition: background-color 0.3s ease;
     overflow: hidden;
 }
+
+.message1-chap2 {
+    font-family: 'Quantico', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    font-style: normal;
+    margin-top: 20px;
+    margin-left: 310px;
+    text-align: left;
+}
+
+.popup-buttons1-chap2 button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #7f4d5e;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+    margin-left: 311px;
+}
+
+.popup-buttons1-chap2 button:hover {
+    background-color: #c292a2;
+}
+
+.text1-chap2 {
+    font-size: 20px;
+}

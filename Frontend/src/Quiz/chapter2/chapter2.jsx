@@ -17,7 +17,7 @@ function Chapter2() {
     const [lives, setLives] = useState(0);
     const [score, setScore] = useState(0);
     const [progress, setProgress] = useState('');
-    const [showHintPopup, setShowHintPopup] = useState(false); // Untuk mengontrol pop-up hint
+    const [showHintPopup, setShowHintPopup] = useState(false);
     const [hintVisible, setHintVisible] = useState(false);
     const [isWindowMaximized, setIsWindowMaximized] = useState(true);
     const [warningMessage, setWarningMessage] = useState('');
@@ -83,9 +83,9 @@ function Chapter2() {
 
         switch (choice) {
             case 'pintu':
-                if (lives > 0) {
+                setLives(prevLives => prevLives - 1);
+                if (lives > 1) {
                     message = "You chose to run outside through the door."
-                    setLives(prevLives => prevLives - 1);
                 } else {
                     message = "Game Over! You ran out of lives. Stay safe and try again!";
                 }
@@ -95,9 +95,9 @@ function Chapter2() {
                 message = "You decide to stay under the table for protection."
                 break;
             case 'sofa':
-                if (lives > 0) {
-                    message = "You decide to stay under the couch for protection."
-                    setLives(prevLives => prevLives - 1);
+                setLives(prevLives => prevLives - 1);
+                if (lives > 1) {
+                    message = "You decide to stay beside the couch for protection."
                 } else {
                     message = "Game Over! You ran out of lives. Stay safe and try again!";
                 }
@@ -108,15 +108,14 @@ function Chapter2() {
         setShowPopup(true);
     };
 
-    // Fungsi untuk handle Replay
-    const handleReplay = () => {
-        setShowPopup(false);
-    };
-
     // Fungsi untuk handle Finish
     const handleFinish = () => {
         setShowPopup(false);
-        handleSubmit(element);
+        if (lives == 0 && element != "meja") {
+            navigate(`/quiz/${id}/${id}/ending2`);
+        } else {
+            handleSubmit(element);
+        }
     };
 
     const handleSubmit = async (answer) => {
@@ -133,24 +132,20 @@ function Chapter2() {
                 }
             }
 
-            const response = await axios.post(`${url}/quiz/submit/${id}`, {
-                userId,
-                userAnswer: answer
-            });
-
-            if (response.status === 200) {
-                console.log('Submit successful:', response.data);
-                if (answer == "pintu") {
-                    navigate(`/quiz/${id}/${id}/scene1`);
-                } else if (answer == "meja") {
-                    navigate(`/quiz/${id}/${id}/scene2`);
-                } else if (answer == "sofa") {
-                    navigate(`/quiz/${id}/${id}/scene3`);
-                }
-            } else {
+            if (answer == "pintu") {
+                navigate(`/quiz/${id}/${id}/scene1`);
+            } else if (answer == "meja") {
+                const response = await axios.post(`${url}/quiz/submit/${id}`, {
+                    userId,
+                    userAnswer: answer
+                });
                 console.log(response.data);
+
+                navigate(`/quiz/${id}/${id}/scene2`);
+            } else {
+                navigate(`/quiz/${id}/${id}/scene3`);
             }
-            
+
         } catch (error) {
             console.error('Submit error:', error);
             console.log(user);
@@ -281,9 +276,6 @@ function Chapter2() {
                     <div className="popup-chap2">
                         <p>{message}</p>
                         <div className="popup-buttons-chap2">
-                            {lives >= 1 && !showNextButton && (
-                                <button onClick={handleReplay}>Replay</button>
-                            )}
                             <button onClick={handleFinish}>Next</button>
                         </div>
                     </div>

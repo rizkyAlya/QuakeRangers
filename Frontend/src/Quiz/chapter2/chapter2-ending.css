@@ -13,3 +13,41 @@
     transition: background-color 0.3s ease;
     overflow: hidden;
 }
+
+.message-ending-chap2 {
+    font-family: 'Quantico', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    font-style: normal;
+    margin-left: 325px;
+    margin-top: 20px;
+}
+
+.score-container-chap2 {
+    font-family: 'Quantico', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    font-style: normal;
+    margin-left: 325px;
+}
+
+.popup-buttons-ending-chap2 button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #7f4d5e;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    margin-top: 740px;
+    margin-left: 1507px;
+}
+
+.popup-buttons-ending-chap2 button:hover {
+    background-color: #c292a2;
+}
+
+.text-ending-chap2 {
+    font-size: 20px;
+}

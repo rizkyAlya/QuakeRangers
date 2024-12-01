@@ -91,17 +91,17 @@ function Chapter1() {
                 message = "You picked the student desk as your shelter."
                 break;
             case 'pintu':
-                if (lives > 0) {
+                setLives(prevLives => prevLives - 1);
+                if (lives > 1) {
                     message = "You chose to run outside through the door."
-                    setLives(prevLives => prevLives - 1);
                 } else {
                     message = "Game Over! You ran out of lives. Stay safe and try again!";
                 }
                 break;
             case 'lemari':
-                if (lives > 0) {
+                setLives(prevLives => prevLives - 1);
+                if (lives > 1) {
                     message = "You chose to hide in the cabinet."
-                    setLives(prevLives => prevLives - 1);
                 } else {
                     message = "Game Over! You ran out of lives. Stay safe and try again!";
                 }
@@ -109,11 +109,6 @@ function Chapter1() {
 
         setMessage(message);
         setShowPopup(true);
-    };
-
-    // Fungsi untuk handle Replay
-    const handleReplay = () => {
-        setShowPopup(false);
     };
 
     // Fungsi untuk handle Finish

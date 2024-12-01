@@ -59,6 +59,7 @@ const Main = () => {
       <Route path="/quiz/67474e8cf8b29b91943e9107/:id/scene2" element={<Chap2Scene2 />} />
       <Route path="/quiz/67474e8cf8b29b91943e9107/:id/scene3" element={<Chap2Scene3 />} />
       <Route path="/quiz/67474e8cf8b29b91943e9107/:id/ending" element={<Chap2Ending />} />
+      <Route path="/quiz/67474e8cf8b29b91943e9107/:id/ending2" element={<Chap1Ending2 />} />
       <Route path="/quiz/674abb8d3771c421e3a88b3d/:id" element={<Chapter3 />} />
       <Route path="/quiz/674abb8d3771c421e3a88b3d/:id/success" element={<Chap3Success />} />
       <Route path="/quiz/674abb8d3771c421e3a88b3d/:id/fail" element={<Chap3Fail />} />

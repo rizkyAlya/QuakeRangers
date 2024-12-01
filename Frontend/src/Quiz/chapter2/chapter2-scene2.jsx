@@ -1,16 +1,20 @@
 import { useParams, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import './chapter2-scene2.css';
 import Typewriter from 'typewriter-effect';
 
 function Chap2Scene2() {
     const { id } = useParams();
     const navigate = useNavigate();
-        const handleFinish = () => {
-            navigate(`/quiz/${id}/${id}/ending`);
-        };
+    const [showButtons, setShowButtons] = useState(false);
+    
+    const handleFinish = () => {
+        navigate(`/quiz/${id}/${id}/ending`);
+    };
+
     return (
         <div className="skenario2-container-chap2">
-            <div className="message1" >
+            <div className="message1-chap2" >
                 <Typewriter
                     onInit={(typewriter) => {
                         typewriter
@@ -19,6 +23,10 @@ function Chap2Scene2() {
                             .typeString("<br />Taking shelter under the desk was the right choice.")
                             .pauseFor(500)
                             .typeString('<br />Now you are safe, wait until the earthquake stops.')
+                            .pauseFor(500)
+                            .callFunction(() => {
+                                setShowButtons(true);
+                            })
                             .start();
                     }}
                     options={{
@@ -26,9 +34,11 @@ function Chap2Scene2() {
                     }}
                 />
             </div>
-            <div className="popup-buttons1">
-                <button className='text' onClick={handleFinish}>Finish</button>
+            {showButtons && (
+            <div className="popup-buttons1-chap2">
+                <button className='text-chap2' onClick={handleFinish}>Finish</button>
             </div>
+            )}
         </div>
     )
 }
