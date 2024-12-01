@@ -37,6 +37,8 @@
     font-style: normal;
     margin-left: 325px;
     margin-top: 15px;
+    position: relative;  /* Menjaga posisi tetap */
+    z-index: 9999;       /* Pastikan pesan tetap di depan */
 }
 
 .tips-chap2 {

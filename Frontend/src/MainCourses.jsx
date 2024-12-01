@@ -27,8 +27,14 @@ function MainCourses() {
     const fetchCourse = async () => {
       try {
         const response = await axios.get(`${url}/course/${id}`);
-        setCourse(response.data.data);
-        setVideoUrl(response.data.data.video);
+        const courseData = response.data.data;
+        console.log('Fetched Course Data:', courseData); // Debugging log
+        setCourse(courseData);
+
+        // Gunakan langsung video URL dari backend tanpa parsing tambahan
+        if (courseData.video) {
+          setVideoUrl(courseData.video);
+        }
       } catch (error) {
         console.error('Error fetching course data:', error);
       }
@@ -113,18 +119,20 @@ function MainCourses() {
           <img src={backIcon} alt="Back Icon" />
         </button>
         <div className="video-reference-text">Video Reference:</div>
-        {videoUrl && (
+        {videoUrl ? (
           <div className="video-container">
             <iframe
               width="100%"
               height="400"
-              src={`https://www.youtube.com/embed/${videoUrl.split('v=')[1]}`}
+              src={videoUrl} // Gunakan embed URL langsung
               frameBorder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               title="Course Video"
             />
           </div>
+        ) : (
+          <div className="no-video-message">No video available for this course.</div>
         )}
         <ReactMarkdown>{course.content || 'No Content Available'}</ReactMarkdown>
       </main>
