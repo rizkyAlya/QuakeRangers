@@ -18,7 +18,7 @@ function Chapter1() {
     const [lives, setLives] = useState(0);
     const [score, setScore] = useState(0);
     const [progress, setProgress] = useState('');
-    const [showHintPopup, setShowHintPopup] = useState(false); // Untuk mengontrol pop-up hint
+    const [showHintPopup, setShowHintPopup] = useState(false);
     const [hintVisible, setHintVisible] = useState(false);
     const [isWindowMaximized, setIsWindowMaximized] = useState(true);
     const [warningMessage, setWarningMessage] = useState('');
@@ -48,7 +48,7 @@ function Chapter1() {
 
     const handleHintClick = () => {
         if (score > 0) {
-            setShowHintPopup(true); // Tampilkan popup jika poin > 0
+            setShowHintPopup(true);
         }
     };
 
@@ -86,7 +86,6 @@ function Chapter1() {
             case 'meja_guru':
                 setShowNextButton(true);
                 message = "You decided to stay under the teacher's desk for protection."
-                //message = "Good job! Taking shelter under the teacher's desk was the right choice.";
                 break;
             case 'meja_murid':
                 message = "You picked the student desk as your shelter."
@@ -94,7 +93,6 @@ function Chapter1() {
             case 'pintu':
                 if (lives > 0) {
                     message = "You chose to run outside through the door."
-                    //message = "Danger! Running outside is too risky. Falling debris could hit you. It’s safer to stay inside and take shelter";
                     setLives(prevLives => prevLives - 1);
                 } else {
                     message = "Game Over! You ran out of lives. Stay safe and try again!";
@@ -103,7 +101,6 @@ function Chapter1() {
             case 'lemari':
                 if (lives > 0) {
                     message = "You chose to hide in the cabinet."
-                    //message = "Choosing the cabinet is risky! It could fall forward, trapping you inside. You won’t be able to escape if it does";
                     setLives(prevLives => prevLives - 1);
                 } else {
                     message = "Game Over! You ran out of lives. Stay safe and try again!";
@@ -122,7 +119,11 @@ function Chapter1() {
     // Fungsi untuk handle Finish
     const handleFinish = () => {
         setShowPopup(false);
-        handleSubmit(element);
+        if (lives == 0 && (element == "lemari" || element == "pintu")) {
+            navigate(`/quiz/${id}/${id}/ending2`);
+        } else {
+            handleSubmit(element);
+        }
     };
 
     const handleSubmit = async (answer) => {
@@ -138,26 +139,23 @@ function Chapter1() {
                     console.error('Error updating lives:', error.response?.data || error.message);
                 }
             }
-
-            const response = await axios.post(`${url}/quiz/submit/${id}`, {
-                userId,
-                userAnswer: answer
-            });
-
-            if (response.status === 200) {
-                console.log('Submit successful:', response.data);
-                if (answer == "meja_guru") {
-                    navigate(`/quiz/${id}/${id}/scene1`);
-                } else if (answer == "meja_murid") {
-                    navigate(`/quiz/${id}/${id}/scene2`);
-                } else if (answer == "pintu") {
-                    navigate(`/quiz/${id}/${id}/scene3`);
-                } else {
-                    navigate(`/quiz/${id}/${id}/scene4`);
-                }
-            } else {
+            
+            if (answer == "meja_guru") {
+                const response = await axios.post(`${url}/quiz/submit/${id}`, {
+                    userId,
+                    userAnswer: answer
+                });
                 console.log(response.data);
+
+                navigate(`/quiz/${id}/${id}/scene1`);
+            } else if (answer == "meja_murid") {
+                navigate(`/quiz/${id}/${id}/scene2`);
+            } else if (answer == "pintu") {
+                navigate(`/quiz/${id}/${id}/scene3`);
+            } else {
+                navigate(`/quiz/${id}/${id}/scene4`);
             }
+
         } catch (error) {
             console.error('Submit error:', error);
             console.log(user);
@@ -294,9 +292,6 @@ function Chapter1() {
                     <div className="popup">
                         <p>{message}</p>
                         <div className="popup-buttons">
-                            {lives >= 1 && !showNextButton && (
-                                <button onClick={handleReplay}>Replay</button>
-                            )}
                             <button onClick={handleFinish}>Next</button>
                         </div>
                     </div>

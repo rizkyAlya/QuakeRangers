@@ -14,6 +14,7 @@ import Chap1Scene2 from "./Quiz/chapter1/chapter1-scene2";
 import Chap1Scene3 from "./Quiz/chapter1/chapter1-scene3";
 import Chap1Scene4 from "./Quiz/chapter1/chapter1-scene4";
 import Chap1Ending from "./Quiz/chapter1/chapter1-ending";
+import Chap1Ending2 from "./Quiz/chapter1/chapter1-ending2";
 import Chapter2 from "./Quiz/chapter2/chapter2";
 import Chap2Scene1 from "./Quiz/chapter2/chapter2-scene1";
 import Chap2Scene2 from "./Quiz/chapter2/chapter2-scene2";
@@ -52,6 +53,7 @@ const Main = () => {
       <Route path="/quiz/67474e68f8b29b91943e9105/:id/scene3" element={<Chap1Scene3 />} />
       <Route path="/quiz/67474e68f8b29b91943e9105/:id/scene4" element={<Chap1Scene4 />} />
       <Route path="/quiz/67474e68f8b29b91943e9105/:id/ending" element={<Chap1Ending />} />
+      <Route path="/quiz/67474e68f8b29b91943e9105/:id/ending2" element={<Chap1Ending2 />} />
       <Route path="/quiz/67474e8cf8b29b91943e9107/:id" element={<Chapter2 />} />
       <Route path="/quiz/67474e8cf8b29b91943e9107/:id/scene1" element={<Chap2Scene1 />} />
       <Route path="/quiz/67474e8cf8b29b91943e9107/:id/scene2" element={<Chap2Scene2 />} />

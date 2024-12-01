@@ -10,8 +10,8 @@ const userSchema = new mongoose.Schema(
     profile: { type: String, default: '' },
     gender: { type: String, default: '' },
     age: { type: Number, default: 0 },
-    score: { type: Number },
-    lives: { type: Number },
+    score: { type: Number, default: 0 },
+    lives: { type: Number, default: 3},
     progress: { type: [Boolean] }
   },
   { timestamps: true } 
