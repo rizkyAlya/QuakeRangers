@@ -1,3 +1,4 @@
+/* Main layout */
 .chapter-page {
   display: flex;
   flex-direction: row;
@@ -6,6 +7,7 @@
   font-family: 'Poppins', sans-serif;
 }
 
+/* Header */
 .header-chapter {
   width: 100%;
   background-color: #A9B388;
@@ -37,11 +39,48 @@
   margin: 0;
 }
 
-.profile-menu-chapter img {
+/* Profile menu and dropdown */
+.profile-menu-chapter {
+  position: relative;
+  cursor: pointer;
+}
+
+.menu-icon {
   width: 50px;
   height: 50px;
 }
 
+.profile-dropdown-chapter {
+  position: absolute;
+  top: 70px; /* Distance from header */
+  right: 20px;
+  background-color: #FFE8C0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  z-index: 2000; /* Ensure it's above other elements */
+  padding: 10px 0;
+  width: 150px;
+}
+
+.profile-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-item img.dropdown-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.profile-item:hover {
+  background-color: #F9EBC7;
+}
+
+/* Sidebar */
 .sidebar-chapter {
   width: 20%;
   background-color: #F9EBC7;
@@ -72,6 +111,7 @@
   background-color: #E3D5B4;
 }
 
+/* Main content */
 .main-content-courses {
   flex: 1;
   padding: 80px 40px;
@@ -80,10 +120,10 @@
 }
 
 .back-button {
-  margin-top: 20px; 
+  margin-top: 20px;
   padding: 5px;
   border: none;
-  background: none; 
+  background: none;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -91,22 +131,22 @@
 }
 
 .back-button img {
-  width: 40px; 
+  width: 40px;
   height: auto;
 }
 
-.video-reference-text { 
-  font-size: 32px; 
+.video-reference-text {
+  font-size: 32px;
   font-weight: bold;
-  color: #333; 
-  text-transform: uppercase; 
-  letter-spacing: 2px; 
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .video-container {
   margin-bottom: -110px;
   position: relative;
-  padding-bottom: 56.25%; 
+  padding-bottom: 56.25%; /* Aspect ratio 16:9 */
   height: 0;
   overflow: hidden;
   max-width: 100%;
@@ -119,7 +159,6 @@
   width: 80%;
   height: 80%;
 }
-
 
 .main-content-courses h3 {
   font-size: 24px;
