@@ -30,13 +30,13 @@
     z-index: 20;
 }
 
-.message3 {
+.message3-chap3 {
     font-family: 'Quantico', sans-serif;
     font-weight: 700;
     font-size: 40px;
     font-style: normal;
     margin-left: 325px;
-    margin-top: 15px;
+    margin-top: 430px;
 }
 
 .tips3 {
@@ -54,15 +54,15 @@
     gap: 8px;
     /* Jarak antar gambar */
     width: 70px;
-    margin-left: 1065px;
+    margin-top: 10px;
+    margin-left: 1395px;
 }
 
 .score3 {
     font-family: 'Quantico', sans-serif;
     font-weight: 700;
     font-size: 31px;
-    margin-top: 10px;
-    margin-left: 1075px;
+    margin-left: 1405px;
 }
 
 .hint3-button {
@@ -95,11 +95,11 @@
 
 .lampu_meja-button {
     position: absolute;
-    top: 88.5%;
-    left: 25%;
+    top: 36.5%;
+    left: 81.7%;
     transform: translate(-50%, -50%);
     cursor: pointer;
-    width: 210px;
+    width: 198px;
     height: auto;
     z-index: 10;
 }
@@ -110,8 +110,8 @@
 
 .tas-button {
     position: absolute;
-    top: 88.5%;
-    left: 25%;
+    top: 48%;
+    left: 27%;
     transform: translate(-50%, -50%);
     cursor: pointer;
     width: 310px;
@@ -125,8 +125,8 @@
 
 .snack-button {
     position: absolute;
-    top: 88.5%;
-    left: 25%;
+    top: 21%;
+    left: 68.8%;
     transform: translate(-50%, -50%);
     cursor: pointer;
     width: 140px;
@@ -140,8 +140,8 @@
 
 .p3k-button {
     position: absolute;
-    top: 88.5%;
-    left: 25%;
+    top: 23.3%;
+    left: 75%;
     transform: translate(-50%, -50%);
     cursor: pointer;
     width: 185px;
@@ -155,8 +155,8 @@
 
 .senter-button {
     position: absolute;
-    top: 88.5%;
-    left: 25%;
+    top: 9.3%;
+    left: 68.5%;
     transform: translate(-30%, -30%);
     cursor: pointer;
     width: 160px;
@@ -170,8 +170,8 @@
 
 .pot-button {
     position: absolute;
-    top: 88.5%;
-    left: 25%;
+    top: 18.6%;
+    left: 43%;
     transform: translate(-30%, -30%);
     cursor: pointer;
     width: 200px;
@@ -185,8 +185,8 @@
 
 .buku-button {
     position: absolute;
-    top: 88.5%;
-    left: 25%;
+    top: 26%;
+    left: 38%;
     transform: translate(-30%, -30%);
     cursor: pointer;
     width: 160px;
@@ -200,8 +200,8 @@
 
 .botol-button {
     position: absolute;
-    top: 88.5%;
-    left: 25%;
+    top: 26%;
+    left: 30%;
     transform: translate(-30%, -30%);
     cursor: pointer;
     width: 160px;
@@ -215,7 +215,7 @@
 
 .selected3-elements {
     font-family: 'Quantico', sans-serif;
-    margin-top:650px;
+    margin-top:0px;
     width: 100%;
     display: flex;
     flex-direction: column;

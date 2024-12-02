@@ -22,7 +22,6 @@ import Chap2Scene3 from "./Quiz/chapter2/chapter2-scene3";
 import Chap2Ending from "./Quiz/chapter2/chapter2-ending";
 import Chapter3 from "./Quiz/chapter3/chapter3";
 import Chap3Success from "./Quiz/chapter3/chapter3-ending-success";
-import Chap3Fail from "./Quiz/chapter3/chapter3-ending-fail";
 import ProfilePage from "./UserProfile";
 import LeaderboardPage from "./LeaderboardPage";
 
@@ -62,7 +61,7 @@ const Main = () => {
       <Route path="/quiz/67474e8cf8b29b91943e9107/:id/ending2" element={<Chap1Ending2 />} />
       <Route path="/quiz/674abb8d3771c421e3a88b3d/:id" element={<Chapter3 />} />
       <Route path="/quiz/674abb8d3771c421e3a88b3d/:id/success" element={<Chap3Success />} />
-      <Route path="/quiz/674abb8d3771c421e3a88b3d/:id/fail" element={<Chap3Fail />} />
+      <Route path="/quiz/674abb8d3771c421e3a88b3d/:id/ending2" element={<Chap1Ending2 />} />
       <Route path="/profile/:userID" element={<ProfilePage />} />
       <Route path="/leaderboard" element={<LeaderboardPage />} />
     </Routes>

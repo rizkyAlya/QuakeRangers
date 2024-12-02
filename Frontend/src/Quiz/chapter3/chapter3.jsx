@@ -111,7 +111,7 @@ function Chapter3() {
             setMessage('Wrong selection! Some of your choices were incorrect.');
             setScore(prevScore => prevScore - 500); // Deduct 500 points if wrong
             setLives(prevLives => Math.max(prevLives - 1, 0)); // Deduct 1 life
-            navigate(`/quiz/674abb8d3771c421e3a88b3d/${id}/fail`); // Navigate to fail scenario
+            navigate(`/quiz/674abb8d3771c421e3a88b3d/${id}/ending2`); // Navigate to fail scenario
         }
 
         // Update score and lives in the backend
@@ -157,17 +157,17 @@ function Chapter3() {
             {!isWindowMaximized && (
                 <div className="warning3-message">{warningMessage}</div>
             )}
-            <div className="message3" >
-                <div className='heart3-container'>
-                    {Array.from({ length: lives }).map((_, index) => (
-                        <img
-                            key={index}
-                            src={fullHeart}
-                            alt="Nyawa"
-                        />
-                    ))}
-                </div>
-                <h4 className='score3'>Score: <span>{score}</span></h4>
+            <div className='heart3-container'>
+                {Array.from({ length: lives }).map((_, index) => (
+                    <img
+                        key={index}
+                        src={fullHeart}
+                        alt="Nyawa"
+                    />
+                ))}
+            </div>
+            <h4 className='score3'>Score: <span>{score}</span></h4>
+            <div className="message3-chap3" >
                 <Typewriter
                     onInit={(typewriter) => {
                         typewriter
@@ -227,7 +227,6 @@ function Chapter3() {
                     className="snack-button"
                     onClick={() => handleElementClick('snack', snack)}
                     disabled={disabledElements.includes('snack')}
-                    style={{ position: 'absolute', top: '21%', left: '70.5%' }}
                 />
                 <img
                     src={p3k}
@@ -235,7 +234,6 @@ function Chapter3() {
                     className="p3k-button"
                     onClick={() => handleElementClick('p3k', p3k)}
                     disabled={disabledElements.includes('p3k')}
-                    style={{ position: 'absolute', top: '23.5%', left: '77.5%' }}
                 />
                 <img
                     src={senter}
@@ -243,7 +241,6 @@ function Chapter3() {
                     className="senter-button"
                     onClick={() => handleElementClick('senter', senter)}
                     disabled={disabledElements.includes('senter')}
-                    style={{ position: 'absolute', top: '9.5%', left: '70.5%' }}
                 />
                 <img
                     src={botol}
@@ -251,7 +248,6 @@ function Chapter3() {
                     className="botol-button"
                     onClick={() => handleElementClick('botol', botol)}
                     disabled={disabledElements.includes('botol')}
-                    style={{ position: 'absolute', top: '26%', left: '28.3%' }}
                 />
                 <img
                     src={tas}
@@ -259,7 +255,6 @@ function Chapter3() {
                     className="tas-button"
                     onClick={() => handleElementClick('tas', tas)}
                     disabled={disabledElements.includes('tas')}
-                    style={{ position: 'absolute', top: '48%', left: '25%' }}
                 />
                 <img
                     src={buku}
@@ -267,7 +262,6 @@ function Chapter3() {
                     className="buku-button"
                     onClick={() => handleElementClick('buku', buku)}
                     disabled={disabledElements.includes('buku')}
-                    style={{ position: 'absolute', top: '26%', left: '37%' }}
                 />
                 <img
                     src={lampu_meja}
@@ -275,7 +269,6 @@ function Chapter3() {
                     className="lampu_meja-button"
                     onClick={() => handleElementClick('lampu_meja', lampu_meja)}
                     disabled={disabledElements.includes('lampu_meja')}
-                    style={{ position: 'absolute', top: '37%', left: '84.5%' }}
                 />
                 <img
                     src={pot}
@@ -283,7 +276,6 @@ function Chapter3() {
                     className="pot-button"
                     onClick={() => handleElementClick('pot', pot)}
                     disabled={disabledElements.includes('pot')}
-                    style={{ position: 'absolute', top: '18.5%', left: '42.5%' }}
                 />
             </div>
 
@@ -300,8 +292,8 @@ function Chapter3() {
             </div>
 
             <div className="submit-container">
-    {!message && <button className="submit-button" onClick={handleSubmit}>Submit</button>}
-</div>
+                {!message && <button className="submit-button" onClick={handleSubmit}>Submit</button>}
+            </div>
 
 
             {message && (
