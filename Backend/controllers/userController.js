@@ -28,17 +28,13 @@ const getProfile = async (req, res) => {
 
 const editProfile = async (req, res) => {
     const { id } = req.params;
-    const { name, gender, age, lives, score } = req.body; 
-    const profile = req.file;
+    const { name, gender, age } = req.body; 
 
     try {
-        const photoPath = profile ? `/uploads/${profile.filename}` : null;
-
         const updatedUser = await User.findByIdAndUpdate(
             id,
             {
                 name,
-                profile: photoPath,
                 gender,
                 age,
             },
@@ -53,6 +49,32 @@ const editProfile = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({ success: false, message: `Gagal memperbarui profil: ${err.message}` });
+    }
+};
+
+const editPhoto = async (req, res) => {
+    const { id } = req.params;
+    const profile = req.file;
+
+    try {
+        const photoPath = profile ? `/uploads/${profile.filename}` : null;
+
+        const updatedUser = await User.findByIdAndUpdate(
+            id,
+            {
+                profile: photoPath,
+            },
+            { new: true, runValidators: true }
+        ).select(" profile ");
+
+        if (!updatedUser) {
+            return res.status(404).json({ success: false, message: "User tidak ditemukan" });
+        }
+
+        res.status(200).json({ success: true, message: "Foto profil berhasil diperbarui", data: updatedUser });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ success: false, message: `Gagal memperbarui foto profil: ${err.message}` });
     }
 };
 
@@ -122,6 +144,7 @@ const editProgress = async (req, res) => {
 module.exports = {
     getProfile,
     editProfile,
+    editPhoto,
     getUserProgress,
     editProgress
 }

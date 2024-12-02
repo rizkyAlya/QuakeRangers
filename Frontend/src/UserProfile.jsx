@@ -46,17 +46,19 @@ function ProfilePage() {
   const handleUpdate = async () => {
     try {
       const token = localStorage.getItem('token');
-      const formData = new FormData();
-      Object.keys(editedProfile).forEach((key) => {
-        formData.append(key, editedProfile[key]);
-      });
 
-      const response = await axios.put(`${url}/user/updateProfile/${userID}`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const response = await axios.put(`${url}/user/updateProfile/${userID}`, {
+        name: editedProfile.name,
+        gender: editedProfile.gender,
+        age: editedProfile.age,
+      },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
 
       console.log('Profile updated successfully:', response.data);
       setProfile((prevProfile) => ({
@@ -79,7 +81,7 @@ function ProfilePage() {
 
       formData.append('photo', editedProfile.profile);
 
-      const response = await axios.put(`${url}/user/updateProfile/${userID}`, formData, {
+      const response = await axios.put(`${url}/user/updatePhoto/${userID}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
@@ -91,7 +93,7 @@ function ProfilePage() {
         ...prevProfile,
         user: {
           ...prevProfile.user,
-          profile: response.data.updatedProfilePicture, 
+          profile: response.data.updatedProfilePicture,
         },
       }));
       setIsPhotoModalOpen(false);
