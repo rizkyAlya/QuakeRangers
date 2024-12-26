@@ -15,6 +15,26 @@
     justify-content: space-between;
 }
 
+/* Gaya untuk tombol skip */
+.skip3-button {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    background-color: #7f4d5e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+}
+
+.skip3-button:hover {
+    background-color: #c292a2;
+}
+
 /* Gaya untuk pesan peringatan */
 .warning3-message {
     position: absolute;
@@ -22,7 +42,6 @@
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(255, 0, 0, 0.7);
-    /* Warna latar belakang peringatan */
     color: white;
     font-size: 1.5rem;
     padding: 10px 20px;
@@ -30,6 +49,7 @@
     z-index: 20;
 }
 
+/* Gaya untuk elemen teks dan pop-up */
 .message3-chap3 {
     font-family: 'Quantico', sans-serif;
     font-weight: 700;
@@ -39,6 +59,23 @@
     margin-top: 430px;
 }
 
+.message3-chap3 span {
+    background-color: white; 
+    padding: 5px 10px;
+    border-radius: 5px; 
+    display: inline-block; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.text-container {
+    background-color: white; 
+    padding: 10px 15px; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    display: inline-block; 
+    margin-top: 20px; 
+}
+/* Gaya umum lainnya tetap tidak berubah */
 .tips3 {
     font-family: 'Quantico', sans-serif;
     font-weight: 700;
@@ -48,11 +85,8 @@
 
 .heart3-container {
     display: flex;
-    /* Mengatur elemen anak secara horizontal */
     flex-direction: row;
-    /* Arah default untuk flex, bisa diabaikan */
     gap: 8px;
-    /* Jarak antar gambar */
     width: 70px;
     margin-top: 10px;
     margin-left: 1395px;

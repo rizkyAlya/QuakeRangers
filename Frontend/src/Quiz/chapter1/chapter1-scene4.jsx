@@ -16,6 +16,9 @@ function Chap1Scene4() {
     const [showPopup, setShowPopup] = useState(false);
     const [popupMessage, setPopupMessage] = useState("");
     const [confirmFinish, setConfirmFinish] = useState(false);
+    const [isTypingDone, setIsTypingDone] = useState(false); // Untuk fitur skip
+
+    const fullText = `Choosing the cabinet is risky! <br />It could fall forward, trapping you inside. <br />You won't be able to escape if it does.`;
 
     useEffect(() => {
         const userProgress = async () => {
@@ -56,27 +59,39 @@ function Chap1Scene4() {
         setShowPopup(false);
     };
 
+    const handleSkip = () => {
+        setIsTypingDone(true); // Langsung tampilkan teks penuh
+        setShowButtons(true); // Tampilkan tombol Replay dan Finish
+    };
+
     return (
         <div className="skenario4-container">
             <div className="message4">
-                <Typewriter
-                    onInit={(typewriter) => {
-                        typewriter
-                            .typeString("Choosing the cabinet is risky! ")
-                            .pauseFor(500)
-                            .typeString("<br />It could fall forward, trapping you inside. ")
-                            .pauseFor(500)
-                            .typeString("<br />You won't be able to escape if it does.")
-                            .pauseFor(500)
-                            .callFunction(() => {
-                                setShowButtons(true);
-                            })
-                            .start();
-                    }}
-                    options={{
-                        delay: 75,
-                    }}
-                />
+                {!isTypingDone ? (
+                    <>
+                        <Typewriter
+                            onInit={(typewriter) => {
+                                typewriter
+                                    .typeString("Choosing the cabinet is risky! ")
+                                    .pauseFor(500)
+                                    .typeString("<br />It could fall forward, trapping you inside. ")
+                                    .pauseFor(500)
+                                    .typeString("<br />You won't be able to escape if it does.")
+                                    .callFunction(() => {
+                                        setShowButtons(true);
+                                        setIsTypingDone(true);
+                                    })
+                                    .start();
+                            }}
+                            options={{
+                                delay: 75,
+                            }}
+                        />
+                        <button className="skip-button" onClick={handleSkip}>Skip</button>
+                    </>
+                ) : (
+                    <div className="text-container" dangerouslySetInnerHTML={{ __html: fullText }} />
+                )}
             </div>
             {showButtons && (
                 <div className="popup-buttons4">

@@ -33,4 +33,53 @@
 
 .text-ending2 {
     font-size: 25px;
+    background-color: white; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    display: inline-block; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    color: black; 
+}
+
+.message-ending2 {
+    font-family: 'Quantico', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    font-style: normal;
+    margin-right: 315px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.message-ending2 span {
+    background-color: white; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    display: inline-block; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.skip-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #7f4d5e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.skip-button:hover {
+    background-color: #c292a2;
+}
+
+.text-container {
+    background-color: white; 
+    padding: 10px 15px; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    display: inline-block; 
+    margin-top: 20px;
 }

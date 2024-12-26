@@ -22,6 +22,45 @@
     margin-right: 310px;
     margin-top: 20px;
     text-align: right;
+    position: relative; /* Pastikan teks tetap berada di atas */
+    z-index: 9999; /* Memastikan elemen teks di atas */
+}
+
+.chap2-message-1 span {
+    background-color: white; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    display: inline-block; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.text-container {
+    background-color: white; 
+    padding: 10px 15px; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    display: inline-block; 
+    margin-top: 20px; 
+}
+/* Tombol Skip */
+.skip-button-chap2 {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #7f4d5e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    z-index: 1000; /* Memastikan tombol berada di atas semua elemen */
+}
+
+.skip-button-chap2:hover {
+    background-color: #c292a2;
 }
 
 .popup1-buttons-chap2 {
@@ -46,7 +85,6 @@
     background-color: #c292a2;
 }
 
-/* Pop-up container */
 .popup1-chap2 {
     position: fixed;
     top: 0;
@@ -60,7 +98,6 @@
     z-index: 1000;
 }
 
-/* Pop-up box */
 .popup1-message-chap2 {
     background-color: #fff;
     padding: 20px;
@@ -71,14 +108,12 @@
     text-align: center;
 }
 
-/* Pesan di pop-up */
 .popup1-message-chap2 p {
     font-size: 18px;
     margin-bottom: 20px;
     color: #333;
 }
 
-/* Tombol di pop-up */
 .popup1-actions-chap2 button {
     background-color: #854359;
     color: white;

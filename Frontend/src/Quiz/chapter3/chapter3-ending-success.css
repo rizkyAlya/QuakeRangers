@@ -22,8 +22,27 @@
     margin-right: 315px;
     margin-top: 20px;
     text-align: right;
+    position: relative;
+    z-index: 10;
 }
-/* Tampilan tombol di pop-up */
+
+.message3 span {
+    background-color: white; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    display: inline-block; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.text-container {
+    background-color: white; 
+    padding: 10px 15px; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    display: inline-block; 
+    margin-top: 20px; 
+}
+
 .popup3-success-buttons button {
     margin: 10px;
     padding: 10px 20px;
@@ -35,6 +54,8 @@
     transition: background-color 0.3s;
     margin-top: 730px;
     margin-left: 1480px;
+    position: relative;
+    z-index: 10;
 }
 
 .popup3-success-buttons button:hover {
@@ -43,4 +64,24 @@
 
 .text3 {
     font-size: 30px;
+}
+
+/* Gaya untuk tombol skip */
+.skip-button {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    background-color: #7f4d5e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+}
+
+.skip-button:hover {
+    background-color: #c292a2;
 }

@@ -37,8 +37,46 @@
     font-style: normal;
     margin-left: 325px;
     margin-top: 15px;
-    position: relative;  /* Menjaga posisi tetap */
-    z-index: 9999;       /* Pastikan pesan tetap di depan */
+    position: relative;
+    z-index: 9999;
+}
+
+.text-container {
+    background-color: white; 
+    padding: 10px 15px; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    display: inline-block; 
+    margin-top: 20px; 
+}
+
+.message-chap2 span {
+    background-color: white; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    display: inline-block; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+/* Gaya tombol skip */
+.skip-button-chap2 {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #7f4d5e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    z-index: 1000;
+}
+
+.skip-button-chap2:hover {
+    background-color: #c292a2;
 }
 
 .tips-chap2 {

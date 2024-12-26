@@ -24,6 +24,23 @@
     margin-top: 10px;
 }
 
+.message4 span {
+    background-color: white; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    display: inline-block; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.text-container {
+    background-color: white; /* Latar belakang putih */
+    padding: 10px 15px; /* Ruang di sekitar teks */
+    border-radius: 5px; /* Membuat sudut melengkung */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+    display: inline-block; /* Agar hanya teks yang memiliki latar belakang */
+    margin-top: 20px; /* Jarak dari elemen lainnya */
+}
+
 .popup-buttons4 {
     display: flex;
     justify-content: right;
@@ -100,5 +117,21 @@
 }
 
 .popup-actions4 button:nth-child(2):hover {
+    background-color: #c292a2;
+}
+
+.skip-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #7f4d5e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.skip-button:hover {
     background-color: #c292a2;
 }

@@ -28,7 +28,9 @@ function Chapter1() {
     const [showNextButton, setShowNextButton] = useState(false);
     const [element, setElement] = useState('');
     const [message, setMessage] = useState('');
+    const [isTypingDone, setIsTypingDone] = useState(false); // Untuk skip fitur typing
     const userId = user.user;
+    const fullText = `You are at school.<br />Suddenly an earthquake occurs!<br />Quick! You must take shelter.`;
 
     useEffect(() => {
         const userProgress = async () => {
@@ -45,6 +47,12 @@ function Chapter1() {
 
         userProgress();
     }, [userId]);
+
+    const handleSkip = () => {
+        setIsTypingDone(true); // Tandai bahwa teks selesai
+        setShowTips(true); // Tampilkan tips langsung
+        setShowHint(true); // Tampilkan hint langsung
+    };
 
     const handleHintClick = () => {
         if (score > 0) {
@@ -85,15 +93,15 @@ function Chapter1() {
         switch (choice) {
             case 'meja_guru':
                 setShowNextButton(true);
-                message = "You decided to stay under the teacher's desk for protection."
+                message = "You decided to stay under the teacher's desk for protection.";
                 break;
             case 'meja_murid':
-                message = "You picked the student desk as your shelter."
+                message = "You picked the student desk as your shelter.";
                 break;
             case 'pintu':
                 setLives(prevLives => prevLives - 1);
                 if (lives > 1) {
-                    message = "You chose to run outside through the door."
+                    message = "You chose to run outside through the door.";
                 } else {
                     message = "Game Over! You ran out of lives. Stay safe and try again!";
                 }
@@ -101,7 +109,7 @@ function Chapter1() {
             case 'lemari':
                 setLives(prevLives => prevLives - 1);
                 if (lives > 1) {
-                    message = "You chose to hide in the cabinet."
+                    message = "You chose to hide in the cabinet.";
                 } else {
                     message = "Game Over! You ran out of lives. Stay safe and try again!";
                 }
@@ -114,7 +122,7 @@ function Chapter1() {
     // Fungsi untuk handle Finish
     const handleFinish = () => {
         setShowPopup(false);
-        if (lives == 0 && (element == "lemari" || element == "pintu")) {
+        if (lives === 0 && (element === "lemari" || element === "pintu")) {
             navigate(`/quiz/${id}/${id}/ending2`);
         } else {
             handleSubmit(element);
@@ -124,7 +132,7 @@ function Chapter1() {
     const handleSubmit = async (answer) => {
         console.log(user, answer);
         try {
-            if (answer == "pintu" || answer == "lemari") {
+            if (answer === "pintu" || answer === "lemari") {
                 try {
                     const res = await axios.put(`${url}/user/progress/${userId}`, {
                         lives: lives // Kirim hanya 'lives' yang akan diperbarui
@@ -134,8 +142,8 @@ function Chapter1() {
                     console.error('Error updating lives:', error.response?.data || error.message);
                 }
             }
-            
-            if (answer == "meja_guru") {
+
+            if (answer === "meja_guru") {
                 const response = await axios.post(`${url}/quiz/submit/${id}`, {
                     userId,
                     userAnswer: answer
@@ -143,9 +151,9 @@ function Chapter1() {
                 console.log(response.data);
 
                 navigate(`/quiz/${id}/${id}/scene1`);
-            } else if (answer == "meja_murid") {
+            } else if (answer === "meja_murid") {
                 navigate(`/quiz/${id}/${id}/scene2`);
-            } else if (answer == "pintu") {
+            } else if (answer === "pintu") {
                 navigate(`/quiz/${id}/${id}/scene3`);
             } else {
                 navigate(`/quiz/${id}/${id}/scene4`);
@@ -155,7 +163,7 @@ function Chapter1() {
             console.error('Submit error:', error);
             console.log(user);
         }
-    }
+    };
 
     // Menentukan ukuran maksimal yang diinginkan untuk jendela
     const checkWindowSize = () => {
@@ -196,39 +204,39 @@ function Chapter1() {
             {!isWindowMaximized && (
                 <div className="warning-message">{warningMessage}</div>
             )}
-            <div className="message" >
+            <div className="message">
                 <div className='heart-container'>
                     {Array.from({ length: lives }).map((_, index) => (
-                        <img
-                            key={index}
-                            src={fullHeart}
-                            alt="Nyawa"
-                        />
+                        <img key={index} src={fullHeart} alt="Nyawa" />
                     ))}
                 </div>
                 <h4 className='score'>Score: <span>{score}</span></h4>
-                <Typewriter
-                    onInit={(typewriter) => {
-                        typewriter
-                            .typeString('You are at school.')
-                            .pauseFor(500)
-                            .typeString('<br />Suddenly an earthquake occurs!')
-                            .pauseFor(500)
-                            .typeString('<br />Quick! You must take shelter.')
-                            .pauseFor(800)
-                            .callFunction(() => {
-                                setShowTips(true);
-                                setShowHint(true);
-                            })
-                            .start();
-                    }}
-                    options={{
-                        delay: 75,
-                    }}
-                />
-                {showTips && <h4 className='tips'>Move your cursor across the page and select a shelter</h4>}
+                {!isTypingDone ? (
+                    <>
+                        <Typewriter
+                            onInit={(typewriter) => {
+                                typewriter
+                                    .typeString(fullText)
+                                    .callFunction(() => {
+                                        setIsTypingDone(true);
+                                        setShowTips(true);
+                                        setShowHint(true);
+                                    })
+                                    .start();
+                            }}
+                            options={{
+                                delay: 75,
+                            }}
+                        />
+                        <button onClick={handleSkip} className="skip-button">
+                            Skip
+                        </button>
+                    </>
+                ) : (
+                    <div className="text-container" dangerouslySetInnerHTML={{ __html: fullText }} />
+                )}
             </div>
-            {showHint &&
+            {showHint && (
                 <button
                     onClick={handleHintClick}
                     disabled={score === 0}
@@ -236,7 +244,7 @@ function Chapter1() {
                 >
                     Hint
                 </button>
-            }
+            )}
             {showHintPopup && (
                 <div className="popup-overlay">
                     <div className="popup">

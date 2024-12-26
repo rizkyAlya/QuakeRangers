@@ -33,6 +33,7 @@ function Chapter3() {
     const [selectedElements, setSelectedElements] = useState([]);
     const [disabledElements, setDisabledElements] = useState([]);
     const [message, setMessage] = useState('');
+    const [skip, setSkip] = useState(false);
     const userId = user.user;
 
     const correctAnswers = ['snack', 'p3k', 'senter', 'botol', 'tas']; // List of correct elements
@@ -113,23 +114,17 @@ function Chapter3() {
             setLives(prevLives => Math.max(prevLives - 1, 0)); // Deduct 1 life
             navigate(`/quiz/674abb8d3771c421e3a88b3d/${id}/ending2`); // Navigate to fail scenario
         }
-
-        // Update score and lives in the backend
-        UserProgress();
     };
 
-    // Menentukan ukuran maksimal yang diinginkan untuk jendela
     const checkWindowSize = () => {
         const screenWidth = window.innerWidth;
         const screenHeight = window.innerHeight;
         const screenMaxWidth = window.screen.width;
         const screenMaxHeight = window.screen.height;
 
-        // Tentukan batas ukuran jendela yang diinginkan (misalnya 95% dari ukuran layar)
         const widthThreshold = screenMaxWidth * 1.32;
         const heightThreshold = screenMaxHeight * 1.13;
 
-        // Cek apakah jendela lebih kecil dari batas threshold
         if (screenWidth < widthThreshold || screenHeight < heightThreshold) {
             setIsWindowMaximized(false);
             setWarningMessage('Perhatian: Ukuran jendela tidak maksimal. Harap perbesar jendela!');
@@ -139,14 +134,9 @@ function Chapter3() {
         }
     };
 
-    // Tambahkan event listener untuk memonitor perubahan ukuran jendela
     useEffect(() => {
         window.addEventListener('resize', checkWindowSize);
-
-        // Cek ukuran jendela saat pertama kali halaman dimuat
         checkWindowSize();
-
-        // Bersihkan event listener ketika komponen unmount
         return () => {
             window.removeEventListener('resize', checkWindowSize);
         };
@@ -168,28 +158,41 @@ function Chapter3() {
             </div>
             <h4 className='score3'>Score: <span>{score}</span></h4>
             <div className="message3-chap3" >
-                <Typewriter
-                    onInit={(typewriter) => {
-                        typewriter
-                            .typeString('Hurry up!')
-                            .pauseFor(500)
-                            .typeString('<br />We dont know when the aftershocks will occur')
-                            .pauseFor(500)
-                            .typeString('<br />Quickly pack your important things!')
-                            .pauseFor(800)
-                            .callFunction(() => {
-                                setShowTips(true);
-                                setShowHint(true);
-                            })
-                            .start();
-                    }}
-                    options={{
-                        delay: 75,
-                    }}
-                />
-                {showTips && <h4 className='tips3'>Tips: Choose  five correct items</h4>}
+                {!skip && (
+                    <Typewriter
+                        onInit={(typewriter) => {
+                            typewriter
+                                .typeString('Hurry up!')
+                                .pauseFor(500)
+                                .typeString('<br />We dont know when the aftershocks will occur')
+                                .pauseFor(500)
+                                .typeString('<br />Quickly pack your important things!')
+                                .pauseFor(800)
+                                .callFunction(() => {
+                                    setShowTips(true);
+                                    setShowHint(true);
+                                })
+                                .start();
+                        }}
+                        options={{
+                            delay: 75,
+                        }}
+                    />
+                )}
+                {skip && (
+    <div className="text-container">
+        Hurry up!<br />
+        We dont know when the aftershocks will occur<br />
+        Quickly pack your important things!
+    </div>
+)}
+
+                {!skip && (
+                    <button className="skip-button" onClick={() => setSkip(true)}>Skip</button>
+                )}
+                {showTips && <h4 className='tips3'>Tips: Choose five correct items</h4>}
             </div>
-            {showHint &&
+            {showHint && (
                 <button
                     onClick={handleHintClick}
                     disabled={score === 0}
@@ -197,7 +200,7 @@ function Chapter3() {
                 >
                     Hint
                 </button>
-            }
+            )}
             {showHintPopup && (
                 <div className="popup-overlay-chap2">
                     <div className="popup3">
@@ -220,7 +223,6 @@ function Chapter3() {
                 </div>
             )}
             <div className="elements3-container">
-                {/* Place elements with position absolute */}
                 <img
                     src={snack}
                     alt="Snack"
@@ -294,7 +296,6 @@ function Chapter3() {
             <div className="submit-container">
                 {!message && <button className="submit-button" onClick={handleSubmit}>Submit</button>}
             </div>
-
 
             {message && (
                 <div className="result-message">

@@ -12,6 +12,7 @@ function Chap2Ending() {
     const navigate = useNavigate();
     const [showScore, setShowScore] = useState(false);
     const [showButton, setShowButton] = useState(false);
+    const [isTyping, setIsTyping] = useState(true);
 
     useEffect(() => {
         const userProgress = async () => {
@@ -29,6 +30,12 @@ function Chap2Ending() {
         userProgress();
     }, [userId]);
 
+    const handleSkip = () => {
+        setIsTyping(false);
+        setShowScore(true);
+        setShowButton(true);
+    };
+
     const handleHome = () => {
         navigate('/home');
     };
@@ -36,24 +43,33 @@ function Chap2Ending() {
     return (
         <div className="ending-container-chap2">
             <div className='message-ending-chap2'>
-                <Typewriter
-                    onInit={(typewriter) => {
-                        typewriter
-                            .typeString("Great job! You've safely survived the earthquake.")
-                            .pauseFor(500)
-                            .typeString("<br />You're a true Earthquake Hero!")
-                            .pauseFor(800)
-                            .callFunction(() => {
-                                setShowScore(true);
-                                setShowButton(true);
-                            })
-                            .start();
-                    }}
-                    options={{
-                        delay: 75,
-                    }}
-                />
+                {isTyping && (
+                    <Typewriter
+                        onInit={(typewriter) => {
+                            typewriter
+                                .typeString("Great job! You've safely survived the earthquake.")
+                                .pauseFor(500)
+                                .typeString("<br />You're a true Earthquake Hero!")
+                                .pauseFor(800)
+                                .callFunction(() => {
+                                    setShowScore(true);
+                                    setShowButton(true);
+                                })
+                                .start();
+                        }}
+                        options={{
+                            delay: 75,
+                        }}
+                    />
+                )}
+                {!isTyping && (
+                    <div>
+                        <p>Great job! You've safely survived the earthquake.</p>
+                        <p>You're a true Earthquake Hero!</p>
+                    </div>
+                )}
             </div>
+
             {showScore && (
                 <div className="score-container-chap2">
                     <p>You earned 1000 points!</p>
@@ -65,8 +81,12 @@ function Chap2Ending() {
                     <button className='text-ending-chap2' onClick={handleHome}>Home</button>
                 </div>
             )}
+
+            {isTyping && (
+                <button className="skip-button-chap2" onClick={handleSkip}>Skip</button>
+            )}
         </div>
-    )
+    );
 }
 
 export default Chap2Ending;

@@ -16,6 +16,9 @@ function Chap1Scene2() {
     const [showPopup, setShowPopup] = useState(false);
     const [popupMessage, setPopupMessage] = useState("");
     const [confirmFinish, setConfirmFinish] = useState(false);
+    const [isTypingDone, setIsTypingDone] = useState(false); // Untuk fitur skip
+
+    const fullText = `Right choice, but you got injured. <br />A student desk offers some protection during an earthquake. <br />However, it's not sturdy enough to keep you completely safe.`;
 
     useEffect(() => {
         const userProgress = async () => {
@@ -51,7 +54,7 @@ function Chap1Scene2() {
                 userAnswer: "meja_murid"
             });
             console.log(response.data);
-        
+
             navigate(`/quiz/${id}/${id}/ending`, { state: { answer: "meja_murid" } });
         } else {
             navigate(`/quiz/${id}/${id}`);
@@ -62,27 +65,39 @@ function Chap1Scene2() {
         setShowPopup(false);
     };
 
+    const handleSkip = () => {
+        setIsTypingDone(true); // Tandai teks selesai
+        setShowButton(true); // Tampilkan tombol Replay dan Finish
+    };
+
     return (
         <div className="skenario2-container">
-            <div className="message-2" >
-                <Typewriter
-                    onInit={(typewriter) => {
-                        typewriter
-                            .typeString("Right choice, but you got injured. ")
-                            .pauseFor(500)
-                            .typeString("<br />A student desk offers some protection during an earthquake. ")
-                            .pauseFor(500)
-                            .typeString("<br />However, it's not sturdy enough to keep you completely safe.")
-                            .pauseFor(500)
-                            .callFunction(() => {
-                                setShowButton(true);
-                            })
-                            .start();
-                    }}
-                    options={{
-                        delay: 75,
-                    }}
-                />
+            <div className="message-2">
+                {!isTypingDone ? (
+                    <>
+                        <Typewriter
+                            onInit={(typewriter) => {
+                                typewriter
+                                    .typeString("Right choice, but you got injured. ")
+                                    .pauseFor(500)
+                                    .typeString("<br />A student desk offers some protection during an earthquake. ")
+                                    .pauseFor(500)
+                                    .typeString("<br />However, it's not sturdy enough to keep you completely safe.")
+                                    .callFunction(() => {
+                                        setShowButton(true);
+                                        setIsTypingDone(true);
+                                    })
+                                    .start();
+                            }}
+                            options={{
+                                delay: 75,
+                            }}
+                        />
+                        <button className="skip-button" onClick={handleSkip}>Skip</button>
+                    </>
+                ) : (
+                    <div className="text-container" dangerouslySetInnerHTML={{ __html: fullText }} />
+                )}
             </div>
             {showButton && (
                 <div className="popup-buttons-2">
@@ -106,7 +121,7 @@ function Chap1Scene2() {
                 </div>
             )}
         </div>
-    )
+    );
 }
 
 export default Chap1Scene2;

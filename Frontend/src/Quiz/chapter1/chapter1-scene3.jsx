@@ -16,6 +16,9 @@ function Chap1Scene3() {
     const [showPopup, setShowPopup] = useState(false);
     const [popupMessage, setPopupMessage] = useState("");
     const [confirmFinish, setConfirmFinish] = useState(false);
+    const [isTypingDone, setIsTypingDone] = useState(false); // Untuk fitur skip
+
+    const fullText = `Danger! Running outside is too risky. <br />Falling debris could hit you. <br />It’s safer to stay inside and take shelter.`;
 
     useEffect(() => {
         const userProgress = async () => {
@@ -56,27 +59,39 @@ function Chap1Scene3() {
         setShowPopup(false);
     };
 
+    const handleSkip = () => {
+        setIsTypingDone(true); // Langsung tampilkan teks penuh
+        setShowButtons(true); // Tampilkan tombol Replay dan Finish
+    };
+
     return (
         <div className="skenario3-container">
             <div className="message-3">
-                <Typewriter
-                    onInit={(typewriter) => {
-                        typewriter
-                            .typeString("Danger! Running outside is too risky. ")
-                            .pauseFor(500)
-                            .typeString("<br />Falling debris could hit you. ")
-                            .pauseFor(500)
-                            .typeString("<br />It’s safer to stay inside and take shelter.")
-                            .pauseFor(500)
-                            .callFunction(() => {
-                                setShowButtons(true);
-                            })
-                            .start();
-                    }}
-                    options={{
-                        delay: 75,
-                    }}
-                />
+                {!isTypingDone ? (
+                    <>
+                        <Typewriter
+                            onInit={(typewriter) => {
+                                typewriter
+                                    .typeString("Danger! Running outside is too risky. ")
+                                    .pauseFor(500)
+                                    .typeString("<br />Falling debris could hit you. ")
+                                    .pauseFor(500)
+                                    .typeString("<br />It’s safer to stay inside and take shelter.")
+                                    .callFunction(() => {
+                                        setShowButtons(true);
+                                        setIsTypingDone(true);
+                                    })
+                                    .start();
+                            }}
+                            options={{
+                                delay: 75,
+                            }}
+                        />
+                        <button className="skip-button" onClick={handleSkip}>Skip</button>
+                    </>
+                ) : (
+                    <div className="text-container" dangerouslySetInnerHTML={{ __html: fullText }} />
+                )}
             </div>
             {showButtons && (
                 <div className="popup-buttons-3">

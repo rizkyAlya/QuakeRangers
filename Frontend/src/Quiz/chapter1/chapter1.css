@@ -39,6 +39,39 @@
     margin-top: 15px;
 }
 
+.message span {
+    background-color: white; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    display: inline-block; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.text-container {
+    background-color: white; 
+    padding: 10px 15px; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    display: inline-block; 
+    margin-top: 20px; 
+}
+
+.skip-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #7f4d5e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.skip-button:hover {
+    background-color: #c292a2;
+}
+
 .tips {
     font-family: 'Quantico', sans-serif;
     font-weight: 700;

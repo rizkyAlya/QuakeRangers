@@ -16,6 +16,7 @@ function Chap2Scene3() {
     const [showPopup, setShowPopup] = useState(false);
     const [popupMessage, setPopupMessage] = useState("");
     const [confirmFinish, setConfirmFinish] = useState(false);
+    const [isTyping, setIsTyping] = useState(true);
 
     useEffect(() => {
         const userProgress = async () => {
@@ -56,9 +57,20 @@ function Chap2Scene3() {
         setShowPopup(false);
     };
 
+    const handleSkip = () => {
+        setIsTyping(false);
+        setShowButtons(true);
+    };
+
     return (
         <div className="skenario3-container-chap2">
-            <div className="chap2-message-3">
+        {isTyping && (
+            <button className="skip-button-chap2" onClick={handleSkip}>
+                Skip
+            </button>
+        )}
+        <div className="chap2-message-3">
+            {isTyping ? (
                 <Typewriter
                     onInit={(typewriter) => {
                         typewriter
@@ -70,36 +82,46 @@ function Chap2Scene3() {
                             .pauseFor(500)
                             .callFunction(() => {
                                 setShowButtons(true);
+                                setIsTyping(false);
                             })
                             .start();
                     }}
                     options={{
                         delay: 75,
+                        skipAddStyles: true
                     }}
                 />
-            </div>
-            {showButtons && (
-                <div className="popup3-buttons-chap2">
-                    {lives >= 1 && (
-                        <>
-                            <button onClick={handleReplay}>Replay</button>
-                            <button onClick={handleFinish}>Finish</button>
-                        </>
-                    )}
-                </div>
-            )}
-            {showPopup && (
-                <div className="popup3-chap2">
-                    <div className="popup3-message-chap2">
-                        <p>{popupMessage}</p>
-                        <div className="popup3-actions-chap2">
-                            <button onClick={handlePopupConfirm}>Yes, I'm sure</button>
-                            <button onClick={handlePopupCancel}>No, take me back</button>
-                        </div>
-                    </div>
+            ) : (
+                <div className="text-container">
+                    <p>Hiding beside the sofa is unsafe!</p>
+                    <p>It won’t protect you from falling objects.</p>
+                    <p>This could put you in serious danger.</p>
                 </div>
             )}
         </div>
+        {showButtons && (
+            <div className="popup3-buttons-chap2">
+                {lives >= 1 && (
+                    <>
+                        <button onClick={handleReplay}>Replay</button>
+                        <button onClick={handleFinish}>Finish</button>
+                    </>
+                )}
+            </div>
+        )}
+        {showPopup && (
+            <div className="popup3-chap2">
+                <div className="popup3-message-chap2">
+                    <p>{popupMessage}</p>
+                    <div className="popup3-actions-chap2">
+                        <button onClick={handlePopupConfirm}>Yes, I'm sure</button>
+                        <button onClick={handlePopupCancel}>No, take me back</button>
+                    </div>
+                </div>
+            </div>
+        )}
+    </div>
+    
     );
 }
 

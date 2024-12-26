@@ -24,6 +24,24 @@
     text-align: left;
 }
 
+.message1-chap2 span {
+    background-color: white; 
+    padding: 5px 10px; 
+    border-radius: 5px; 
+    display: inline-block; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.text-container {
+    background-color: white; 
+    padding: 10px 15px; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    display: inline-block; 
+    margin-top: 20px; 
+}
+
+/* Tombol popup */
 .popup-buttons1-chap2 button {
     margin: 10px;
     padding: 10px 20px;
@@ -43,4 +61,24 @@
 
 .text1-chap2 {
     font-size: 20px;
+}
+
+/* Tombol Skip */
+.skip-button-chap2 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: #7f4d5e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.skip-button-chap2:hover {
+    background-color: #c292a2;
 }

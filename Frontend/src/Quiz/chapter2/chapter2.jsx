@@ -27,6 +27,7 @@ function Chapter2() {
     const [showNextButton, setShowNextButton] = useState(false);
     const [element, setElement] = useState('');
     const [message, setMessage] = useState('');
+    const [skip, setSkip] = useState(false);
     const userId = user.user;
 
     useEffect(() => {
@@ -85,19 +86,19 @@ function Chapter2() {
             case 'pintu':
                 setLives(prevLives => prevLives - 1);
                 if (lives > 1) {
-                    message = "You chose to run outside through the door."
+                    message = "You chose to run outside through the door.";
                 } else {
                     message = "Game Over! You ran out of lives. Stay safe and try again!";
                 }
                 break;
             case 'meja':
                 setShowNextButton(true);
-                message = "You decide to stay under the table for protection."
+                message = "You decide to stay under the table for protection.";
                 break;
             case 'sofa':
                 setLives(prevLives => prevLives - 1);
                 if (lives > 1) {
-                    message = "You decide to stay beside the couch for protection."
+                    message = "You decide to stay beside the couch for protection.";
                 } else {
                     message = "Game Over! You ran out of lives. Stay safe and try again!";
                 }
@@ -111,7 +112,7 @@ function Chapter2() {
     // Fungsi untuk handle Finish
     const handleFinish = () => {
         setShowPopup(false);
-        if (lives == 0 && element != "meja") {
+        if (lives === 0 && element !== "meja") {
             navigate(`/quiz/${id}/${id}/ending2`);
         } else {
             handleSubmit(element);
@@ -121,7 +122,7 @@ function Chapter2() {
     const handleSubmit = async (answer) => {
         console.log(user, answer);
         try {
-            if (answer == "pintu" || answer == "sofa") {
+            if (answer === "pintu" || answer === "sofa") {
                 try {
                     const res = await axios.put(`${url}/user/progress/${userId}`, {
                         lives: lives // Kirim hanya 'lives' yang akan diperbarui
@@ -132,9 +133,9 @@ function Chapter2() {
                 }
             }
 
-            if (answer == "pintu") {
+            if (answer === "pintu") {
                 navigate(`/quiz/${id}/${id}/scene1`);
-            } else if (answer == "meja") {
+            } else if (answer === "meja") {
                 const response = await axios.post(`${url}/quiz/submit/${id}`, {
                     userId,
                     userAnswer: answer
@@ -150,7 +151,7 @@ function Chapter2() {
             console.error('Submit error:', error);
             console.log(user);
         }
-    }
+    };
 
     // Menentukan ukuran maksimal yang diinginkan untuk jendela
     const checkWindowSize = () => {
@@ -202,28 +203,44 @@ function Chapter2() {
                     ))}
                 </div>
                 <h4 className='score-chap2'>Score: <span>{score}</span></h4>
-                <Typewriter
-                    onInit={(typewriter) => {
-                        typewriter
-                            .typeString('You are at home.')
-                            .pauseFor(500)
-                            .typeString('<br />Suddenly an earthquake occurs!')
-                            .pauseFor(500)
-                            .typeString('<br />Quick! You must take shelter.')
-                            .pauseFor(800)
-                            .callFunction(() => {
-                                setShowTips(true);
-                                setShowHint(true);
-                            })
-                            .start();
-                    }}
-                    options={{
-                        delay: 75,
-                    }}
-                />
+                <div className="typewriter-container">
+                    {!skip && (
+                        <Typewriter
+                            onInit={(typewriter) => {
+                                typewriter
+                                    .typeString('You are at home.')
+                                    .pauseFor(500)
+                                    .typeString('<br />Suddenly an earthquake occurs!')
+                                    .pauseFor(500)
+                                    .typeString('<br />Quick! You must take shelter.')
+                                    .pauseFor(800)
+                                    .callFunction(() => {
+                                        setShowTips(true);
+                                        setShowHint(true);
+                                    })
+                                    .start();
+                            }}
+                            options={{
+                                delay: 75,
+                            }}
+                        />
+                    )}
+                    {skip && (
+                        <div className="text-container">
+                            You are at home.<br />
+                            Suddenly an earthquake occurs!<br />
+                            Quick! You must take shelter.
+                        </div>
+                    )}
+                    {!skip && (
+                        <button className="skip-button" onClick={() => setSkip(true)}>
+                            Skip
+                        </button>
+                    )}
+                </div>
                 {showTips && <h4 className='tips-chap2'>Move your cursor across the page and select a shelter</h4>}
             </div>
-            {showHint &&
+            {showHint && (
                 <button
                     onClick={handleHintClick}
                     disabled={score === 0}
@@ -231,7 +248,7 @@ function Chapter2() {
                 >
                     Hint
                 </button>
-            }
+            )}
             {showHintPopup && (
                 <div className="popup-overlay-chap2">
                     <div className="popup-chap2">

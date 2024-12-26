@@ -15,6 +15,9 @@ function Chap1Ending() {
     const [showScore, setShowScore] = useState(false);
     const [earnedPoints, setEarnedPoints] = useState(0);
     const [showButton, setShowButton] = useState(false);
+    const [isTypingDone, setIsTypingDone] = useState(false); // Untuk fitur skip
+
+    const fullText = `Great job! You've safely survived the earthquake.<br />You're a true Earthquake Hero!`;
 
     useEffect(() => {
         const userProgress = async () => {
@@ -22,7 +25,6 @@ function Chap1Ending() {
                 const response = await axios.put(`${url}/user/progress/${userId}`, {
                     lives: 3
                 });
-                
                 console.log('Progress successfully updated:', response.data.data);
             } catch (error) {
                 console.error('Error updating user progress:', error);
@@ -48,27 +50,41 @@ function Chap1Ending() {
         navigate('/home');
     };
 
+    const handleSkip = () => {
+        setIsTypingDone(true); // Langsung tampilkan teks penuh
+        setEarnedPoints(points); // Set poin yang diperoleh
+        setShowScore(true); // Tampilkan skor
+        setShowButton(true); // Tampilkan tombol
+    };
+
     return (
         <div className="ending-container">
             <div className='message-ending'>
-                <Typewriter
-                    onInit={(typewriter) => {
-                        typewriter
-                            .typeString("Great job! You've safely survived the earthquake.")
-                            .pauseFor(500)
-                            .typeString("<br />You're a true Earthquake Hero!")
-                            .pauseFor(800)
-                            .callFunction(() => {
-                                setEarnedPoints(points);
-                                setShowScore(true);
-                                setShowButton(true);
-                            })
-                            .start();
-                    }}
-                    options={{
-                        delay: 75,
-                    }}
-                />
+                {!isTypingDone ? (
+                    <>
+                        <Typewriter
+                            onInit={(typewriter) => {
+                                typewriter
+                                    .typeString("Great job! You've safely survived the earthquake.")
+                                    .pauseFor(500)
+                                    .typeString("<br />You're a true Earthquake Hero!")
+                                    .callFunction(() => {
+                                        setEarnedPoints(points);
+                                        setShowScore(true);
+                                        setShowButton(true);
+                                        setIsTypingDone(true);
+                                    })
+                                    .start();
+                            }}
+                            options={{
+                                delay: 75,
+                            }}
+                        />
+                        <button className="skip-button" onClick={handleSkip}>Skip</button>
+                    </>
+                ) : (
+                    <div className="text-container" dangerouslySetInnerHTML={{ __html: fullText }} />
+                )}
             </div>
 
             {showScore && (
