@@ -43,7 +43,7 @@ function Chap2Ending() {
     return (
         <div className="ending-container-chap2">
             <div className='message-ending-chap2'>
-                {isTyping && (
+                {isTyping ? (
                     <Typewriter
                         onInit={(typewriter) => {
                             typewriter
@@ -61,9 +61,8 @@ function Chap2Ending() {
                             delay: 75,
                         }}
                     />
-                )}
-                {!isTyping && (
-                    <div>
+                ) : (
+                    <div className="text-container">
                         <p>Great job! You've safely survived the earthquake.</p>
                         <p>You're a true Earthquake Hero!</p>
                     </div>
@@ -83,7 +82,7 @@ function Chap2Ending() {
             )}
 
             {isTyping && (
-                <button className="skip-button-chap2" onClick={handleSkip}>Skip</button>
+                <button className="skip-button" onClick={handleSkip}>Skip</button>
             )}
         </div>
     );
