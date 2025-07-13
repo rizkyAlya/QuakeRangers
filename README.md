@@ -22,7 +22,7 @@ QuakeRangers is an educational web application aimed at enhancing children's kno
 
 ### Educational Materials
 - Concise and complete learning modules on earthquake science and safety.
-- Enhanced with images, videos, diagrams, and external trusted resources.
+- Enhanced with images, videos, and external trusted resources.
 - Self-paced learning section to explore earthquake-related topics in-depth.
 
 ### Leaderboard
@@ -35,7 +35,7 @@ QuakeRangers is an educational web application aimed at enhancing children's kno
 - Using hints deducts points, encouraging strategic thinking.
 - Balances gameplay difficulty and learning reinforcement.
 
-## 🛠Tech Stack
+## Tech Stack
 
 ### Frontend
 - **Framework**: [React.js](https://reactjs.org/)
@@ -57,7 +57,7 @@ QuakeRangers is an educational web application aimed at enhancing children's kno
 1. **Clone the repository**
    ```bash
    git clone https://github.com/rizkyAlya/QuakeRangers.git
-   cd quakerangers
+   cd QuakeRangers
    ```
 
 2. **Install frontend dependencies**
